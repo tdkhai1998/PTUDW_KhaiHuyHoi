@@ -1,0 +1,36 @@
+﻿	Khải
+1	Lập danh mục và các bài viết	
+		Danh mục 2 cấp, 20 bài viết cho 4-5 chuyên mục
+2	Phân hệ GUEST	
+		Thiết kế trang chủ: Menu, các container, có slide show	
+		Thiết trang xem bài viết: Bài viết, Danh sách bình luận, bài cùng chuyên mục	
+		Trang tìm kiếm bài viết: 	
+3	Subscriber	Xem và download premium	
+-------------------------------------------------------------
+Huy
+4	writer	
+		Hộ trợ soạn thảo WYSIWYG: ckeditor, quilljs	Huy
+		Up hình và link youtube	
+		Bài viêt: tiêu đề, tóm tắt, nội dung, chuyên mục & gán nhãn cho bài viết	
+		Danh sách bài viết :
+    			Đã được duyệt & chờ xuất bản
+    			Đã xuất bản
+    			Bị từ chối
+    			Chưa được duyệt"	
+		Chi được phép hiệu chỉnh các bài viết bị từ chối hoặc chưa được duyệt	
+5	editor	
+		Xem danh sách draft	
+		Chức năng duyệt và từ chối bài  viết.	
+------------------------------------------------------------------
+Hội
+6	administrator	Quản lý chuyên mục category	
+		Quản lý nhãn tag	
+		Quản lý bài viết	
+		Quản lý danh sách người dùng (phóng viên, biên tập viên, độc giả, ...)
+   			Phân công chuyên mục cho biên tập viên
+    			Gia hạn tài khoản độc giả"	
+7	Các tính năng chung	
+		Đăng nhập	
+		Cập nhật thông tin cá nhân	
+		Đổi mật khẩu	
+		Quên mật khẩu	
