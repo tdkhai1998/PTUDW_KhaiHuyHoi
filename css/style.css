@@ -85,7 +85,7 @@ figure {
   left: 0;
   right: 0;
   z-index: 1001;
-  background: #fff;
+  background: gray;
   -webkit-transition: 0.5s;
   -o-transition: 0.5s;
   transition: 0.5s; }
@@ -119,9 +119,13 @@ figure {
       color: #000;
       letter-spacing: 10px; }
   #colorlib-aside #colorlib-main-menu ul {
-    text-align: right;
+    text-align: center;
     margin: 0;
     padding: 0; }
+    #colorlib-aside #colorlib-main-menu .submenu{
+      
+    }
+    
     @media screen and (max-width: 768px) {
       #colorlib-aside #colorlib-main-menu ul {
         margin: 0 0 2em 0; } }
@@ -134,7 +138,7 @@ figure {
       text-transform: uppercase;
       letter-spacing: 1px; }
       #colorlib-aside #colorlib-main-menu ul li a {
-        color: rgba(0, 0, 0, 0.4);
+        color: rgba(255, 255, 255, 0.4);
         text-decoration: none;
         position: relative;
         padding: 10px 0;
@@ -161,9 +165,11 @@ figure {
           -ms-transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
           -o-transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
           transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+
         #colorlib-aside #colorlib-main-menu ul li a:hover {
           text-decoration: none;
           color: black; }
+
           #colorlib-aside #colorlib-main-menu ul li a:hover:after {
             visibility: visible;
             -webkit-transform: scaleX(1);
@@ -1491,3 +1497,42 @@ article {
     height: inherit !important;
     float: left;
     padding-top: 30px; } }
+
+
+
+
+
+
+
+
+
+#colorlib-aside #colorlib-main-menu ul li{
+  text-align: left;
+  color: gray;
+}
+
+#colorlib-aside #colorlib-main-menu ul li .submenu{
+  overflow: hidden;
+  max-height: 0;
+  -webkit-transition: all  0.5s ease-out;
+}
+#colorlib-aside #colorlib-main-menu ul li:hover .submenu {
+   display: block;
+  max-height: 200px;
+
+}
+
+
+
+
+
+
+
+
+#colorlib-aside #colorlib-main-menu ul li{
+  transition: height 1s ease-out;
+}
+
+#colorlib-aside #colorlib-main-menu ul li .submenu ul li{
+  text-align: right;
+}
