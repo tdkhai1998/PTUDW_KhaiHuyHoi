@@ -1504,7 +1504,15 @@ article {
 
 
 
-
+#colorlib-main-menu{
+  background: red;
+}
+aside{
+  background: red;
+}
+#colorlib-aside {
+  background: blue;
+}
 
 #colorlib-aside #colorlib-main-menu ul li{
   text-align: left;
