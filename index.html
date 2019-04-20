@@ -59,6 +59,60 @@
 	</head>
 	<body>
 	<div id="colorlib-page">
+		<a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle"><i></i></a>
+		<aside id="colorlib-aside" role="complementary" class="js-fullheight">
+			
+			<h1 id="colorlib-logo"><a href="index.html">news</a></h1>
+			<nav id="colorlib-main-menu" >
+				<ul>
+					<li class="colorlib-active"><a href="index.html">Trang Chủ</a></li>
+					<li><a id="dm" href="fashion.html">Fashion</a>
+							<div class="submenu">
+								<ul>
+									<li><a>Start Style</a></li>
+									<li><a>Fashion Ico</a></li>
+									<li><a>How To</a></li>							
+								</ul>
+							</div>
+
+					</li>
+
+
+
+					<li><a href="fashion.html">CINE</a>
+							<div class="submenu">
+								<ul>
+									<li><a>PHIM VIỆT NAM</a></li>
+									<li><a>PHIM ÂU MỸ</a></li>
+									<li><a>PHIM CHÂU Á</a></li>
+								</ul>
+							</div>
+					</li>
+					<li><a href="travel.html">MUSIK</a>
+						<div class="submenu">
+								<ul>
+									<li><a>ÂU MỸ</a></li>
+									<li><a>CHÂU Á</a></li>
+									<li><a>VIỆT NAM</a></li>
+									<li><a>EDM</a></li>
+								
+								</ul>
+							</div>
+					</li>
+					<li><a href="travel.html">sporT</a>
+						<div class="submenu">
+								<ul>
+									<li><a>Bóng đá</a></li>
+									<li><a>Thể thao khác</a></li>
+							
+								
+								</ul>
+							</div>
+					</li>
+				</ul>
+			</nav>
+		</aside>
+
 		
 
 
@@ -126,6 +180,7 @@
 					<li class="menu__item" role="menuitem"><a class="menu__link" href="#">Wild Rice</a></li>
 					<li class="menu__item" role="menuitem"><a class="menu__link" href="#">Durum Wheat</a></li>
 					<li class="menu__item" role="menuitem"><a class="menu__link" data-submenu="submenu-3-1" aria-owns="submenu-3-1" href="#">Promo Packs</a></li>
+
 				</ul>
 				<!-- Submenu 3-1 -->
 				<ul data-menu="submenu-3-1" id="submenu-3-1" class="menu__level" tabindex="-1" role="menu" aria-label="Promo Packs">
@@ -451,30 +506,23 @@
 				// itemsDelayInterval : 60, // delay between each menu item sliding animation
 				onItemClick: loadDummyData // callback: item that doesn´t have a submenu gets clicked - onItemClick([event], [inner HTML of the clicked item])
 			});
-
 		// mobile menu toggle
 		var openMenuCtrl = document.querySelector('.action--open'),
 			closeMenuCtrl = document.querySelector('.action--close');
-
 		openMenuCtrl.addEventListener('click', openMenu);
 		closeMenuCtrl.addEventListener('click', closeMenu);
-
 		function openMenu() {
 			classie.add(menuEl, 'menu--open');
 			closeMenuCtrl.focus();
 		}
-
 		function closeMenu() {
 			classie.remove(menuEl, 'menu--open');
 			openMenuCtrl.focus();
 		}
-
 		// simulate grid content loading
 		var gridWrapper = document.querySelector('.content');
-
 		function loadDummyData(ev, itemName) {
 			ev.preventDefault();
-
 			closeMenu();
 			gridWrapper.innerHTML = '';
 			classie.add(gridWrapper, 'content--loading');
@@ -488,4 +536,3 @@
 
 	</body>
 </html>
-
