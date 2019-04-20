@@ -1528,11 +1528,6 @@ article {
 
 }
 
-
-
-
-
-
 #colorlib-aside #colorlib-main-menu ul li a{
     color: black;
 
@@ -1551,10 +1546,9 @@ article {
   opacity: 0.8;
 }
 #colorlib-main{
-  padding-left: 5px;
+  /*padding-left: 20px;*/
 
 }
-
-#colorlib-aside{
-  background: blue;
+form{
+  padding: 10px;
 }
