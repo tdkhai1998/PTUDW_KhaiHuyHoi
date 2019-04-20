@@ -1552,4 +1552,10 @@ article {
 }
 #colorlib-main{
   padding-left: 5px;
+
 }
+
+#colorlib-aside{
+  background: blue;
+}
+
