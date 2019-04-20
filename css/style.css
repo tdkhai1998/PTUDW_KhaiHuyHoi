@@ -7,8 +7,8 @@
 
 /* =======================================================
 *
-* 	Template Style 
-*	Edit this section
+*   Template Style 
+* Edit this section
 *
 * ======================================================= */
 body {
@@ -85,7 +85,7 @@ figure {
   left: 0;
   right: 0;
   z-index: 1001;
-  background: #fff;
+  background: gray;
   -webkit-transition: 0.5s;
   -o-transition: 0.5s;
   transition: 0.5s; }
@@ -119,9 +119,13 @@ figure {
       color: #000;
       letter-spacing: 10px; }
   #colorlib-aside #colorlib-main-menu ul {
-    text-align: right;
+    text-align: center;
     margin: 0;
     padding: 0; }
+    #colorlib-aside #colorlib-main-menu .submenu{
+      
+    }
+    
     @media screen and (max-width: 768px) {
       #colorlib-aside #colorlib-main-menu ul {
         margin: 0 0 2em 0; } }
@@ -134,7 +138,7 @@ figure {
       text-transform: uppercase;
       letter-spacing: 1px; }
       #colorlib-aside #colorlib-main-menu ul li a {
-        color: rgba(0, 0, 0, 0.4);
+        color: rgba(255, 255, 255, 0.4);
         text-decoration: none;
         position: relative;
         padding: 10px 0;
@@ -161,9 +165,11 @@ figure {
           -ms-transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
           -o-transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
           transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+
         #colorlib-aside #colorlib-main-menu ul li a:hover {
           text-decoration: none;
           color: black; }
+
           #colorlib-aside #colorlib-main-menu ul li a:hover:after {
             visibility: visible;
             -webkit-transform: scaleX(1);
@@ -171,9 +177,10 @@ figure {
             -ms-transform: scaleX(1);
             -o-transform: scaleX(1);
             transform: scaleX(1); }
-      #colorlib-aside #colorlib-main-menu ul li.colorlib-active a {
-        color: #000; }
-        #colorlib-aside #colorlib-main-menu ul li.colorlib-active a:after {
+      #colorlib-aside #colorlib-main-menu ul li.colorlib-active>a {
+        color: #000; 
+        font-weight: bold;}
+        #colorlib-aside #colorlib-main-menu ul li.colorlib-active>a:after {
           visibility: visible;
           -webkit-transform: scaleX(1);
           -moz-transform: scaleX(1);
@@ -507,11 +514,11 @@ body.offcanvas {
         transition: 0.3s; }
       .blog-entry .blog-img .desc .tag {
         text-transform: uppercase;
-        font-weight: 400;
-        color: #fff;
+        font-weight: bold;
+        color: #000;
         letter-spacing: 2px;
         margin-bottom: 10px;
-        font-size: 12px;
+        font-size: 15px;
         letter-spacing: 3px;
         -webkit-transition: 0.3s;
         -o-transition: 0.3s;
@@ -521,6 +528,7 @@ body.offcanvas {
         height: 500px; }
         .blog-entry .blog-img .desc.desc2 .desc-bottom {
           position: absolute;
+          color:#000;
           bottom: 0;
           left: 0;
           right: 0; }
@@ -530,7 +538,7 @@ body.offcanvas {
             height: 400px; } }
         .blog-entry .blog-img .desc.desc2 .tag span {
           display: inline-block;
-          bordeR: 1px solid rgba(255, 255, 255, 0.5);
+          border: 2px solid #000;/*------------------------------------------------------------*/
           padding: 7px 15px;
           -webkit-border-radius: 30px;
           -moz-border-radius: 30px;
@@ -1490,8 +1498,62 @@ article {
     clear: both;
     height: inherit !important;
     float: left;
-    padding-top: 30px; } 
-  }
+    padding-top: 30px; } }
+
+
+
+
+.desc-bottom p {
+ 
+  font-weight: bold !important;
+ 
+}
+
+
+
+
+#colorlib-aside #colorlib-main-menu ul li{
+  text-align: left;
+  color: gray;
+}
+
+#colorlib-aside #colorlib-main-menu ul li .submenu{
+  overflow: hidden;
+  max-height: 0;
+  -webkit-transition: all  0.5s ease-out;
+}
+#colorlib-aside #colorlib-main-menu ul li:hover .submenu {
+   display: block;
+  max-height: 200px;
+
+}
+
+
+
+
+
+
+#colorlib-aside #colorlib-main-menu ul li a{
+    color: black;
+
+}
+#colorlib-aside #colorlib-main-menu ul li {
+  transition: height 1s ease-out;
+ 
+}
+
+#colorlib-aside #colorlib-main-menu ul li .submenu ul li{
+  text-align: right;
+}
+
+
+.blog-img{
+  opacity: 0.8;
+}
+#colorlib-main{
+  padding-left: 5px;
+
+}
 
 #colorlib-aside{
   background: blue;
