@@ -59,6 +59,29 @@
 			margin: 7px;
 
 		}
+			.tag
+		{
+			        /* Safari/WebKit uses a non-standard name */
+ 			 width: -moz-max-content;   /* Firefox/Gecko */
+ 			 width: -webkit-max-content;
+			height: auto;
+			margin: 2px;
+			padding: 3px;
+			padding-right: 10px;
+			display: inline-block;
+		}
+		.alert-dismissible .close
+		{
+			top:4px;
+			right: -10px;
+
+		}
+		.side{
+			margin-bottom: 0;
+		}
+		.chuyenMucDaChon{
+			color: red;
+		}
 	</style>
 	</head>
 	<body>
@@ -126,10 +149,10 @@
 					<div class="col-md-3 sticky-parent">
 							<div class="sidebar" id="sticky_item">
 								<div class="side animate-box">
-									<div class="form-group">
-										<input type="text" class="form-control" id="search" placeholder="Chuyên mục đang viết">
-										
-									</div>
+									<h2 class="sidebar-heading"><b>Chuyên mục đang chọn</b></h2>
+									<h1>
+										<strong class="chuyenMucDaChon">ĐIỆN ẢNH</strong>
+									</h1>		
 								</div>
 								<div class="side animate-box">
 									<h2 class="sidebar-heading"><b>Chuyên mục</b></h2>
@@ -181,6 +204,20 @@
 										 </div>			
 								</div>
 								<div class="side animate-box">
+								 <div class="alert alert-success alert-dismissible tag">
+								 	hai phượng
+									    <button type="button" class="close" data-dismiss="alert">&times;</button>
+ 
+  </div>
+  <div class="alert alert-success alert-dismissible tag">
+  	   ngô thanh vân
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+  </div>
+  <div class="alert alert-success alert-dismissible tag">
+  	em mệt rồi
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+   
+  </div>
 								<h2 class="sidebar-heading"><b>Thêm nhãn</b></h2>
 									<p>
 										<input type="text">

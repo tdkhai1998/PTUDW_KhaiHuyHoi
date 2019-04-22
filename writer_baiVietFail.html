@@ -3,7 +3,7 @@
 	<head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>editor duyet bài viết</title>
+	<title>chỉnh sửa bài viết lỗi</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="description" content="" />
 	<meta name="keywords" content="" />
@@ -30,7 +30,6 @@
 	<!-- Icomoon Icon Fonts-->
 	<link rel="stylesheet" href="css/icomoon.css">
 	<!-- Bootstrap  -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 	<link rel="stylesheet" href="css/bootstrap.css">
 	<!-- Flexslider  -->
 	<link rel="stylesheet" href="css/flexslider.css">
@@ -63,143 +62,47 @@
 		p{
 			margin-bottom: 5px;
 		}
-			.duyet{
-margin-left: 10px;
-			background-color: green;
-			border-color: green;
-		}
-		.tuchoi{
-			margin-left: 10px;
-			background-color: red;
-			border-color: red;
-		}
-		textarea{
-			width: 100%;
-			resize: none;
-		}
-		.nd{
-			width: 100%;
-
-		}	
-		.db{
-			margin-top: 10px;
-		}
-	
-		.chuyenmuc{
-			display: block;
-			padding: 5px;
-		}
-		.menu{
-			width: 50%;
-			margin: 7px;
-
-		}
-		.tag
-		{
-			        /* Safari/WebKit uses a non-standard name */
- 			 width: -moz-max-content;   /* Firefox/Gecko */
- 			 width: -webkit-max-content;
-			height: auto;
-			margin: 2px;
-			padding: 3px;
-			padding-right: 10px;
-			display: inline-block;
-		}
-		.alert-dismissible .close
-		{
-			top:4px;
-			right: -10px;
-
-		}
-		h3{
+			h3{
 			font-size: 16px;
 		}
-		.side{
-			margin-bottom: 0;
-		}
-		.chuyenMucDaChon{
-			color: red;
-		}
-		.ngayGio{
-			margin-left: 10px;
-			margin-top: 20px;
-		}
-
 	</style>
-
 
 	</head>
 	<body>
 		<!--Phần popup thông báo lí do-->
-		<div id="myModal1"  class="modal fade" tabindex="-1" role="dialog">
+		<div id="myModal"  class="modal fade" tabindex="-1" role="dialog">
 		  <div class="modal-dialog" role="document">
 		    <div class="modal-content">
 		      <div class="modal-header">
 		        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-		        <h4 class="modal-title">Lí do từ chối</h4>
+		        <h4 class="modal-title">Lí do</h4>
 		      </div>
 		      <div class="modal-body">
-		      	<form action="">
-		      		<textarea name="" id="" cols="30" rows="10"></textarea>
-		      		<button class="btn btn-primary" type="submit">Gửi</button>
-		      	</form>
+		        <p>Trình bày xấu</p>
 		      </div>
 		      <div class="modal-footer">
-		        <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+		        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 		      </div>
 		    </div>
 		  </div>
 		</div>
-
-		<div id="myModal2"  class="modal fade" tabindex="-1" role="dialog">
-		  <div class="modal-dialog" role="document">
-		    <div class="modal-content">
-		      <div class="modal-header">
-		        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-		        <h4 class="modal-title">Lên lịch</h4>
-		      </div>
-		      <div class="modal-body">
-		      	<form action="">
-		      	
-          		<div class='input-group date' id='datetimepicker1'>
-                     <input type='text' class="form-control" />
-                     <span class="input-group-addon">
-                     <span class="glyphicon glyphicon-calendar"></span>
-                     </span>
-                  </div>
-		      	</form>
-		      </div>
-		      <div class="modal-footer">
-		        <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
-		      </div>
-		    </div>
-		  </div>
-		</div>
-
 	<div id="colorlib-page">
 		<a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle"><i></i></a>
 		<aside id="colorlib-aside" role="complementary" class="js-fullheight">
-			<h1 id="colorlib-logo">PHÂN HỆ EDITER</h1>
+			<h1 id="colorlib-logo">PHÂN HỆ WRITER</h1>
 			<nav id="colorlib-main-menu" role="navigation">
 				<ul>
-					
-					<li><a href="editor_xemDanhSach.html">Danh sách bài chờ duyệt</a></li>
-
+					<li><a href="writer_vietBai.html">Viết bài</a></li>
+					<li><a href="writer_daDuyet.html">Đã duyệt & chờ xuất bản</a></li>
+					<li><a href="writer_daXuatBan.html">Đã xuất bản</a></li>
+					<li><a href="writer_biTuChoi.html">Bị từ chối</a></li>
+					<li><a href="writer_chuaDuocDuyet.html"">Chưa được duyệt</a></li>
 				</ul>
-
-
-					<button type="button" class="btn btn-primary tuchoi" data-toggle="modal" data-target="#myModal1">Từ chối</button>
-    
-
-					<button class="btn btn-primary duyet" data-toggle="modal" data-target="#myModal2">Lên lịch</button> 
-					<h2 class="sidebar-heading ngayGio"><b>Ngày giờ đăng bài</b></h2>
-					<h5 class="ngayGio">04/25/2019 12:10 PM</h5>
-					<button class="btn btn-primary duyet">ĐĂNG BÀI</button> 
+					<a href="writer_chinhSua.html" class="btn btn-primary">Chỉnh sửa <i class="icon-arrow-right22"></i></a>
+					<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Lí do</button>
 			</nav>
 
 			<div class="colorlib-footer">
-				<img class= "editimg" src="images/edit2.png" alt="" width="100%">
-
 				<p><small>
 						Copyright &copy;<script>document.write(new Date().getFullYear());</script> Create by KhaiHuyHoi</a>
 					</small>
@@ -268,85 +171,42 @@ margin-left: 10px;
 							</div>
 						</div>
 						<div class="col-md-3 sticky-parent">
-							<div class="sidebar" id="sticky_item">
+							<div class="sidebar">
 								<div class="side animate-box">
-									<h2 class="sidebar-heading"><b>Chuyên mục đang chọn</b></h2>
-									<h1>
-										<strong class="chuyenMucDaChon">ĐIỆN ẢNH</strong>
-									</h1>		
+									<div class="form-group">
+										<input type="text" class="form-control" id="search" placeholder="Nhập để tìm kiếm">
+										<button type="submit" class="btn submit btn-primary"><i class="icon-search3"></i></button>
+									</div>
 								</div>
+								
 								<div class="side animate-box">
-									<h2 class="sidebar-heading"><b>Chọn chuyên mục</b></h2>
-								
-										
-										 <div class="dropdown">
-										    <button type="button" class="btn btn-primary dropdown-toggle menu" data-toggle="dropdown">
-										      Đời sống
-										    </button>
-										    <div class="dropdown-menu">
-										      <a class="dropdown-item chuyenmuc" href="#">Gia đình</a>
-										      <a class="dropdown-item chuyenmuc" href="#">Tình yêu</a>
-										      <a class="dropdown-item chuyenmuc" href="#">Hôn nhân</a>
-										    </div>
-										 </div>
-
- 										<div class="dropdown">
-										    <button type="button" class="btn btn-primary dropdown-toggle menu" data-toggle="dropdown">
-										    Xã hội
-										    </button>
-								
-										 </div> <div class="dropdown">
-										    <button type="button" class="btn btn-primary dropdown-toggle menu" data-toggle="dropdown">
-										     Kinh tế
-										    </button>
-										    <div class="dropdown-menu">
-										      <a class="dropdown-item chuyenmuc" href="#">Nông nghiệp</a>
-										      <a class="dropdown-item chuyenmuc" href="#">Lâm nghiệp</a>
-										      <a class="dropdown-item chuyenmuc" href="#">Công nghiệp</a>
-										    </div>
-										 </div> <div class="dropdown">
-										    <button type="button" class="btn btn-primary dropdown-toggle menu" data-toggle="dropdown">
-										     Chính trị
-										    </button>
-										    <div class="dropdown-menu">
-										      <a class="dropdown-item chuyenmuc" href="#">Trong nước</a>
-										      <a class="dropdown-item chuyenmuc" href="#">Quốc tế</a>
-					
-										    </div>
-										 </div> <div class="dropdown">
-										    <button type="button" class="btn btn-primary dropdown-toggle menu" data-toggle="dropdown">
-										     Thời trang
-										    </button>
-										 </div> <div class="dropdown">
-										    <button type="button" class="btn btn-primary dropdown-toggle menu" data-toggle="dropdown">
-										      Sức khỏe
-										    </button>
-										   
-										 </div>			
+									<h2 class="sidebar-heading">BÀI VIẾT GẦN ĐÂY</h2>
+									<div class="f-blog">
+										<a href="writer_baiViet.html" class="blog-img" style="background-image: url(images/tin1.jpg);">
+										</a>
+										<div class="desc">
+											<h3><a href="writer_baiViet.html">Hôm nay đúng là ngày mệt mỏi nhất trong năm</a></h3>
+											<p class="admin"><span>25-04-2019</span></p>
+										</div>
+									</div>
+									<div class="f-blog">
+										<a href="writer_baiViet.html" class="blog-img" style="background-image: url(images/tin2.jpg);">
+										</a>
+										<div class="desc">
+											<h3><a href="writer_baiViet.html">Vợ CEO Amazon Bezos “lãi” 1 tỉ USD chỉ sau 2 tuần chia tiền ly hôn</a></h3>
+											<p class="admin"><span>25-04-2019</span></p>
+										</div>
+									</div>
+									<div class="f-blog">
+										<a href="writer_baiViet.html" class="blog-img" style="background-image: url(images/tin3.jpg);">
+										</a>
+										<div class="desc">
+											<h3><a href="writer_baiViet.html">Pháp: Cảnh sát sử dụng hơi cay nhằm vào người biểu tình "Áo vàng"</a></h3>
+											<p class="admin"><span>25-04-2019</span></p>
+										</div>
+									</div>
 								</div>
-								<div class="side animate-box">
-								<h2 class="sidebar-heading"><b>Thêm nhãn</b></h2>
-
-								<div class="alert alert-success alert-dismissible tag">
-									hai phượng
-
-    <button type="button" class="close" data-dismiss="alert">&times;</button>
- 
-  </div>
-  <div class="alert alert-success alert-dismissible tag">
-  	   ngô thanh vân
-    <button type="button" class="close" data-dismiss="alert">&times;</button>
-  </div>
-  <div class="alert alert-success alert-dismissible tag">
-  	em mệt rồi
-    <button type="button" class="close" data-dismiss="alert">&times;</button>
-   
-  </div>
-									<p>
-										<input type="text">
-										<button class="btn-success db" >Thêm</button>
-									</p>
-							   </div>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -375,18 +235,7 @@ margin-left: 10px;
 	
 	<!-- MAIN JS -->
 	<script src="js/main.js"></script>
-	
-<script src="https://cdn.jsdelivr.net/momentjs/2.14.1/moment.min.js"></script>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/css/bootstrap-datetimepicker.min.css">
-
-
-<script>
-  $(function () {
-    $('#datetimepicker1').datetimepicker();
- });
-</script>
 	</body>
 </html>
 
