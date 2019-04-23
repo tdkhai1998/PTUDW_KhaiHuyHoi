@@ -5,11 +5,28 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>Phân hệ Writer</title>
 
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="" />
+	<meta name="keywords" content="" />
+	<meta name="author" content="" />
+
+  <!-- Facebook and Twitter integration -->
+	<meta property="og:title" content=""/>
+	<meta property="og:image" content=""/>
+	<meta property="og:url" content=""/>
+	<meta property="og:site_name" content=""/>
+	<meta property="og:description" content=""/>
+	<meta name="twitter:title" content="" />
+	<meta name="twitter:image" content="" />
+	<meta name="twitter:url" content="" />
+	<meta name="twitter:card" content="" />
 
 	<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 	<link rel="shortcut icon" href="favicon.ico">
+
 	<!-- <link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,400i" rel="stylesheet"> -->
 	<link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700" rel="stylesheet">
+	
 	<!-- Animate.css -->
 	<link rel="stylesheet" href="css/animate.css">
 	<!-- Icomoon Icon Fonts-->
@@ -151,7 +168,7 @@
 								<div class="side animate-box">
 									<h2 class="sidebar-heading"><b>Chuyên mục đang chọn</b></h2>
 									<h1>
-										<strong class="chuyenMucDaChon">ĐIỆN ẢNH</strong>
+										<strong id="cm" class="chuyenMucDaChon">ĐIỆN ẢNH</strong>
 									</h1>		
 								</div>
 								<div class="side animate-box">
@@ -204,23 +221,26 @@
 										 </div>			
 								</div>
 								<div class="side animate-box">
+								<h2 class="sidebar-heading"><b>Thêm nhãn</b></h2>
+								<div id = "tag">
 								 <div class="alert alert-success alert-dismissible tag">
 								 	hai phượng
 									    <button type="button" class="close" data-dismiss="alert">&times;</button>
  
-  </div>
-  <div class="alert alert-success alert-dismissible tag">
-  	   ngô thanh vân
-    <button type="button" class="close" data-dismiss="alert">&times;</button>
-  </div>
-  <div class="alert alert-success alert-dismissible tag">
-  	em mệt rồi
-    <button type="button" class="close" data-dismiss="alert">&times;</button>
-   
-  </div>
-								<h2 class="sidebar-heading"><b>Thêm nhãn</b></h2>
+ 								 </div>
+								
+								  <div class="alert alert-success alert-dismissible tag">
+								  	   ngô thanh vân
+								    <button type="button" class="close" data-dismiss="alert">&times;</button>
+								  </div>
+								  <div class="alert alert-success alert-dismissible tag">
+								  	em mệt rồi
+								    <button  type="button" class="close" data-dismiss="alert">&times;</button>
+								   
+								  </div>
+								</div>
 									<p>
-										<input type="text">
+										<input id="tagValue" type="text">
 										<button class="btn-success db" >Thêm</button>
 									</p>
 							   </div>
@@ -251,6 +271,7 @@
 	<script src="js/sticky-kit.min.js"></script>
 	<!-- MAIN JS -->
 	<script src="js/main.js"></script>
+	<script src="huy_css_js/huyJS.js"></script>
 
 	</body>
 </html>
