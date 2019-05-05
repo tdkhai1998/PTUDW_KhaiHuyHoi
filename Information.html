@@ -40,16 +40,16 @@
 	<link rel="stylesheet" href="css/owl.theme.default.min.css">
 	<!-- Theme style  -->
 	<link rel="stylesheet" href="css/style.css">
-	<link rel="stylesheet" type="text/css" href="css/SignUp.css">
-	<link rel="stylesheet" type="text/css" href="css/Login.css">
+	
 	<!-- Modernizr JS -->
 	<script src="js/modernizr-2.6.2.min.js"></script>
 	<!-- FOR IE9 below -->
 	<!--[if lt IE 9]>
 	<script src="js/respond.min.js"></script>
 	<![endif]-->
-	
-
+	<link rel="stylesheet" type="text/css" href="css/SignUp.css">
+		<link rel="stylesheet" type="text/css" href="css/Login.css">
+		<link rel="stylesheet" type="text/css" href="css/custom-index.css">
 	<style type="text/css">
 		.tieude{
 		font-weight: bold;
@@ -84,16 +84,18 @@
 	<div id="colorlib-page">
 		<a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle"><i></i></a>
 		<aside id="colorlib-aside" role="complementary" class="js-fullheight">
-			
-			<nav id="colorlib-main-menu" role="navigation">
+			<h1 id="colorlib-logo"><a href="index.html">news</a></h1>
+			<nav id="colorlib-main-menu" >
 				<ul>
-					<li ><a href="index.html">Trang Chủ</a></li>
-					<li><a id="dm" href="fashion.html">Fashion</a>
+					<li class="colorlib-active"><a href="index.html">Trang Chủ</a></li>
+					
+
+					<li><a id="dm" href="danhsachbaiviet-chuyenmuc.html">Giải trí</a>
 							<div class="submenu">
 								<ul>
-									<li><a>Start Style</a></li>
-									<li><a>Fashion Ico</a></li>
-									<li><a>How To</a></li>							
+									<li><a>Giới sao</a></li>
+									<li><a>Phim</a></li>
+									<li><a>Nhạc</a></li>							
 								</ul>
 							</div>
 
@@ -101,47 +103,91 @@
 
 
 
-					<li><a href="fashion.html">CINE</a>
+					<li><a href="danhsachbaiviet-chuyenmuc.html">Thể thao</a>
 							<div class="submenu">
-								<ul>
-									<li><a>PHIM VIỆT NAM</a></li>
-									<li><a>PHIM ÂU MỸ</a></li>
-									<li><a>PHIM CHÂU Á</a></li>
-								</ul>
-							</div>
-					</li>
-					<li><a href="travel.html">MUSIK</a>
-						<div class="submenu">
-								<ul>
-									<li><a>ÂU MỸ</a></li>
-									<li><a>CHÂU Á</a></li>
-									<li><a>VIỆT NAM</a></li>
-									<li><a>EDM</a></li>
-								
-								</ul>
-							</div>
-					</li>
-					<li><a href="travel.html">sporT</a>
-						<div class="submenu">
 								<ul>
 									<li><a>Bóng đá</a></li>
-									<li><a>Thể thao khác</a></li>
-							
-								
+									<li><a>Tennis</a></li>
+									<li><a>Các môn khác</a></li>
 								</ul>
 							</div>
 					</li>
-					
+					<li><a href="danhsachbaiviet-chuyenmuc.html">Pháp luật</a>
+						<div class="submenu">
+								<ul>
+									<li><a>Hồ sơ phá án</a></li>
+									<li><a>Tư vấn </a></li>
+								</ul>
+							</div>
+					</li>
+					<li><a href="danhsachbaiviet-chuyenmuc.html">Giáo dục</a>
+						<div class="submenu">
+								<ul>
+									<li><a>Tuyển sinh</a></li>
+									<li><a>Du học</a></li>
+								</ul>
+							</div>
+					</li>
+					<li><a href="danhsachbaiviet-chuyenmuc.html">Sức khoẻ</a>
+						<div class="submenu">
+								<ul>
+									<li><a>Các bệnh</a></li>
+									<li><a>Khoẻ đẹp</a></li>
+									<li><a>Tư vấn</a></li>
+								</ul>
+						</div>
+					</li>
+					<li><a href="danhsachbaiviet-chuyenmuc.html">Đời sống</a>
+						<div class="submenu">
+								<ul>
+									<li><a>Tổ ấm</a></li>
+									<li><a>Lối sống</a></li>
+									<li><a>Tiêu dùng</a></li>
+								</ul>
+						</div>
+					</li>
+					<li><a href="#myModal" class="trigger-btn" data-toggle="modal">Login</a></li>
+					<li><a href="danhsachbaiviet.html">TAGS</a></li>
+					<li><a href="Information.html">Tài khoản</a>
+					</li>
+
 				</ul>
 			</nav>
-			<div class="colorlib-footer">
-				<p><small>
-						Copyright &copy;<script>document.write(new Date().getFullYear());</script> Create by KhaiHuyHoi</a>
-					</small>
-				</p>
-			</div>
 		</aside>
-	</div>
+		
+
+		<!--Login show-->
+		<div id="myModal" class="modal fade">
+			<div class="modal-dialog modal-login">
+				<div class="modal-content">
+					<div class="modal-header">
+						<div class="avatar">
+							<img src="/examples/images/avatar.png" alt="Avatar">
+						</div>				
+						<h4 class="modal-title">Member Login</h4>	
+		                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					</div>
+					<div class="modal-body">
+						<form action="/examples/actions/confirmation.php" method="post">
+							<div class="form-group">
+								<input type="text" class="form-control" name="username" placeholder="Username" required="required">		
+							</div>
+							<div class="form-group">
+								<input type="password" class="form-control" name="password" placeholder="Password" required="required">	
+							</div>        
+							<div class="form-group">
+								<button type="submit" class="btn btn-primary btn-lg btn-block login-btn">Login</button>
+							</div>
+						</form>
+					</div>
+					<div class="modal-footer">
+							<a href="SignUp.html" >SignUp</a>
+							
+							<a href="#">Forgot password</a>
+					</div>
+				</div>
+			</div>
+		</div>  
 
 		<div id="colorlib-main">
 			<div class="colorlib-blog">
@@ -158,8 +204,9 @@
         <div class="text-center">
           <img src="https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_1280.png" class="avatar" alt="avatar">
           <h6>Upload a different photo...</h6>
-          
-          <input type="file" class="form-control">
+          <form>
+          		<input type="file" style="height: 30px; width: 50px; padding: 0px;">
+          <form>
         </div>
       </div>
       
@@ -170,48 +217,37 @@
        
         <form class="form-horizontal" role="form">
           <div class="form-group">
-            <label class="col-md-3 control-label d-flex justify-content-start">Full name:</label>
+            <label class="col-md-3 control-label d-flex justify-content-start" for="fname">Full name:</label>
             <div class="col-md-9">
-              <input class="form-control" type="text" placeholder="Full name">
+              <input class="form-control" type="text" id="fname" name="fname" placeholder="Full name">
             </div>
           </div>
           <div class="form-group">
-            <label class="col-md-3 control-label d-flex justify-content-start">Pen-name:</label>
+            <label class="col-md-3 control-label d-flex justify-content-start" for="pname">Pen-name:</label>
             <div class="col-md-9">
-              <input class="form-control" type="text" placeholder="Pen-name">
+              <input class="form-control" type="text" placeholder="Pen-name" id="pname" name="pname">
             </div>
           </div>
           <div class="form-group">
-            <label class="col-md-3 control-label d-flex justify-content-start">Email:</label>
+            <label class="col-md-3 control-label d-flex justify-content-start" for="email">Email:</label>
             <div class="col-md-9">
-              <input class="form-control" type="Email" placeholder="(Email) Example:abc@xyz.ghj">
+              <input class="form-control" type="Email" id="email" name="email" placeholder="(Email) Example:abc@xyz.ghj">
             </div>
           </div>
           <div class="form-group">
-            <label class="col-md-3 control-label d-flex justify-content-start">Old password:</label>
+            <label class="col-md-3 control-label d-flex justify-content-start" for="opass" >Password:</label>
             <div class="col-md-9">
-              <input class="form-control" type="password" placeholder="Old password">
+              <input class="form-control" type="password" id="opass" name="opass" disabled="true" placeholder="password">
             </div>
           </div>
          
         
           <div class="form-group">
-            <label class="col-md-3 control-label d-flex justify-content-start">New password:</label>
-            <div class="col-md-9">
-              <input class="form-control" type="password" placeholder="New password">
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="col-md-3 control-label d-flex justify-content-start">Confirm:</label>
-            <div class="col-md-9">
-              <input class="form-control" type="password" placeholder="Confirm new password">
-            </div>
-          </div>
-          <div class="form-group">
             <label class="col-md-3 control-label d-flex justify-content-start"></label>
-            <div class="col-md-9">
-              <input type="button" class="btn btn-primary" value="Save Changes">
+            <div class="col-md-9" style="margin-top: 20px;">
+              <input type="submit" class="btn btn-primary" value="Save Changes">
               <span></span>
+              <a href="change-password.html" class="btn btn-primary" type="button"> Change password</a>
               <input type="reset" class="btn btn-default" value="Reset">
             </div>
           </div>

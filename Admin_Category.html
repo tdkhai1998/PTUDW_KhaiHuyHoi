@@ -69,6 +69,9 @@
 			h3{
 			font-size: 16px;
 		}
+		#colorlib-main{
+			padding: 20px;
+		}
 	</style>
 
 	</head>
@@ -130,14 +133,14 @@
 				<div class="container-wrap">
 					<div class="row">
 						<div class="col-md-9">
-							<h3 style="margin: 50px 0px 0px 0px">Quản Lí CATEGORY</h3>
+							<h3 style="margin: 0px 0px 20px 0px" class="animate-box">Quản Lí CATEGORY</h3>
 							<div>
-								<button type="button" class="btn btn-warning" onclick="addTag_Click()">Thêm Category</button>
+								<button type="button" class="btn btn-primary animate-box" onclick="addTag_Click()">Thêm Category</button>
 							</div>
 							<p >
-								<ul class="category" id="TAG">
-									
-								</ul>
+								 <ul class="category list-group animate-box " id="TAG">
+										
+								</ul>	
 							</p>
 						</div>
 						<div class="col-md-3 sticky-parent">
@@ -232,6 +235,7 @@ function addTag_Click() {
 function add1Tag(name,value) {
 	var li = document.createElement('li');
 		li.style.display='flex';
+		li.className='list-group-item';
 		li.style.justifyContent='space-between';
 		li.id='li'+value;
 		var a = document.createElement('a');
