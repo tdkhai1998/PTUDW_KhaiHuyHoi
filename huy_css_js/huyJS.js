@@ -23,5 +23,19 @@ $('.db').click(function(){
 });
 
 $('.dropdown-toggle, .dropdown-item').click(function(){
-	document.getElementById('cm').innerText = this.innerText ;
+	
+	var value = this.innerText
+	$('#cm').fadeOut("fast",function(){
+		document.getElementById('cm').innerText =  value;});
+	$('#cm').fadeIn();
+	
+});
+
+$('#ngayGioPicker').click(function(){
+	
+	$('#ngayGio').fadeOut("fast",function(){
+	document.getElementById('ngayGio').innerText = document.getElementById('ngayGioTxt').value;
+	});
+	$('#ngayGio').fadeIn();
+
 });

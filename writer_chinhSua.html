@@ -59,6 +59,29 @@
 			margin: 7px;
 
 		}
+		.tag
+		{
+			    
+ 			 width: -moz-max-content; 
+ 			 width: -webkit-max-content;
+			height: auto;
+			margin: 2px;
+			padding: 3px;
+			padding-right: 10px;
+			display: inline-block;
+		}
+		.alert-dismissible .close
+		{
+			top:4px;
+			right: -10px;
+
+		}
+		.side{
+			margin-bottom: 0;
+		}
+		.chuyenMucDaChon{
+			color: red;
+		}
 	</style>
 	</head>
 	<body>
@@ -163,12 +186,12 @@
 
 
 					<div class="col-md-3 sticky-parent">
-							<div class="sidebar" id="sticky_item">
+								<div class="sidebar" id="sticky_item">
 								<div class="side animate-box">
-									<div class="form-group">
-										<input type="text" class="form-control" id="search" placeholder="Chuyên mục đang viết">
-										
-									</div>
+									<h2 class="sidebar-heading"><b>Chuyên mục đang chọn</b></h2>
+									<h1>
+										<strong id="cm" class="chuyenMucDaChon">ĐIỆN ẢNH</strong>
+									</h1>		
 								</div>
 								<div class="side animate-box">
 									<h2 class="sidebar-heading"><b>Chuyên mục</b></h2>
@@ -212,7 +235,8 @@
 										    <button type="button" class="btn btn-primary dropdown-toggle menu" data-toggle="dropdown">
 										     Thời trang
 										    </button>
-										 </div> <div class="dropdown">
+										 </div> 
+										 <div class="dropdown">
 										    <button type="button" class="btn btn-primary dropdown-toggle menu" data-toggle="dropdown">
 										      Sức khỏe
 										    </button>
@@ -221,13 +245,29 @@
 								</div>
 								<div class="side animate-box">
 								<h2 class="sidebar-heading"><b>Thêm nhãn</b></h2>
+								<div id = "tag">
+								 <div class="alert alert-success alert-dismissible tag">
+								 	hai phượng
+									    <button type="button" class="close" data-dismiss="alert">&times;</button>
+ 
+ 								 </div>
+								
+								  <div class="alert alert-success alert-dismissible tag">
+								  	   ngô thanh vân
+								    <button type="button" class="close" data-dismiss="alert">&times;</button>
+								  </div>
+								  <div class="alert alert-success alert-dismissible tag">
+								  	em mệt rồi
+								    <button  type="button" class="close" data-dismiss="alert">&times;</button>
+								   
+								  </div>
+								</div>
 									<p>
-										<input type="text">
+										<input id="tagValue" type="text">
 										<button class="btn-success db" >Thêm</button>
 									</p>
 							   </div>
 					</div>
-
 				</div>
 			</div>			
 		</div>
@@ -253,6 +293,7 @@
 	<script src="js/sticky-kit.min.js"></script>
 	<!-- MAIN JS -->
 	<script src="js/main.js"></script>
+		<script src="huy_css_js/huyJS.js"></script>
 
 	</body>
 </html>
