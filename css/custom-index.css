@@ -40,3 +40,121 @@
 form{
   padding: 10px;
 }
+.tag
+    {
+              /* Safari/WebKit uses a non-standard name */
+       width: -moz-max-content;   /* Firefox/Gecko */
+       width: -webkit-max-content;
+      height: auto;
+      margin: 2px;
+      padding: 3px;
+      padding-right: 10px;
+      display: inline-block;
+    }
+    .alert-dismissible .close
+    {
+      top:4px;
+      right: -10px;
+    }
+    #comment{
+      padding: 10px;
+    }
+    .colorlib-blog{
+      padding-left: 10px;
+      padding-right: 10px;
+    }
+    .tieude{
+    font-weight: bold;
+    text-transform: none;
+    padding: 0px;
+    color: black;
+    }
+    .blog-entry-travel .desc{
+      padding: 10px;
+      padding-left: 10px;
+    }
+    h4{
+      margin: auto;
+    }
+    p{
+      margin-bottom: 5px;
+    }
+    .tag
+    {
+              /* Safari/WebKit uses a non-standard name */
+       width: -moz-max-content;   /* Firefox/Gecko */
+       width: -webkit-max-content;
+      height: auto;
+      margin: 2px;
+      padding: 3px;
+      padding-right: 10px;
+      display: inline-block;
+    }
+    *{
+        transition:  border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s
+    }
+    .alert-dismissible .close
+    {
+      top:4px;
+      right: -10px;
+
+    }
+    #comment{
+      padding: 10px;
+    }
+    .colorlib-blog{
+      padding-left: 10px;
+      padding-right: 10px;
+    }
+    h1.tieude{
+          
+        text-shadow: 2px 2px 4px white;
+      }
+      h2{
+        text-align: center;
+
+      }
+      .colorlib-blog{
+        padding:5px;
+      }
+      hr { background-color: black; height: 1px; border: 0;}
+      .blog-entry{
+        padding-top: 10px;
+        padding-bottom: 0px;
+      }
+      .blog-entry:hover{
+        padding-top: 0px;
+        padding-bottom: 10px;
+      }
+      .blog-entry:hover .blog-img{
+        -webkit-box-shadow: 8px 7px 14px -1px rgba(0,0,0,0.76);
+        -moz-box-shadow: 8px 7px 14px -1px rgba(0,0,0,0.76);
+        box-shadow: 8px 7px 14px -1px rgba(0,0,0,0.76);
+      }
+      #colorlib-aside{
+        width: 15%;
+        padding: 2em;
+      }
+      #colorlib-main{
+        width: 85%;
+      }
+      .padding-custom{
+        padding:20px;
+      }
+      .container-wrap{
+        padding:10px;
+        padding-top: 30px;
+
+      }
+      .blog-slider{
+        margin-bottom: 0px;
+      }
+      .owl-theme{
+        padding: 0px;
+      }
+      .blog-slider .owl-theme .owl-controls{
+        padding: 0px;
+      }
+      .side-bar{
+        margin:0px;
+      }

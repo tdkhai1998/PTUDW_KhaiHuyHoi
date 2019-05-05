@@ -40,49 +40,131 @@
 	<link rel="stylesheet" href="css/owl.theme.default.min.css">
 	<!-- Theme style  -->
 	<link rel="stylesheet" href="css/style.css">
-
+<link rel="stylesheet" href="css/custom-index.css">
+		<!-- Modernizr JS -->
 	<!-- Modernizr JS -->
 	<script src="js/modernizr-2.6.2.min.js"></script>
 	<!-- FOR IE9 below -->
 	<!--[if lt IE 9]>
 	<script src="js/respond.min.js"></script>
 	<![endif]-->
+			<style type="text/css">
+				
 
+	</style>
+		
+		
 	</head>
 	<body>
 	<div id="colorlib-page">
 		<a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle"><i></i></a>
-		<aside id="colorlib-aside" role="complementary" class="border js-fullheight">
-			<h1 id="colorlib-logo"><a href="index.html">Megazine</a></h1>
-			<nav id="colorlib-main-menu" role="navigation">
+		<aside id="colorlib-aside" role="complementary" class="js-fullheight">
+			
+			<h1 id="colorlib-logo"><a href="index.html">news</a></h1>
+			<nav id="colorlib-main-menu" >
 				<ul>
-					<li class="colorlib-active"><a href="index.html">Home</a></li>
-					<li><a href="style.html">Style</a></li>
-					<li><a href="fashion.html">Fashion</a></li>
-					<li><a href="travel.html">Travel</a></li>
-					<li><a href="sports.html">Sports</a></li>
-					<li><a href="video.html">Video</a></li>
-					<li><a href="archives.html">Archives</a></li>
+					<li class="colorlib-active"><a href="index.html">Trang Chủ</a></li>
+					
+
+					<li><a id="dm" href="fashion.html">Giải trí</a>
+							<div class="submenu">
+								<ul>
+									<li><a>Giới sao</a></li>
+									<li><a>Phim</a></li>
+									<li><a>Nhạc</a></li>							
+								</ul>
+							</div>
+
+					</li>
+
+
+
+					<li><a href="fashion.html">Thể thao</a>
+							<div class="submenu">
+								<ul>
+									<li><a>Bóng đá</a></li>
+									<li><a>Tennis</a></li>
+									<li><a>Các môn khác</a></li>
+								</ul>
+							</div>
+					</li>
+					<li><a href="travel.html">Pháp luật</a>
+						<div class="submenu">
+								<ul>
+									<li><a>Hồ sơ phá án</a></li>
+									<li><a>Tư vấn </a></li>
+								</ul>
+							</div>
+					</li>
+					<li><a href="travel.html">Giáo dục</a>
+						<div class="submenu">
+								<ul>
+									<li><a>Tuyển sinh</a></li>
+									<li><a>Du học</a></li>
+								</ul>
+							</div>
+					</li>
+					<li><a href="travel.html">Sức khoẻ</a>
+						<div class="submenu">
+								<ul>
+									<li><a>Các bệnh</a></li>
+									<li><a>Khoẻ đẹp</a></li>
+									<li><a>Tư vấn</a></li>
+								</ul>
+						</div>
+					</li>
+					<li><a href="travel.html">Đời sống</a>
+						<div class="submenu">
+								<ul>
+									<li><a>Tổ ấm</a></li>
+									<li><a>Lối sống</a></li>
+									<li><a>Tiêu dùng</a></li>
+								</ul>
+						</div>
+					</li>
+					<li><a href="#myModal" class="trigger-btn" data-toggle="modal">Login</a></li>
+					</li>
 				</ul>
 			</nav>
-
-			<div class="colorlib-footer">
-				<p><small>&copy; <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --> </span> <span>Demo Images: <a href="https://unsplash.com/" target="_blank">Unsplash.com</a> &amp; <a href="https://www.pexels.com/" target="_blank">Pexels.com</a></span></small></p>
-				<ul>
-					<li><a href="#"><i class="icon-facebook2"></i></a></li>
-					<li><a href="#"><i class="icon-twitter2"></i></a></li>
-					<li><a href="#"><i class="icon-instagram"></i></a></li>
-					<li><a href="#"><i class="icon-linkedin2"></i></a></li>
-				</ul>
-			</div>
-
 		</aside>
+		
 
+		<!--Login show-->
+		<div id="myModal" class="modal fade">
+			<div class="modal-dialog modal-login">
+				<div class="modal-content">
+					<div class="modal-header">
+						<div class="avatar">
+							<img src="/examples/images/avatar.png" alt="Avatar">
+						</div>				
+						<h4 class="modal-title">Member Login</h4>	
+		                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					</div>
+					<div class="modal-body">
+						<form action="/examples/actions/confirmation.php" method="post">
+							<div class="form-group">
+								<input type="text" class="form-control" name="username" placeholder="Username" required="required">		
+							</div>
+							<div class="form-group">
+								<input type="password" class="form-control" name="password" placeholder="Password" required="required">	
+							</div>        
+							<div class="form-group">
+								<button type="submit" class="btn btn-primary btn-lg btn-block login-btn">Login</button>
+							</div>
+						</form>
+					</div>
+					<div class="modal-footer">
+							<a href="SignUp.html" >SignUp</a>
+							
+							<a href="#">Forgot password</a>
+					</div>
+				</div>
+			</div>
+		</div>  
 		<div id="colorlib-main">
 			<div class="colorlib-blog">
 				<div class="container-wrap">
+
 					<div class="row">
 						<div class="col-md-9">
 							<div class="content-wrap">
@@ -105,6 +187,46 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 										<p>When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrove, the headline of Alphabet Village and the subline of her own road, the Line Lane. Pityful a rethoric question ran over her cheek, then she continued her way.</p>
 									</div>
 								</article>
+									<hr>
+								 
+
+
+
+
+								<div id="tags">
+										<b>Danh sách TAGs</b>
+										 <div class="panel panel-primary">
+										    <div class="panel-body">
+										    	<div id = "tag">
+										    		<div class="alert alert-success alert-dismissible tag">
+													 	<a href="danhsachbaiviet.html">hai phượng</a>
+														    <button type="button" class="close" data-dismiss="alert">&times;</button>
+					 
+					 								 </div>
+					 								 <div class="alert alert-success alert-dismissible tag">
+													 	<a href="danhsachbaiviet.html">hai phượng</a>
+														    <button type="button" class="close" data-dismiss="alert">&times;</button>
+					 
+					 								 </div>
+					 								 <div class="alert alert-success alert-dismissible tag">
+													 	<a href="danhsachbaiviet.html">hai phượng</a>
+														    <button type="button" class="close" data-dismiss="alert">&times;</button>
+					 
+					 								 </div>
+					 								 <div class="alert alert-success alert-dismissible tag">
+													 	<a href="danhsachbaiviet.html">hai phượng</a>
+														    <button type="button" class="close" data-dismiss="alert">&times;</button>
+					 
+					 								 </div>
+					 								 <div class="alert alert-success alert-dismissible tag">
+													 	<a href="danhsachbaiviet.html">hai phượng</a>
+														    <button type="button" class="close" data-dismiss="alert">&times;</button>
+					 
+					 								 </div>
+												</div>
+										    </div>
+										 </div>
+								</div>
 								<div class="row row-bottom-padded-md">
 									<div class="col-md-12 animate-box">
 										<h2 class="heading-2">23 Comments</h2>
@@ -149,7 +271,10 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 								   	</div>
 									</div>
 								</div>
-								<div class="row">
+
+
+
+								<div class="row" id="comment">
 									<div class="col-md-12 animate-box">
 										<h2 class="heading-2">Say something</h2>
 										<form action="#">
@@ -170,14 +295,6 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 													<input type="text" id="email" class="form-control" placeholder="Your email address">
 												</div>
 											</div>
-
-											<div class="row form-group">
-												<div class="col-md-12">
-													<!-- <label for="subject">Subject</label> -->
-													<input type="text" id="subject" class="form-control" placeholder="Your subject of this message">
-												</div>
-											</div>
-
 											<div class="row form-group">
 												<div class="col-md-12">
 													<!-- <label for="message">Message</label> -->
@@ -204,18 +321,33 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 									<h2 class="sidebar-heading">Categories</h2>
 									<p>
 										<ul class="category">
-											<li><a href="#"><i class="icon-check"></i> Home</a></li>
-											<li><a href="#"><i class="icon-check"></i> About Me</a></li>
-											<li><a href="#"><i class="icon-check"></i> Blog</a></li>
-											<li><a href="#"><i class="icon-check"></i> Travel</a></li>
-											<li><a href="#"><i class="icon-check"></i> Lifestyle</a></li>
-											<li><a href="#"><i class="icon-check"></i> Fashion</a></li>
-											<li><a href="#"><i class="icon-check"></i> Health</a></li>
+											<li><a href="danhsachbaiviet-chuyenmuc.html"><i class="icon-check"></i> GIẢI TRÍ</a></li>
+											<li><a href="danhsachbaiviet-chuyenmuc.html"><i class="icon-check"></i> THỂ THAO</a></li>
+											<li><a href="danhsachbaiviet-chuyenmuc.html"><i class="icon-check"></i> PHÁP LUẬT</a></li>
+											<li><a href="danhsachbaiviet-chuyenmuc.html"><i class="icon-check"></i> GIÁO DỤC</a></li>
+											<li><a href="danhsachbaiviet-chuyenmuc.html"><i class="icon-check"></i> SỨC KHOẺ</a></li>
+											<li><a href="danhsachbaiviet-chuyenmuc.html"><i class="icon-check"></i> ĐỜI SỐNG</a></li>
 										</ul>
 									</p>
 								</div>
 								<div class="side animate-box">
 									<h2 class="sidebar-heading">Recent Blog</h2>
+									<div class="f-blog">
+										<a href="blog.html" class="blog-img" style="background-image: url(images/blog-1.jpg);">
+										</a>
+										<div class="desc">
+											<h3><a href="blog.html">Be a designer</a></h3>
+											<p class="admin"><span>25 March 2018</span></p>
+										</div>
+									</div>
+									<div class="f-blog">
+										<a href="blog.html" class="blog-img" style="background-image: url(images/blog-1.jpg);">
+										</a>
+										<div class="desc">
+											<h3><a href="blog.html">Be a designer</a></h3>
+											<p class="admin"><span>25 March 2018</span></p>
+										</div>
+									</div>
 									<div class="f-blog">
 										<a href="blog.html" class="blog-img" style="background-image: url(images/blog-1.jpg);">
 										</a>
@@ -241,27 +373,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 										</div>
 									</div>
 								</div>
-								<div class="side animate-box">
-									<h2 class="sidebar-heading">Instagram</h2>
-									<div class="instagram-entry">
-										<a href="#" class="instagram text-center" style="background-image: url(images/gallery-1.jpg);">
-										</a>
-										<a href="#" class="instagram text-center" style="background-image: url(images/gallery-2.jpg);">
-										</a>
-										<a href="#" class="instagram text-center" style="background-image: url(images/gallery-3.jpg);">
-										</a>
-										<a href="#" class="instagram text-center" style="background-image: url(images/gallery-4.jpg);">
-										</a>
-										<a href="#" class="instagram text-center" style="background-image: url(images/gallery-5.jpg);">
-										</a>
-										<a href="#" class="instagram text-center" style="background-image: url(images/gallery-6.jpg);">
-										</a>
-										<a href="#" class="instagram text-center" style="background-image: url(images/gallery-7.jpg);">
-										</a>
-										<a href="#" class="instagram text-center" style="background-image: url(images/gallery-8.jpg);">
-										</a>
-									</div>
-								</div>
+		
 								<div class="side animate-box">
 									<div class="form-group">
 										<input type="text" class="form-control form-email text-center" id="email" placeholder="Enter your email">
