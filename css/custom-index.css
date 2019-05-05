@@ -1,0 +1,42 @@
+
+
+#colorlib-aside #colorlib-main-menu ul li{
+  text-align: left;
+  color: gray;
+}
+
+#colorlib-aside #colorlib-main-menu ul li .submenu{
+  overflow: hidden;
+  max-height: 0;
+  -webkit-transition: all  0.5s ease-out;
+}
+#colorlib-aside #colorlib-main-menu ul li:hover .submenu {
+   display: block;
+  max-height: 200px;
+
+}
+
+#colorlib-aside #colorlib-main-menu ul li a{
+    color: black;
+
+}
+#colorlib-aside #colorlib-main-menu ul li {
+  transition: height 1s ease-out;
+ 
+}
+
+#colorlib-aside #colorlib-main-menu ul li .submenu ul li{
+  text-align: right;
+}
+
+
+.blog-img{
+  opacity: 0.8;
+}
+#colorlib-main{
+  /*padding-left: 20px;*/
+
+}
+form{
+  padding: 10px;
+}
