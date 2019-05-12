@@ -1,0 +1,286 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>bài viêt</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="" />
+	<meta name="keywords" content="" />
+	<meta name="author" content="" />
+
+  <!-- Facebook and Twitter integration -->
+	<meta property="og:title" content=""/>
+	<meta property="og:image" content=""/>
+	<meta property="og:url" content=""/>
+	<meta property="og:site_name" content=""/>
+	<meta property="og:description" content=""/>
+	<meta name="twitter:title" content="" />
+	<meta name="twitter:image" content="" />
+	<meta name="twitter:url" content="" />
+	<meta name="twitter:card" content="" />
+
+	<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+	<link rel="shortcut icon" href="favicon.ico">
+
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700" rel="stylesheet">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	
+	<!-- Animate.css -->
+	<link rel="stylesheet" href="css/animate.css">
+	<!-- Icomoon Icon Fonts-->
+	<link rel="stylesheet" href="css/icomoon.css">
+	<!-- Bootstrap  -->
+	<link rel="stylesheet" href="css/bootstrap.css">
+	<!-- Flexslider  -->
+	<link rel="stylesheet" href="css/flexslider.css">
+	<!-- Magnific Popup -->
+	<link rel="stylesheet" href="css/magnific-popup.css">
+	<!-- Owl Carousel -->
+	<link rel="stylesheet" href="css/owl.carousel.min.css">
+	<link rel="stylesheet" href="css/owl.theme.default.min.css">
+	<!-- Theme style  -->
+	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" type="text/css" href="css/Login.css">
+
+	<!-- Modernizr JS -->
+	<script src="js/modernizr-2.6.2.min.js"></script>
+	<!-- FOR IE9 below -->
+	<!--[if lt IE 9]>
+	<script src="js/respond.min.js"></script>
+	<![endif]-->
+
+	
+	<style>
+		article .desc {width: 100%}
+		article .blog-img {width: 100%;
+			margin-bottom: 20px;}
+		.catdate{
+			font-size: 15px;
+		}
+		h2{
+
+			margin: auto;
+		}
+	
+		p{
+			margin-bottom: 5px;
+		}
+			h3{
+			font-size: 16px;
+		}
+		#colorlib-main{
+			padding: 20px;
+		}
+	</style>
+
+	</head>
+	<body onload="loadTag()">
+
+	<div id="addModal" class="modal fade">
+				<div class="modal-dialog modal-login">
+					<div class="modal-content">
+						<div class="modal-header">
+							
+			                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						</div>
+						<div class="modal-body">
+							<form >
+								
+								<div class="form-group">
+									<input id="nameTag" type="text" class="form-control" placeholder="Nhập Tag">	
+								</div>        
+								<div class="form-group">
+									<button onclick="addTag()" type="button" class="btn btn-primary btn-lg btn-block login-btn">Chấp nhận</button>
+								</div>
+							</form>
+						</div>
+						
+					</div>
+				</div>
+			</div>  
+	<div id="colorlib-page">
+		<a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle"><i></i></a>
+		<aside id="colorlib-aside" role="complementary" class="js-fullheight">
+			<h1 id="colorlib-logo">PHÂN HỆ Administration</h1>
+			<nav id="colorlib-main-menu" role="navigation">
+				<ul>
+					<li class="colorlib-active"><a href="Admin_Tag.html">Quản lí Tag</a></li>
+					<li><a href="Admin_Category.html">Quản lí Category</a></li>
+					<li><a href="Admin_XuatBan.html">Xuất bản bài viết</a></li>
+					<li><a  href="#">Quản lí người dùng</a>
+							<div class="submenu">
+								<ul>
+									<li><a href="Admin_Readers.html">Độc giả</a></li>
+									<li><a href="Admin_Editors.html">Biên tập viên</a></li>
+								</ul>
+							</div>
+
+					</li>
+				</ul>
+			</nav>
+
+			<div class="colorlib-footer">
+				<p><small>
+						Copyright &copy;<script>document.write(new Date().getFullYear());</script> Create by KhaiHuyHoi</a>
+					</small>
+				</p>
+			</div>
+		</aside>
+
+		<div id="colorlib-main">
+			<div class="colorlib-blog">
+				<div class="container-wrap">
+					<div class="row">
+						<div class="col-md-9">
+							<h3 style="margin: 0px 0px 20px 0px" class="animate-box">Quản Lí TAG</h3>
+							<div>
+								<button type="button" class="btn btn-primary animate-box" onclick="addTag_Click()">Thêm tag</button>
+							</div>
+							<p >
+								 <ul class="category list-group animate-box " id="TAG">
+										
+								</ul>	
+							</p>
+						</div>
+						<div class="col-md-3 sticky-parent">
+							<div class="sidebar">
+								<div class="side animate-box">
+									<div class="form-group">
+										<input type="text" class="form-control" id="search" placeholder="Nhập để tìm kiếm">
+										<button type="submit" class="btn submit btn-primary"><i class="icon-search3"></i></button>
+									</div>
+								</div>
+								
+								<div class="side animate-box">
+									<h2 class="sidebar-heading">BÀI VIẾT GẦN ĐÂY</h2>
+									<div class="f-blog">
+										<a href="writer_baiViet.html" class="blog-img" style="background-image: url(images/tin1.jpg);">
+										</a>
+										<div class="desc">
+											<h3><a href="writer_baiViet.html">Hôm nay đúng là ngày mệt mỏi nhất trong năm</a></h3>
+											<p class="admin"><span>25-04-2019</span></p>
+										</div>
+									</div>
+									<div class="f-blog">
+										<a href="writer_baiViet.html" class="blog-img" style="background-image: url(images/tin2.jpg);">
+										</a>
+										<div class="desc">
+											<h3><a href="writer_baiViet.html">Vợ CEO Amazon Bezos “lãi” 1 tỉ USD chỉ sau 2 tuần chia tiền ly hôn</a></h3>
+											<p class="admin"><span>25-04-2019</span></p>
+										</div>
+									</div>
+									<div class="f-blog">
+										<a href="writer_baiViet.html" class="blog-img" style="background-image: url(images/tin3.jpg);">
+										</a>
+										<div class="desc">
+											<h3><a href="writer_baiViet.html">Pháp: Cảnh sát sử dụng hơi cay nhằm vào người biểu tình "Áo vàng"</a></h3>
+											<p class="admin"><span>25-04-2019</span></p>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- jQuery -->
+	<script src="js/jquery.min.js"></script>
+	<!-- jQuery Easing -->
+	<script src="js/jquery.easing.1.3.js"></script>
+	<!-- Bootstrap -->
+	<script src="js/bootstrap.min.js"></script>
+	<!-- Waypoints -->
+	<script src="js/jquery.waypoints.min.js"></script>
+	<!-- Flexslider -->
+	<script src="js/jquery.flexslider-min.js"></script>
+	<!-- Magnific Popup -->
+	<script src="js/jquery.magnific-popup.min.js"></script>
+	<script src="js/magnific-popup-options.js"></script>
+	<!-- Owl Carousel -->
+	<script src="js/owl.carousel.min.js"></script>
+	<!-- Sticky Kit -->
+	<script src="js/sticky-kit.min.js"></script>
+	
+	
+	<!-- MAIN JS -->
+	<script src="js/main.js"></script>
+	
+<script type="text/javascript">
+		var tags=['Điện ảnh','Âm nhạc','Thể thao','Bóng đá','Đời sống','ShowBiz','Sức khỏe'];
+var selectedIndex=-1;
+
+
+function addTag() {
+	var name = document.getElementById('nameTag').value;
+	if(selectedIndex==-1){
+		tags.push(name);
+		add1Tag(name,tags.length-1);
+	}else{
+		tags[tags.length-1]=name;
+		document.getElementById('Tag'+selectedIndex).textContent=name;
+	}
+	document.getElementById('nameTag').value="";
+	$('#addModal').modal('hide');
+}
+
+function addTag_Click() {
+	selectedIndex=-1;
+	$('#addModal').modal();
+}
+
+function add1Tag(name,value) {
+	var li = document.createElement('li');
+		li.style.display='flex';
+		li.style.justifyContent='space-between';
+		li.id='li'+value;
+		li.className='list-group-item';
+		var a = document.createElement('a');
+		a.id='Tag'+value;
+		a.textContent=name;
+		a.href='#'
+		li.appendChild(a);
+		var div = document.createElement('div');
+		div.class='d-flex justify-content-between';
+
+		var btn1 = document.createElement('button');
+		btn1.className ='btn btn-outline-danger';
+		btn1.type='button';
+		btn1.value=value;
+		btn1.textContent='Xóa';
+		btn1.onclick =function () {
+			document.getElementById('li'+this.value).remove();
+			tags.splice(this.value,1);
+
+		}
+		div.appendChild(btn1);
+
+		var btn2 = document.createElement('button');
+		btn2.className ='btn btn-outline-success';
+		btn2.type='button';
+		btn2.value=value;
+		btn2.textContent='Cập nhật';
+		btn2.onclick=function () {
+			selectedIndex=this.value;
+			$('#addModal').modal();
+
+		}
+		div.appendChild(btn2);
+		li.appendChild(div);
+		document.getElementById('TAG').appendChild(li);
+}
+function loadTag() {
+
+	for(var i=0;i<tags.length;i++){
+		add1Tag(tags[i],i);
+
+
+	}
+}
+	</script>
+	</body>
+</html>
+
