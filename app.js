@@ -5,7 +5,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
-var editor_xemdanhsach = require('./routes/editor_xemdanhsach');
+var editor_xemdanhsach = require('./routes/editor/editor_xemdanhsach');
 
 var app = express();
 

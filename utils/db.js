@@ -2,17 +2,33 @@ var mysql = require('mysql');
 
 var createConnection = () => {
   return mysql.createConnection({
-    host: 'localhost',
-    port: 8889,
-    user: 'root',
-    password: 'root',
-    database: 'qlbh'
+    host: "localhost",
+    user: "root",
+    password: "",
+    database:"16thnewsdb"
   });
 }
 
 module.exports = {
+    load_newest: sql => {
+        return new Promise((resolve, reject) => {
+            
+          var connection = createConnection();
+          connection.connect();
+          connection.query(sql, (error, results, fields) => {
+            if (error) {
+              reject(error);
+            } else {
+              resolve(results);
+            }
+            connection.end();
+          });
+        });
+      },
+
   load: sql => {
     return new Promise((resolve, reject) => {
+        
       var connection = createConnection();
       connection.connect();
       connection.query(sql, (error, results, fields) => {

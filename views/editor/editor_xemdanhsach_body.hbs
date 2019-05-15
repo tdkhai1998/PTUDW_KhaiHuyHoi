@@ -42,19 +42,21 @@
 
 						<div class="col-md-9">
 							<div class="content-wrap">
+								 {{#each this.row}}
 								<article class="blog-entry-travel animate-box">
 									<div class="blog-img" style="background-image: url(images/tin1.jpg);"></div>
 									<div class="desc">					
-										<h4><a class="tieude" href="editor_duyetBaiViet.html">{{tieude}}</a></h4>
-										<span class="cat"><a href="#">Điện ảnh</a></span>
+										<h4><a class="tieude" href="editor_duyetBaiViet.html">{{tieuDe}}</a></h4>
+										<span class="cat"><a href="#">{{tenChuyenMuc}}</a></span>
 										<span>|</span>
-										<span class="date"><script>document.write(new Date())</script></span>		
-										<p>{{mota}}</p>
+										<span class="date">{{ngayDang}}</span>		
+										<p>{{moTa}}</p>
 											<a href="editor_duyetBaiViet.html" class="btn btn-primary duyet">Duyệt <i class="icon-arrow-right22"></i></a>
 
 										<button type="button" class="btn btn-primary tuchoi" data-toggle="modal" data-target="#myModal">Từ chối</button>
 									</div>
 								</article>
+								{{/each}}
 							</div>
 						</div>
 
