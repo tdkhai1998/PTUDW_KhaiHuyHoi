@@ -1,8 +1,16 @@
 
-var hehe = require('./connect');
+var con = require('./connect');
 
-hehe.con.connect(function(err) {
+con.connect(function(err) {
     if (err) throw err;
-    console.log("Connected!");
+    con.query("SELECT * FROM `baiviet`", function (err, result, fields) {
+      if (err) throw err;
+      console.log(result);
+      module.exports = result;
+    });
+    con.end();
   });
+
+
   
+
