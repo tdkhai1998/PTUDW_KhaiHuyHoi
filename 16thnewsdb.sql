@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th5 15, 2019 lúc 07:24 PM
+-- Thời gian đã tạo: Th5 15, 2019 lúc 07:28 PM
 -- Phiên bản máy phục vụ: 10.1.38-MariaDB
 -- Phiên bản PHP: 7.3.4
 
@@ -94,7 +94,7 @@ CREATE TABLE `nguoidung` (
 CREATE TABLE `tag` (
   `idTag` int(11) NOT NULL,
   `tenTag` int(11) NOT NULL,
-  `daXoa` int(11) DEFAULT NULL
+  `daXoa` tinyint(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
