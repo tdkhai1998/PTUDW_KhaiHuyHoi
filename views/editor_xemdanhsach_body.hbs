@@ -1,0 +1,104 @@
+	<!--Phần popup thông báo lí do-->
+		<div id="myModal"  class="modal fade" tabindex="-1" role="dialog">
+		  <div class="modal-dialog" role="document">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		        <h4 class="modal-title">Lí do từ chối</h4>
+		      </div>
+		      <div class="modal-body">
+		      	<form action="">
+		      		<textarea name="" id="" cols="30" rows="10"></textarea>
+		      		<button class="btn btn-primary" type="submit">Gửi</button>
+		      	</form>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+
+	<div id="colorlib-page">
+		<a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle"><i></i></a>
+		<aside id="colorlib-aside" role="complementary" class="js-fullheight">
+			<h1 id="colorlib-logo"><strong>PHÂN HỆ EDITOR</strong></h1>
+			<img class= "editimg"src="images/edit1.png" alt="" width="100%">
+			<img class= "editimg" src="images/edit2.png" alt="" width="100%">
+			<img class= "editimg" src="images/edit3.png" alt="" width="100%">
+			<div class="colorlib-footer">
+				<p><small>
+						Copyright &copy;<script>document.write(new Date().getFullYear());</script> Create by KhaiHuyHoi</a>
+					</small>
+				</p>
+			</div>
+		</aside>
+	</div>
+
+		<div id="colorlib-main">
+			<div class="colorlib-blog">
+				<div class="container-wrap">
+					<div class="row">
+
+						<div class="col-md-9">
+							<div class="content-wrap">
+								<article class="blog-entry-travel animate-box">
+									<div class="blog-img" style="background-image: url(images/tin1.jpg);"></div>
+									<div class="desc">					
+										<h4><a class="tieude" href="editor_duyetBaiViet.html">{{tieude}}</a></h4>
+										<span class="cat"><a href="#">Điện ảnh</a></span>
+										<span>|</span>
+										<span class="date"><script>document.write(new Date())</script></span>		
+										<p>{{mota}}</p>
+											<a href="editor_duyetBaiViet.html" class="btn btn-primary duyet">Duyệt <i class="icon-arrow-right22"></i></a>
+
+										<button type="button" class="btn btn-primary tuchoi" data-toggle="modal" data-target="#myModal">Từ chối</button>
+									</div>
+								</article>
+							</div>
+						</div>
+
+						<div class="col-md-3">
+							<div class="sidebar">
+								<div class="side animate-box">
+									<div class="form-group">
+										<input type="text" class="form-control" id="search" placeholder="Nhập để tìm kiếm">
+										<button type="submit" class="btn submit btn-primary"><i class="icon-search3"></i></button>
+									</div>
+								</div>
+								
+								<div class="side animate-box">
+									<h2 class="sidebar-heading">BÀI VIẾT GẦN ĐÂY</h2>
+									<div class="f-blog">
+										<a href="writer_baiViet.html" class="blog-img" style="background-image: url(images/tin1.jpg);">
+										</a>
+										<div class="desc">
+											<h3><a href="writer_baiViet.html">Hôm nay đúng là ngày mệt mỏi nhất trong năm</a></h3>
+											<p class="admin"><span><script>document.write(new Date())</script></span></p>
+										</div>
+									</div>
+									<div class="f-blog">
+										<a href="blog.html" class="blog-img" style="background-image: url(images/tin2.jpg);">
+										</a>
+										<div class="desc">
+											<h3><a href="writer_baiViet.html">Vợ CEO Amazon Bezos “lãi” 1 tỉ USD chỉ sau 2 tuần chia tiền ly hôn</a></h3>
+											<p class="admin"><span><script>document.write(new Date())</script></span></p>
+										</div>
+									</div>
+									<div class="f-blog">
+										<a href="writer_baiViet.html" class="blog-img" style="background-image: url(images/tin3.jpg);">
+										</a>
+										<div class="desc">
+											<h3><a href="blog.html">Pháp: Cảnh sát sử dụng hơi cay nhằm vào người biểu tình "Áo vàng"</a></h3>
+											<p class="admin"><span><script>document.write(new Date())</script></span></p>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
