@@ -3,15 +3,17 @@ var router = express.Router();
 var model=require('../models/chuyenmuc.model')
 /* GET home page. */
 router.get('/', function(req, res, next) {
-   model.all().then((v)=>{
+   model.mapping().then((data)=>{
+       console.log(data);
+       var fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
     res.render('./TrangChu/trangchu', { 
         layout: 'layout',
-        rows: v
+        rows: data,
+        url: fullUrl
     });
    }).catch((err)=>{
        console.log(err);
    })
-  
 });
 
 module.exports = router;

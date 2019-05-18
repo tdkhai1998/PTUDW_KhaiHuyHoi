@@ -1,3 +1,28 @@
-{{#each this.r as |value|}}
-   					<li><a id="dm" href="/chuyenmuc/giaitri">{{value.tenChuyenMuc}}</a></li>
-{{/each}}
+
+
+
+<a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle"><i></i></a>
+<aside id="colorlib-aside" role="complementary" class="js-fullheight">
+	<h1 id="colorlib-logo"><a href="/">news</a></h1>
+	<nav id="colorlib-main-menu" >
+		<ul>
+			<li class="colorlib-active"><a href="/">Trang Chủ</a></li>
+			{{#each this.r as |value|}}
+				{{#if value.chuyenMucCha}}
+					<li><a id="dm" href="/chuyenmuc/{{value.idChuyenMuc}}">{{value.tenChuyenMuc}}</a>
+						<div class="submenu">
+							<ul>
+								{{#each value.chuyenMucCon as |row|}}
+									<li><a id="dm" href="/chuyenmuc/{{row.idChuyenMuc}}">{{row.tenChuyenMuc}}</a>
+								{{/each}}
+							</ul>
+						</div>
+					</li>
+				{{/if}}
+			{{/each}}
+			<li><a href="#myModal" class="trigger-btn" data-toggle="modal">Login</a></li>
+			<li><a href="/danhsachbaiviet">TAGS</a></li>
+			<li><a href="/taikhoan">Tài khoản</a></li>
+		</ul>
+	</nav>
+</aside>
