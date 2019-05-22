@@ -6,7 +6,7 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var editor_xemdanhsach = require('./routes/editor/editor_xemdanhsach');
-
+var admin_tag=require('./routes/admin/tag.router');
 var app = express();
 
 // view engine setup
@@ -19,7 +19,7 @@ app.use('/', indexRouter);
 app.use('/editor_xemdanhsach',  editor_xemdanhsach);
 
 
-
+app.use('/admin/tags', admin_tag)
 
 
 
