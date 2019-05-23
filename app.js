@@ -3,7 +3,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-
+var bodyParser = require('body-parser');
 var indexRouter = require('./routes/index');
 var editor_xemdanhsach = require('./routes/editor/editor_xemdanhsach');
 var admin_tag=require('./routes/admin/tag.router');
@@ -14,6 +14,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 
 
+app.use(bodyParser());
 
 app.use('/', indexRouter);
 app.use('/editor_xemdanhsach',  editor_xemdanhsach);
