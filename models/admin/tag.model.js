@@ -9,5 +9,18 @@ module.exports={
 
   add:(entity)=>{
     return db.add('tag',entity);
-  }
+  },
+
+
+  single:(id)=>{
+    return db.load(`select * from tag where idTag=${id}`);
+  },
+
+  update:(entity)=>{
+    return db.update('tag','idTag',entity);
+  },
+
+  delete: id => {
+    return db.delete('tag', 'idTag', id);
+  },
 }

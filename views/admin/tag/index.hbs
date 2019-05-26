@@ -21,119 +21,41 @@
 		</div>
 	</div>
 </div>
-<div id="colorlib-page">
-	<a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle"><i></i></a>
-	<aside id="colorlib-aside" role="complementary" class="js-fullheight">
-		<h1 id="colorlib-logo">PHÂN HỆ Administration</h1>
-		<nav id="colorlib-main-menu" role="navigation">
-			<ul>
-				<li class="colorlib-active"><a href="Admin_Tag.html">Quản lí Tag</a></li>
-				<li><a href="Admin_Category.html">Quản lí Category</a></li>
-				<li><a href="Admin_XuatBan.html">Xuất bản bài viết</a></li>
-				<li><a href="#">Quản lí người dùng</a>
-					<div class="submenu">
-						<ul>
-							<li><a href="Admin_Readers.html">Độc giả</a></li>
-							<li><a href="Admin_Editors.html">Biên tập viên</a></li>
-						</ul>
-					</div>
 
-				</li>
-			</ul>
-		</nav>
-
-		<div class="colorlib-footer">
-			<p><small>
-					Copyright &copy;
-					<script>document.write(new Date().getFullYear());</script> Create by KhaiHuyHoi</a>
-				</small>
-			</p>
-		</div>
-	</aside>
-
-	<div id="colorlib-main">
-		<div class="colorlib-blog">
-			<div class="container-wrap">
-				<div class="row">
-					<div class="col-md-9">
-						<h3 style="margin: 0px 0px 20px 0px" class="animate-box">Quản Lí TAG</h3>
-						<div>
-							<button type="button" class="btn btn-primary animate-box" onclick="addTag_Click()">Thêm
-								tag</button>
-						</div>
-						<p>
-							<ul class="category list-group animate-box " id="TAG">
-								{{#each this.tags}}
-								<li class="list-group-item">
-									<div class="d-flex justify-content-between">
-										<a href="" class="d-flex align-items-center">{{tenTag}}</a>
-										<div>
-											<a class="btn btn-outline-danger" href="#" role="button">Xóa</a>
-											<a class="btn btn-outline-success" href="#" role="button">Cập nhật</a>
-										</div>
-									</div>
-								</li>
-
-
-
-
-
-								{{/each}}
-							</ul>
-						</p>
-					</div>
-					<div class="col-md-3 sticky-parent">
-						<div class="sidebar">
-							<div class="side animate-box">
-								<div class="form-group">
-									<input type="text" class="form-control" id="search" placeholder="Nhập để tìm kiếm">
-									<button type="submit" class="btn submit btn-primary"><i
-											class="icon-search3"></i></button>
-								</div>
-							</div>
-
-							<div class="side animate-box">
-								<h2 class="sidebar-heading">BÀI VIẾT GẦN ĐÂY</h2>
-								<div class="f-blog">
-									<a href="writer_baiViet.html" class="blog-img"
-										style="background-image: url(/images/tin1.jpg);">
-									</a>
-									<div class="desc">
-										<h3><a href="writer_baiViet.html">Hôm nay đúng là ngày mệt mỏi nhất trong
-												năm</a></h3>
-										<p class="admin"><span>25-04-2019</span></p>
-									</div>
-								</div>
-								<div class="f-blog">
-									<a href="writer_baiViet.html" class="blog-img"
-										style="background-image: url(images/tin2.jpg);">
-									</a>
-									<div class="desc">
-										<h3><a href="writer_baiViet.html">Vợ CEO Amazon Bezos “lãi” 1 tỉ USD chỉ sau 2
-												tuần chia tiền ly hôn</a></h3>
-										<p class="admin"><span>25-04-2019</span></p>
-									</div>
-								</div>
-								<div class="f-blog">
-									<a href="writer_baiViet.html" class="blog-img"
-										style="background-image: url(images/tin3.jpg);">
-									</a>
-									<div class="desc">
-										<h3><a href="writer_baiViet.html">Pháp: Cảnh sát sử dụng hơi cay nhằm vào người
-												biểu tình "Áo vàng"</a></h3>
-										<p class="admin"><span>25-04-2019</span></p>
-									</div>
-								</div>
-							</div>
-						</div>
+<div class="col-md-9">
+	<h3 style="margin: 0px 0px 20px 0px" class="animate-box">Quản Lí TAG</h3>
+	<div>
+		<button type="button" class="btn btn-primary animate-box" onclick="addTag_Click()">Thêm
+			tag</button>
+	</div>
+	<p>
+		<ul class="category list-group animate-box " id="TAG">
+			{{#each this.tags}}
+			<li class="list-group-item">
+				<div class="d-flex justify-content-between">
+					<a href="" class="d-flex align-items-center">{{tenTag}}</a>
+					<div>
+						<a class="btn btn-outline-danger" href="/admin/tags/delete?idTag={{idTag}}" role="button">
+							<i class="fa fa-trash-o" aria-hidden="true"></i>
+							Xóa</a>
+						<a class="btn btn-outline-success" href="/admin/tags/update/{{idTag}}" role="button">Cập
+							nhật</a>
 					</div>
 				</div>
-			</div>
-		</div>
-	</div>
+			</li>
+
+
+
+
+
+			{{/each}}
+		</ul>
+	</p>
 </div>
+
+
 <script type="text/javascript">
 	function addTag_Click() {
-	$('#addModal').modal();
-}
+		$('#addModal').modal();
+	}
 </script>
