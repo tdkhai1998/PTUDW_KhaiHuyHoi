@@ -4,10 +4,12 @@ var tagModel = require('../../models/admin/tag.model');
 var router = express.Router();
 
 router.get('/', (req, res) => {
+    res.locals.tag=true;
     tagModel.all().then(rows => {
         res.render('admin/tag/index.hbs', {
             tags: rows,
-            layout: './admin/tag/layout'
+            layout: './admin/layout'
+           
         });
 
     }).catch(err => {
@@ -35,20 +37,20 @@ router.get('/update/:id', (req, res) => {
    // console.log(req.body);
     if (isNaN(id)) {
         res.render('admin/tag/update', {
-            layout: './admin/tag/layout',
+            layout: './admin/layout',
             err: true
         });
     }
     tagModel.single(id).then(rows => {
         if (rows.length > 0) {
             res.render('admin/tag/update', {
-                layout: './admin/tag/layout',
+                layout: './admin/layout',
                 tag: rows[0],
                 err: false
             })
         } else {
             res.render('admin/tag/update', {
-                layout: './admin/tag/layout',
+                layout: './admin/layout',
                 err: true
             });
         }
@@ -81,5 +83,5 @@ router.get('/delete',(req,res)=>{
         res.end('error occured.');
     })
 })
-router
+
 module.exports = router;

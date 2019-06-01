@@ -94,8 +94,8 @@
 			<h1 id="colorlib-logo">PHÂN HỆ Administration</h1>
 			<nav id="colorlib-main-menu" role="navigation">
 				<ul>
-					<li class="colorlib-active"><a href="Admin_Tag.html">Quản lí Tag</a></li>
-					<li><a href="Admin_Category.html">Quản lí Category</a></li>
+					<li {{#if tag}}class="colorlib-active"{{/if}}><a href="/admin/tags">Quản lí Tag</a></li>
+					<li  {{#if categories}}class="colorlib-active"{{/if}}><a href="/admin/categories">Quản lí Category</a></li>
 					<li><a href="Admin_XuatBan.html">Xuất bản bài viết</a></li>
 					<li><a href="#">Quản lí người dùng</a>
 						<div class="submenu">
