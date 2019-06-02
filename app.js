@@ -8,14 +8,16 @@ var indexRouter = require('./routes/index');
 var editor_xemdanhsach = require('./routes/editor/editor_xemdanhsach');
 var admin_tag=require('./routes/admin/tag.router');
 var admin_categories=require('./routes/admin/cat.router');
-
+var login = require('./routes/account');
 var app = express();
-
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 
+
+require('./middleware/session')(app);
+require('./middleware/passport')(app);
 
 app.use(bodyParser());
 
@@ -25,7 +27,7 @@ app.use('/editor_xemdanhsach',  editor_xemdanhsach);
 
 app.use('/admin/tags', admin_tag)
 app.use('/admin/categories',admin_categories)
-
+app.use('/account',login)
 
 
 
