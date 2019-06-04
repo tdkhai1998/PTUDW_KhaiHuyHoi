@@ -5,7 +5,9 @@ var bcrypt = require('bcrypt');
 var passport = require('passport');
 
 router.get('/register',(res,req,next)=>{
-    req.render('login/register')
+    req.render('login/login',{
+      layout: './login/layout',
+    });
 })
 
 
@@ -20,11 +22,18 @@ router.get('/is-available',(req,res,next)=>{
     })
 })
 
+
+router.get('/login',(req,res,next)=>{
+  req.render('/login/login',{
+    layout: './login/layout',
+  })
+})
+
 router.post('/register',(req,res,next)=>{
     var entity = new Object;
     var saltRounds=10;
-    var password = bcrypt.hashSync(req.body.password1, saltRounds);
-    entity.username=req.body.username1;
+    var password = bcrypt.hashSync(req.body.password, saltRounds);
+    entity.username=req.body.username;
     entity.password=password;
     entity.ten=req.body.name;
     entity.loaiTaiKhoan = req.body.optradio;

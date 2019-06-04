@@ -162,37 +162,38 @@
 
 		<!--Login show-->
 		<form action="/account/login" method="POST">
-		<div id="myModal" class="modal fade">
-			<div class="modal-dialog modal-login">
-				<div class="modal-content">
-					<div class="modal-header">
-						<div class="avatar">
-							<img src="/examples/images/avatar.png" alt="Avatar">
+			<div id="myModal" class="modal fade">
+				<div class="modal-dialog modal-login">
+					<div class="modal-content">
+						<div class="modal-header">
+							<div class="avatar">
+								<img src="/examples/images/avatar.png" alt="Avatar">
+							</div>
+							<h4 class="modal-title">Member Login</h4>
+							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 						</div>
-						<h4 class="modal-title">Member Login</h4>
-						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-					</div>
-					<div class="modal-body">
-						<form action="/examples/actions/confirmation.php" method="post">
-							<div class="form-group">
-								<input type="text" class="form-control" name="username" placeholder="Username">
-							</div>
-							<div class="form-group">
-								<input type="password" class="form-control" name="password" placeholder="Password">
-							</div>
-							<div class="form-group">
-								<button type="submit" class="btn btn-primary btn-lg btn-block login-btn">Login</button>
-							</div>
-						</form>
-					</div>
-					<div class="modal-footer">
-						<a href="SignUp.html">SignUp</a>
+						<div class="modal-body">
+							<form action="/examples/actions/confirmation.php" method="post">
+								<div class="form-group">
+									<input type="text" class="form-control" name="username" placeholder="Username">
+								</div>
+								<div class="form-group">
+									<input type="password" class="form-control" name="password" placeholder="Password">
+								</div>
+								<div class="form-group">
+									<button type="submit"
+										class="btn btn-primary btn-lg btn-block login-btn">Login</button>
+								</div>
+							</form>
+						</div>
+						<div class="modal-footer">
+							<a href="SignUp.html">SignUp</a>
 
-						<a href="#">Forgot password</a>
+							<a href="#">Forgot password</a>
+						</div>
 					</div>
 				</div>
 			</div>
-		</div>
 		</form>
 
 		<div id="colorlib-main">
@@ -262,7 +263,7 @@
 									</div>
 
 
-									<div class="form-group" >
+									<div class="form-group">
 										<div class="input-group">
 											<select class="form-control shadow" id="category" name="category">
 												<option>1</option>
@@ -348,7 +349,7 @@
 
 					},
 					confirm_password: {
-						
+
 						required: true,
 						equalTo: $('[name="password1"]')
 					},

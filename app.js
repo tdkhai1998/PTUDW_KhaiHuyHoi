@@ -9,11 +9,15 @@ var editor_xemdanhsach = require('./routes/editor/editor_xemdanhsach');
 var admin_tag=require('./routes/admin/tag.router');
 var admin_categories=require('./routes/admin/cat.router');
 var login = require('./routes/account');
+var hbs_sections = require('express-handlebars-sections');
+var exphbs = require('express-handlebars');
 var app = express();
 
 // view engine setup
+
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
+
 
 
 require('./middleware/session')(app);
