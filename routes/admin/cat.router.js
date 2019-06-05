@@ -6,6 +6,7 @@ var router = express.Router();
 
 router.get('/', (req, res) => {
     res.locals.categories = true;
+    console.log(req.user);
     catModel.all().then(rows => {
         res.render('admin/cat/index', {
             categories: rows
