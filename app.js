@@ -11,13 +11,23 @@ var admin_categories=require('./routes/admin/cat.router');
 var login = require('./routes/account');
 var hbs_sections = require('express-handlebars-sections');
 var exphbs = require('express-handlebars');
+var hbs_sections = require('express-handlebars-sections');
 var app = express();
 
 // view engine setup
 
-app.set('views', path.join(__dirname, 'views'));
+app.engine('hbs', exphbs({
+  layoutsDir: 'views/layouts',
+  defaultLayout: 'main_layout',
+  extname: '.hbs',
+  helpers: {
+    
+    section: hbs_sections()
+  }
+}));
 app.set('view engine', 'hbs');
-
+// app.set('view engine', 'hbs');
+// app.set('views', path.join(__dirname, 'views'));
 
 
 require('./middleware/session')(app);

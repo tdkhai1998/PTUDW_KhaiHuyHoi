@@ -8,7 +8,7 @@ router.get('/', (req, res) => {
     tagModel.all().then(rows => {
         res.render('admin/tag/index.hbs', {
             tags: rows,
-            layout: './admin/layout'
+           
            
         });
 
@@ -37,20 +37,20 @@ router.get('/update/:id', (req, res) => {
    // console.log(req.body);
     if (isNaN(id)) {
         res.render('admin/tag/update', {
-            layout: './admin/layout',
+          
             err: true
         });
     }
     tagModel.single(id).then(rows => {
         if (rows.length > 0) {
             res.render('admin/tag/update', {
-                layout: './admin/layout',
+                
                 tag: rows[0],
                 err: false
             })
         } else {
             res.render('admin/tag/update', {
-                layout: './admin/layout',
+                
                 err: true
             });
         }

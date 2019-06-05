@@ -8,8 +8,7 @@ router.get('/', (req, res) => {
     res.locals.categories = true;
     catModel.all().then(rows => {
         res.render('admin/cat/index', {
-            categories: rows,
-            layout: './admin/layout'
+            categories: rows
 
         });
 
@@ -25,7 +24,7 @@ router.get('/add', (req, res) => {
         res.render('admin/cat/add', {
 
             categories: rows,
-            layout: './admin/layout'
+        
         });
     }).catch(err => {
         res.end('end occured');
@@ -74,7 +73,7 @@ router.get('/update/:id',(req,res)=>{
                 category: rows[0],
                 categories: AllCategories,
                 Null: isNull,
-                layout: 'admin/layout'
+                
             });
             
         }).catch(err=>{

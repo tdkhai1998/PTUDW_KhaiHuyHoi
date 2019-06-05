@@ -4,15 +4,15 @@ var userModel= require('../models/admin/user.model')
 var bcrypt = require('bcrypt');
 var passport = require('passport');
 
-router.get('/register',(res,req,next)=>{
-    req.render('login/login',{
-      layout: './login/layout',
-    });
+router.get('/register',(req,res,next)=>{
+  res.render('account/register',{
+    layout: 'account_layout',
+  });
 })
 
 
 router.get('/is-available',(req,res,next)=>{
-    var username = req.query.username1;
+    var username = req.query.username;
     userModel.single(username).then(rows=>{
         if(rows.length>0){
             return res.json(false);
@@ -23,11 +23,7 @@ router.get('/is-available',(req,res,next)=>{
 })
 
 
-router.get('/login',(req,res,next)=>{
-  req.render('/login/login',{
-    layout: './login/layout',
-  })
-})
+router
 
 router.post('/register',(req,res,next)=>{
     var entity = new Object;
@@ -52,13 +48,20 @@ router.post('/register',(req,res,next)=>{
     
 })
 
+
+router.get('/login',(req,res,next)=>{
+  res.render('account/login',{
+    layout: 'account_layout'
+  });
+})
+
 router.post('/login', (req, res, next) => {
     passport.authenticate('local', (err, user, info) => {
       if (err)
         return next(err);
   
       if (!user) {
-        return  res.render('login/register')
+        return  res.render('account/register')
       }
   
       req.logIn(user, err => {
