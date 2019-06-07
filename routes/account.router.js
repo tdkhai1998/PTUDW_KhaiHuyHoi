@@ -7,6 +7,7 @@ var nodemailer = require('nodemailer');
 var moment = require('moment');
 var randomstring = require("randomstring");
 
+var saltRounds=10;
 router.get('/register', (req, res, next) => {
   res.render('account/register', {
     layout: 'account_layout',
@@ -56,11 +57,13 @@ router.post('/forgot-password',(req,res,next)=>{
              pass: 'quochoi42'
          }
      });
+     var url='http://localhost:3000/account/req-from-email?username='+username+'&key='+user.code;
+     var html='<a href="'+url+'"><b>Click here to reset password</b></a>';
      const mailOptions = {
       from: 'quocvu142@gmail.com', // sender address
       to: 'quochoi142@gmail.com', // list of receivers
       subject: 'Forgot password', // Subject line
-      html: '<a href="http://localhost:3000/account/forgot-password"><b>Click here to reset password</b></a>'// plain text body
+      html: html// plain text body
     };
 
     transporter.sendMail(mailOptions, function (err, info) {
@@ -72,9 +75,45 @@ router.post('/forgot-password',(req,res,next)=>{
   })
 })
 
+
+router.get('/req-from-email',(req,res,next)=>{
+  var username =req.query.username;
+  userModel.single(username).then(rows=>{
+    var user = rows[0];
+    console.log(user);
+    var key = req.query.key;
+    if(key===user.code){
+      res.render('account/change_new_password',{
+        layout: 'account_layout',
+        username: username,
+      })
+    }
+  }).catch(err=>{
+    console.log(err);
+    res.end('error occured');
+  })
+})
+
+router.post('/req-from-email',(req,res,next)=>{
+  var username= req.body.username;
+  userModel.single(username).then(rows=>{
+    var entity=rows[0];
+    var password=req.body.password;
+    //console.log(req);
+    
+    entity.password= bcrypt.hashSync(password,saltRounds)
+    entity.code=randomstring.generate(15);
+    userModel.update(entity).then(n=>{
+      res.redirect('/account/login');
+    }).catch(err=>{
+      console.log(err);
+      res.end('error occured');
+    })
+  })
+})
+
 router.post('/register', (req, res, next) => {
   var entity = new Object;
-  var saltRounds = 10;
   var password = bcrypt.hashSync(req.body.password, saltRounds);
   entity.username = req.body.username;
   entity.password = password;
@@ -111,7 +150,6 @@ router.post('/reset-password', (req, res, next) => {
   var ret = bcrypt.compareSync(old, req.user.password);
   if (ret) {
     var entity=req.user;
-    var saltRounds = 10;
     var password = bcrypt.hashSync(req.body.password, saltRounds);
     entity.password=password;
     userModel.update(entity).then(n=>{
