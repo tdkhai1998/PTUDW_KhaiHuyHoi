@@ -23,6 +23,9 @@ router.get('/is-available', (req, res, next) => {
     } else {
       return res.json(true);
     }
+  }).catch(err=>{
+    console.log(err);
+    return res.json(false);
   })
 })
 
@@ -36,6 +39,9 @@ router.get('/is-available2', (req, res, next) => {
     } else {
       return res.json(false);
     }
+  }).catch(err=>{
+    console.log(err);
+    return res.json(false);
   })
 })
 
@@ -61,7 +67,7 @@ router.post('/forgot-password',(req,res,next)=>{
      var html='<a href="'+url+'"><b>Click here to reset password</b></a>';
      const mailOptions = {
       from: 'quocvu142@gmail.com', // sender address
-      to: 'quochoi142@gmail.com', // list of receivers
+      to: user.email, // list of receivers
       subject: 'Forgot password', // Subject line
       html: html// plain text body
     };
@@ -119,6 +125,7 @@ router.post('/register', (req, res, next) => {
   entity.password = password;
   entity.ten = req.body.name;
   entity.loaiTaiKhoan = req.body.optradio;
+  entity.email=req.body.email
   if (entity.loaiTaiKhoan == "2") {
     entity.idChuyenMuc = req.body.category;
   } else {
