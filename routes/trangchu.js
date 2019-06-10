@@ -10,6 +10,7 @@ router.get('/', function(req, res, next) {
         console.log(data);
         res.render('./TrangChu/trangchu', { 
             layout: '/layouts/main-layout',
+            html:"<a href='khai'>shdvsh</a>",
             rows: data,
             url: fullUrl
         });

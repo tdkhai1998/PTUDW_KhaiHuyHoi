@@ -4,7 +4,7 @@
 	<!--Menu-->
 	{{> menu r=this.rows.chuyenmuc}}
 	<!--Login show-->
-	{{> login url=this.url}}
+	{{> login }}
 	<div id="colorlib-main">
 		<div class="colorlib-blog" >
 			<div class="container-wrap" >
@@ -14,7 +14,7 @@
 							{{#each this.rows.baivietnoibat as |bvnb|}}
 							<div class="item">
 								<div class="blog-entry">
-									<div class="blog-img" style="background-image: url(images/{{bvnb.anhDaiDien}});" >
+									<div class="blog-img" style="background-image: url(/images/{{bvnb.anhDaiDien}});" >
 										<div class="desc desc2 text-center">
 											<p class="tag"><span>{{bvnb.tenChuyenMuc}}</span></p>
 											<div class="desc-bottom">
@@ -36,7 +36,7 @@
 						{{#each this.rows.baivietmoinhat as |bvmn|}}
 							<div class="col-md-6">
 								<div class="blog-entry animate-box">
-									<div class="blog-img blog-img2" style="background-image: url(images/{{bvmn.anhDaiDien}});">
+									<div class="blog-img blog-img2" style="background-image: url(/images/{{bvmn.anhDaiDien}});">
 										<div class="desc text-center">
 											<p class="tag"><span>{{bvmn.tenChuyenMuc}}</span></p>
 											<h2 class="head-article"><a href="./chitietbaiviet/{{bvmn.idBaiViet}}">{{bvmn.tieuDe}}</a></h2>
@@ -54,7 +54,7 @@
 							{{#each this.rows.baivietxemnhieunhat as |bvxnn|}}
 							<div class="col-md-12">
 								<div class="blog-entry animate-box">
-									<div class="blog-img blog-img2" style="background-image: url(images/{{bvxnn.anhDaiDien}});">
+									<div class="blog-img blog-img2" style="background-image: url(/images/{{bvxnn.anhDaiDien}});">
 										<div class="desc text-center">
 											<p class="tag"><span>{{bvxnn.tenChuyenMuc}}</span></p>
 											<h2 class="head-article"><a href="./chitietbaiviet/{{bvxnn.idBaiViet}}">{{bvxnn.tieuDe}}</a></h2>
@@ -72,7 +72,7 @@
 							{{#each this.rows.baiviettop10 as |bvt10|}}
 							<div class="col-md-6">
 								<div class="blog-entry animate-box">
-									<div class="blog-img blog-img2" style="background-image: url(images/{{bvt10.anhDaiDien}});">
+									<div class="blog-img blog-img2" style="background-image: url(/images/{{bvt10.anhDaiDien}});">
 										<div class="desc text-center">
 											<p class="tag"><span>{{bvt10.tenChuyenMuc}}</span></p>
 											<h2 class="head-article"><a href="./chitietbaiviet/{{bvtop10.idBaiViet}}">{{bvt10.tieuDe}}</a></h2>
