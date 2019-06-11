@@ -1,0 +1,34 @@
+
+
+<div class="col-md-9">
+	<h3 style="margin: 0px 0px 20px 0px" class="animate-box">Quản lí chuyên mục</h3>
+	<div>
+		<a role="button" class="btn btn-primary animate-box" href="/admin/categories/add" >Thêm
+			chuyên mục</a>
+	</div>
+	<p>
+		<ul class="category list-group animate-box " id="TAG">
+			{{#each this.categories}}
+			<li class="list-group-item">
+				<div class="d-flex justify-content-between">
+					<a href="" class="d-flex align-items-center">{{tenChuyenMuc}}</a>
+					<div>
+						<a class="btn btn-outline-danger" href="/admin/categories/delete/{{idChuyenMuc}}" role="button">
+							<i class="fa fa-trash-o" aria-hidden="true"></i>
+							Xóa</a>
+						<a class="btn btn-outline-success" href="/admin/categories/update/{{idChuyenMuc}}" role="button">Cập
+							nhật</a>
+					</div>
+				</div>
+			</li>
+
+
+
+
+
+			{{/each}}
+		</ul>
+	</p>
+</div>
+
+
