@@ -7,6 +7,7 @@ var bodyParser = require('body-parser');
 var indexRouter = require('./routes/index');
 var editor_xemdanhsach = require('./routes/editor/editor_xemdanhsach');
 var admin_tag=require('./routes/admin/tag.router');
+var admin_user=require('./routes/admin/user.router');
 var admin_categories=require('./routes/admin/cat.router');
 var login = require('./routes/account.router');
 var hbs_sections = require('express-handlebars-sections');
@@ -42,6 +43,7 @@ app.use('/editor_xemdanhsach',  editor_xemdanhsach);
 app.use('/admin/tags', admin_tag)
 app.use('/admin/categories',admin_categories)
 app.use('/account',login)
+app.use('/admin/user',admin_user)
 
 
 

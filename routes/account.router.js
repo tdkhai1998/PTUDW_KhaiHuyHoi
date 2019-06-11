@@ -263,4 +263,8 @@ router.post('/profile', (req, res, next) => {
     res.end('error occdured');
   })
 })
+
+router.get('/edit',(req,res,next)=>{
+  res.render('admin/account/edit_Account');
+})
 module.exports = router;

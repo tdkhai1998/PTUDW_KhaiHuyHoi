@@ -1,0 +1,135 @@
+{{#section 'css'}}
+<link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.min.css">
+{{/section}}
+
+
+<div class="col-md-9">
+
+    <div class="signup-form">
+        <form method="POST">
+            <h2>Thông tin tài khoản</h2>
+
+            <div class="form-check-inline">
+                <label class="form-check-label">
+                    <input type="radio" class="form-check-input" value="1" name="optradio">User
+                </label>
+            </div>
+            <div class="form-check-inline">
+                <label class="form-check-label">
+                    <input type="radio" class="form-check-input" value="2" name="optradio">Writer
+                </label>
+            </div>
+            <div class="form-check-inline">
+                <label class="form-check-label">
+                    <input type="radio" class="form-check-input" value="3" name="optradio">Editor
+                </label>
+            </div>
+            <div class="form-check-inline">
+                <label class="form-check-label">
+                    <input type="radio" class="form-check-input" value="4" name="optradio">administrator
+                </label>
+            </div>
+
+            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                    <input type="text" class="form-control" name="name" value="{{user.ten}}" placeholder="Họ và tên">
+                </div>
+            </div>
+            <div class="form-group ">
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-paper-plane"></i></span>
+                    <input type="text" class="form-control" value="{{user.email}}" name="email" placeholder="Email">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fas fa-birthday-cake"></i></span>
+                    <input type="text" class="form-control" name="dob" value="{{dob}}" id="dob" placeholder="Ngày sinh">
+                </div>
+            </div>
+
+            <div class="form-group d-none" id="author">
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fas fa-signature"></i></span>
+                    <input type="text" class="form-control" name="author" value="{{user.butDanh}}"
+                        placeholder="Bút danh">
+                </div>
+            </div>
+            <div class="form-group d-none" id="HSD">
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fab fa-cc-visa"></i></span>
+                    <input type="text" class="form-control" id="txtHSD" name="HSD" value="{{HSD}}"
+                        placeholder="Hạn sử dụng (Premium)">
+
+                </div>
+
+            </div>
+
+
+            <div class="form-group d-none" id="category">
+                <div class="input-group">
+                    <select class="form-control shadow" name="category">
+                        {{#each categories}}
+                        <option value="{{idChuyenMuc}}">{{tenChuyenMuc}}</option>
+                        {{/each}}
+                    </select>
+                </div>
+
+            </div>
+
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary btn-block btn-lg">Cập nhật</button>
+            </div>
+
+        </form>
+    </div>
+
+</div>
+
+{{#section 'js'}}
+<script
+    src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js"></script>
+<script>
+
+    
+    $('#dob').datetimepicker({
+        format: 'd/m/Y',
+        timepicker: false,
+        mask: true,
+    });
+
+    $('#txtHSD').datetimepicker({
+        format: 'd/m/Y',
+        timepicker: false,
+        mask: true,
+    });
+
+
+    $('input[name=optradio]').change(function () {
+        var selectedValue = $('input[name=optradio]:checked').val();
+        switch (selectedValue) {
+            case "1": $('#HSD').removeClass('d-none');
+                $('#author').removeClass('d-none'); $('#author').addClass('d-none');
+                $('#category').removeClass('d-none'); $('#category').addClass('d-none');
+                break;
+            case "2": $('#author').removeClass('d-none');
+                $('#HSD').removeClass('d-none'); $('#HSD').addClass('d-none');
+                $('#category').removeClass('d-none'); $('#category').addClass('d-none');
+                break;
+            case "3": $('#category').removeClass('d-none');
+                $('#HSD').removeClass('d-none'); $('#HSD').addClass('d-none');
+                $('#author').removeClass('d-none'); $('#author').addClass('d-none');
+                break;
+            case "4": $('#author').removeClass('d-none'); $('#author').addClass('d-none');
+                $('#HSD').removeClass('d-none'); $('#HSD').addClass('d-none');
+                $('#category').removeClass('d-none'); $('#category').addClass('d-none');
+                break;
+
+
+        }
+    });
+
+</script>
+{{/section}}
