@@ -21,5 +21,7 @@ module.exports={
         return db.load(`update chuyenmuc set daXoa=1 where username=${username}`);
       },
 
-
+      findCategory: (id)=>{
+        return db.load(`select * from chuyenmuc where idChuyenMuc=${id}`);
+      }
 }

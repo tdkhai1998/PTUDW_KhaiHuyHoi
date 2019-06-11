@@ -1,0 +1,95 @@
+{{#section 'css'}}
+<link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.min.css">
+{{/section}}
+
+
+<div class="col-md-9">
+
+    <div class="signup-form">
+        <form method="POST">
+            <h2>Thông tin tài khoản</h2>
+            {{#if isAdmin}}
+            <div class="form-check-inline">
+                <label class="form-check-label">
+                    <input type="radio" class="form-check-input" name="optradio">User
+                </label>
+            </div>
+            <div class="form-check-inline">
+                <label class="form-check-label">
+                    <input type="radio" class="form-check-input" name="optradio">Writer
+                </label>
+            </div>
+            <div class="form-check-inline">
+                <label class="form-check-label">
+                    <input type="radio" class="form-check-input" name="optradio">Editor
+                </label>
+            </div>
+            <div class="form-check-inline">
+                <label class="form-check-label">
+                    <input type="radio" class="form-check-input" name="optradio">administrator
+                </label>
+            </div>
+            {{/if}}
+            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                    <input type="text" class="form-control" name="name" value="{{user.ten}}" placeholder="Họ và tên">
+                </div>
+            </div>
+            <div class="form-group " >
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-paper-plane"></i></span>
+                    <input type="text" readonly class="form-control" value="{{user.email}}" name="email" placeholder="Email">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fas fa-birthday-cake"></i></span>
+                    <input type="text" class="form-control" name="dob"  value="{{dob}}" id="dob" placeholder="Ngày sinh">
+                </div>
+            </div>
+           
+            <div class="form-group  {{#if isWriter}}d-block {{else}}d-none{{/if}}">
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fas fa-signature"></i></span>
+                    <input type="text" class="form-control" name="author" value="{{user.butDanh}}"  placeholder="Bút danh">
+                </div>
+            </div>
+            <div class="form-group  {{#if isUser}}d-block {{else}}d-none{{/if}}">
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fab fa-cc-visa"></i></span>
+                    <input type="text" class="form-control" name="HSD" value="{{HSD}}" readonly  placeholder="Hạn sử dụng (Premium)">
+                </div>
+            </div>
+             
+          
+            <div class="form-group   {{#if isEditor}}d-block {{else}}d-none{{/if}}">
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fas fa-user-edit"></i></span>
+                    <input type="text" readonly class="form-control" name="category" value="{{cat.tenChuyenMuc}}" placeholder="Chuyên mục">
+                </div>
+            </div>
+           
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary btn-block btn-lg">Cập nhật</button>
+            </div>
+
+        </form>
+    </div>
+
+</div>
+
+{{#section 'js'}}
+<script
+    src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js"></script>
+<script>
+
+    $('#dob').datetimepicker({
+        format: 'd/m/Y',
+        timepicker: false,
+        mask: true,
+    });
+     
+</script>
+{{/section}}

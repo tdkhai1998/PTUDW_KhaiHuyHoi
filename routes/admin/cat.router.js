@@ -2,9 +2,9 @@ var express = require('express');
 var catModel = require('../../models/admin/cat.model')
 
 var router = express.Router();
+var auth = require('../../middleware/auth');
 
-
-router.get('/', (req, res) => {
+router.get('/',auth, (req, res) => {
     res.locals.categories = true;
     console.log(req.user);
     catModel.all().then(rows => {
