@@ -48,7 +48,8 @@ router.get('/',(req,res,next)=>{
                 pages:pages,
                 types:types,
                 type:req.query.typeype,
-                keyword: req.query.keyword
+                keyword: req.query.keyword,
+                page:req.query.page
             })
         }).catch(err=>{
             console.log(err);
@@ -63,16 +64,24 @@ router.get('/',(req,res,next)=>{
     
 })
 
-router.get('/remove',(req,res,next)=>{
-    var page =isNaN(req.query.page)?1:req.query.page;
-    var type=isNaN(req.query.type)?0:req.query.type;
-    var username = req.query.username;
+router.get('/:username/remove',(req,res,next)=>{
+    var username = req.params.username;
     
     userModel.delete(username).then(n=>{
-        var url='/admin/user/index'+'?type='+type+
-        res.redirect('/admin/user/index');
+        var url='/admin/user';
+        if(req.query.page){
+            url=url+'?page='+req.query.page;
+        }
+        if(req.query.type){
+            url=url+'&type='+req.query.type;
+        }
+        if(req.query.keyword){
+            url=url+'&keyword='+req.query.keyword;
+        }
+        res.redirect(url);
     }).catch(err=>{
-
+        console.log(err);
+        res.end('error');
     })
 })
 module.exports=router;

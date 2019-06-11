@@ -18,7 +18,7 @@ module.exports={
     
       delete: (username) => {
         
-        return db.load(`update chuyenmuc set daXoa=1 where username='${username}'`);
+        return db.load(`update nguoidung set daXoa=1 where username='${username}'`);
       },
 
       findCategory: (id)=>{
