@@ -6,6 +6,23 @@
 		<a role="button" class="btn btn-primary animate-box" href="/admin/categories/add" >Thêm
 			chuyên mục</a>
 	</div>
+	 <div class="row d-flex justify-content-end ">
+		 <div class="dropdown animate-box" style="z-index: 1001;">
+		<button class="btn btn-secondary dropdown-toggle" type="button" id="triggerId" data-toggle="dropdown" aria-haspopup="true"
+				aria-expanded="false">
+					Dropdown
+				</button>
+		<div class="dropdown-menu" aria-labelledby="triggerId">
+			<a class="dropdown-item" href="#">Action</a>
+			<a class="dropdown-item disabled" href="#">Disabled action</a>
+			<h6 class="dropdown-header">Section header</h6>
+			<a class="dropdown-item" href="#">Action</a>
+			<div class="dropdown-divider"></div>
+			<a class="dropdown-item" href="#">After divider action</a>
+		</div>
+	</div>
+	 </div>
+	
 	<p>
 		<ul class="category list-group animate-box " id="TAG">
 			{{#each this.categories}}

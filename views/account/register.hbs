@@ -36,33 +36,8 @@
 					<input type="password" name="confirm" placeholder="Xác nhận password"
 						class="form-last-name form-control" id="confirm">
 				</div>
-				<div class="form-group">
-					<div class="input-group">
-						<div class="form-check-inline">
-							<label class="form-check-label">
-								<input type="radio" class="form-check-input" value="1" checked="checked"
-									name="optradio">User
-							</label>
-						</div>
-						<div class="form-check-inline">
-							<label class="form-check-label">
-								<input type="radio" class="form-check-input" value="2" name="optradio">Editor
-							</label>
-						</div>
-					</div>
-
-				</div>
-				<div class="form-group">
-					<div class="input-group">
-						<select class="form-control shadow" id="category" name="category">
-							<option>1</option>
-							<option>2</option>
-							<option>3</option>
-							<option>4</option>
-						</select>
-					</div>
-
-				</div>
+			
+			
 
 				<button type="submit" class="btn">Đăng kí</button>
 			</form>
@@ -74,15 +49,7 @@
 {{#section 'js'}}
 <script>
 		$(function () {
-			$('#category').hide();
-			$('input[name=optradio]').on('click', function () {
-				var selectedValue = $('input[name=optradio]:checked').val();
-				if (selectedValue == "2") {
-					$('#category').show();
-				} else {
-					$('#category').hide();
-				}
-			});
+		
 
 
 			$('#form').validate({

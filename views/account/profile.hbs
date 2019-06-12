@@ -9,28 +9,12 @@
     <div class="signup-form">
         <form method="POST">
             <h2>Thông tin tài khoản</h2>
-            {{#if isAdmin}}
-            <div class="form-check-inline">
-                <label class="form-check-label">
-                    <input type="radio" class="form-check-input" name="optradio">User
-                </label>
+             <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fas fa-chess"></i></span>
+                    <input type="text" class="form-control" name="type" value="{{user.loaiTaiKhoan}}" readonly placeholder="Loại tài khoản">
+                </div>
             </div>
-            <div class="form-check-inline">
-                <label class="form-check-label">
-                    <input type="radio" class="form-check-input" name="optradio">Writer
-                </label>
-            </div>
-            <div class="form-check-inline">
-                <label class="form-check-label">
-                    <input type="radio" class="form-check-input" name="optradio">Editor
-                </label>
-            </div>
-            <div class="form-check-inline">
-                <label class="form-check-label">
-                    <input type="radio" class="form-check-input" name="optradio">administrator
-                </label>
-            </div>
-            {{/if}}
             <div class="form-group">
                 <div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-user"></i></span>
@@ -46,7 +30,7 @@
             <div class="form-group">
                 <div class="input-group">
                     <span class="input-group-addon"><i class="fas fa-birthday-cake"></i></span>
-                    <input type="text" class="form-control" name="dob"  value="{{dob}}" id="dob" placeholder="Ngày sinh">
+                    <input type="text" class="form-control" name="dob"  value="{{user.ngaySinh}}" id="dob" placeholder="Ngày sinh">
                 </div>
             </div>
            
@@ -59,7 +43,7 @@
             <div class="form-group  {{#if isUser}}d-block {{else}}d-none{{/if}}">
                 <div class="input-group">
                     <span class="input-group-addon"><i class="fab fa-cc-visa"></i></span>
-                    <input type="text" class="form-control" name="HSD" value="{{HSD}}" readonly  placeholder="Hạn sử dụng (Premium)">
+                    <input type="text" class="form-control" name="HSD" value="{{user.HSD}}" readonly  placeholder="Hạn sử dụng (Premium)">
                 </div>
             </div>
              

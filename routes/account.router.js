@@ -133,7 +133,7 @@ router.post('/register', (req, res, next) => {
     entity.idChuyenMuc = req.body.category;
   } else {
     entity.idChuyenMuc = null;
-    var date = moment().add(30, 'days').format('YYYY-MM-DD');
+    var date = moment().add(7, 'days').format('YYYY-MM-DD');
     entity.HSD = date;
 
   }
@@ -190,7 +190,7 @@ router.post('/login', (req, res, next) => {
     if (!user) {
       return res.render('account/register')
     }
-
+    
     req.logIn(user, err => {
       if (err)
         return next(err);
@@ -207,24 +207,33 @@ router.get('/profile', auth, (req, res, next) => {
   var isWriter = false;
   var isEditor = false;
   var isUser = false;
-  var cat;
-  switch (req.user.loaiTaiKhoan) {
-    case "1": isUser = true; break;
-    case "2": isWriter = true; break;
-    case "3": isEditor = true; break;
+  var user =new Object;
+  Object.assign(user, req.user);
+  switch (user.loaiTaiKhoan) {
+    case "1": isUser = true; user.loaiTaiKhoan="User";  break;
+    case "2": isWriter = true; user.loaiTaiKhoan="Writer";  break;
+    case "3": isEditor = true ;user.loaiTaiKhoan="Editor";  break;
+    case "4": user.loaiTaiKhoan="Administrator";  break;
   }
-  let dob = moment(req.user.ngaySinh).format('DD/MM/YYYY');
-  console.log(dob);
+  try{
+    user.ngaySinh = moment(req.user.ngaySinh).format('DD/MM/YYYY');
+  }catch(err){
+    user.ngaySinh =null;
+  }
+  try{
+    user.HSD = moment(req.user.HSD).format('DD/MM/YYYY');
+  }catch(err){
+    user.HSD =null;
+  }
+ 
   //var dob =  moment(req.user.ngaySinh, 'YYYY-MM-DD').format('DD/MM/YYYY'); 
   userModel.findCategory(req.user.idChuyenMuc).then(rows => {
     var cat = rows[0];
     res.render('account/profile', {
-      user: req.user,
+      user: user,
       isWriter: isWriter,
       isEditor: isEditor,
       isUser: isUser,
-      dob: dob,
-      HSD: moment(req.user.HSD).format('DD/MM/YYYY'),
       cat: cat
     });
   }).catch(err => {
