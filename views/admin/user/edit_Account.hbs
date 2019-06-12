@@ -9,27 +9,13 @@
     <div class="signup-form">
         <form method="POST">
             <h2>Thông tin tài khoản</h2>
-
+            {{#each types}}
             <div class="form-check-inline">
                 <label class="form-check-label">
-                    <input type="radio" class="form-check-input" value="1" name="optradio">User
+                    <input type="radio"  {{#if isSelected}}checked{{/if}} class="form-check-input" value="{{value}}" name="optradio">{{name}}
                 </label>
             </div>
-            <div class="form-check-inline">
-                <label class="form-check-label">
-                    <input type="radio" class="form-check-input" value="2" name="optradio">Writer
-                </label>
-            </div>
-            <div class="form-check-inline">
-                <label class="form-check-label">
-                    <input type="radio" class="form-check-input" value="3" name="optradio">Editor
-                </label>
-            </div>
-            <div class="form-check-inline">
-                <label class="form-check-label">
-                    <input type="radio" class="form-check-input" value="4" name="optradio">administrator
-                </label>
-            </div>
+           {{/each}}
 
             <div class="form-group">
                 <div class="input-group">
@@ -50,14 +36,14 @@
                 </div>
             </div>
 
-            <div class="form-group d-none" id="author">
+            <div class="form-group {{#if select.writer}}{{else}}d-none{{/if}}" id="author">
                 <div class="input-group">
                     <span class="input-group-addon"><i class="fas fa-signature"></i></span>
                     <input type="text" class="form-control" name="author" value="{{user.butDanh}}"
                         placeholder="Bút danh">
                 </div>
             </div>
-            <div class="form-group d-none" id="HSD">
+            <div class="form-group  {{#if select.user}}{{else}}d-none{{/if}}" id="HSD">
                 <div class="input-group">
                     <span class="input-group-addon"><i class="fab fa-cc-visa"></i></span>
                     <input type="text" class="form-control" id="txtHSD" name="HSD" value="{{HSD}}"
@@ -68,11 +54,11 @@
             </div>
 
 
-            <div class="form-group d-none" id="category">
+            <div class="form-group  {{#if select.editor}}{{else}}d-none{{/if}}" id="category">
                 <div class="input-group">
-                    <select class="form-control shadow" name="category">
+                    <select class="form-control shadow" name="category">                   
                         {{#each categories}}
-                        <option value="{{idChuyenMuc}}">{{tenChuyenMuc}}</option>
+                        <option {{#if isSelected}}selected{{/if}} value="{{idChuyenMuc}}">{{tenChuyenMuc}}</option>
                         {{/each}}
                     </select>
                 </div>

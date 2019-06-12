@@ -9,7 +9,7 @@ module.exports={
       },
     
       single:(username)=>{
-        return db.load(`select * from nguoidung where username='${username}'`);
+        return db.load(`select * from nguoidung where username='${username}' and daXoa=0`);
       },
     
       update:(entity)=>{

@@ -247,13 +247,17 @@ router.get('/profile', auth, (req, res, next) => {
 router.post('/profile', (req, res, next) => {
   var entity = req.user;
 
-  var dob = moment(req.body.dob, 'DD/MM/YYYY').format('YYYY-MM-DD');
-  entity.ngaySinh = dob;
+  try {
+    entity.ngaySinh = moment(req.body.dob, 'DD/MM/YYYY').format('YYYY-MM-DD');
+  } catch (err) {
+    entity.ngaySinh = null;
+  }
+  
   entity.ten = req.body.name;
- // entity.HSD = moment(req.user.HSD, 'YYYY-MM-DD').format('YYYY-MM-DD');
+  //entity.HSD = moment(req.user.HSD, 'YYYY-MM-DD').format('YYYY-MM-DD');
   switch (req.user.loaiTaiKhoan) {
     case "2": entity.butDanh = req.body.author; break;
-    
+
 
   }
   userModel.update(entity).then(n => {
@@ -264,7 +268,5 @@ router.post('/profile', (req, res, next) => {
   })
 })
 
-router.get('/edit',(req,res,next)=>{
-  res.render('admin/account/edit_Account');
-})
+
 module.exports = router;
