@@ -7,7 +7,7 @@ var auth = require('../../middleware/auth');
 router.get('/',auth, (req, res) => {
     res.locals.categories = true;
     console.log(req.user);
-    catModel.all().then(rows => {
+    catModel.loadCatsParent(null).then(rows => {
         res.render('admin/cat/index', {
             categories: rows
 
@@ -51,31 +51,38 @@ router.post('/add', (req, res) => {
 
 router.get('/update/:id',(req,res)=>{
     var id = req.params.id;
-    var result;
-    catModel.all().then(AllCategories=>{
+   // var result;
+    catModel.loadCatsParent(id).then(AllCategories=>{
         catModel.single(id).then(rows=>{
             console.log(AllCategories);
             var isNull=false;
             if(rows[0].chuyenMucCha==null){
                 isNull=true;
             }
-            
             AllCategories.forEach(element => {
-                
-                if(element.idChuyenMuc==rows[0].chuyenMucCha){
+                if(element.idChuyenMuc==rows[0].chuyenMucCha)
                     element.isSelected=true;
-                   // isNull=false;    
-                }
-                if(element.chuyenMucCha==rows[0].idChuyenMuc||element.idChuyenMuc==rows[0].idChuyenMuc){
-                    element.isShow=true;
-                }
             });
-            res.render('admin/cat/update',{
-                category: rows[0],
-                categories: AllCategories,
-                Null: isNull,
-                
-            });
+            catModel.loadCatsChild(id).then(catsChild=>{
+                var haveChild=false;
+                if(catsChild.length!==0){
+                    haveChild=true;
+                }
+
+                res.render('admin/cat/update',{
+                    category: rows[0],
+                    categories: AllCategories,
+                    Null: isNull,
+                    haveChild:haveChild,
+                    childCategories: catsChild
+                    
+                });
+            })
+
+           
+            
+          
+           
             
         }).catch(err=>{
             console.log(err);
