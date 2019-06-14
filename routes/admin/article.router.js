@@ -12,6 +12,7 @@ router.get('/inspect/:id',(req,res,next)=>{
 })
 
 router.get('/',(req,res,next)=>{
+    res.locals.article=true;
     articleModel.all().then(rows=>{
         res.render('admin/article/index',{
             articles: rows,

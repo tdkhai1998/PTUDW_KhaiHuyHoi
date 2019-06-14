@@ -5,7 +5,7 @@ var router = express.Router();
 var auth = require('../../middleware/auth');
 
 router.get('/', auth, (req, res) => {
-    res.locals.categories = true;
+    res.locals.category = true;
     console.log(req.user);
     catModel.loadCatsParent(null).then(rows => {
         res.render('admin/cat/index', {

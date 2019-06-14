@@ -12,23 +12,7 @@ module.exports = {
     return db.load(`update baiviet set trangThai='daxuatban' where idBaiViet=${id}`)
   },
 
-  add: (entity) => {
-    return db.add('chuyenmuc', entity);
-  },
-
-
-  single: (id) => {
-    return db.load(`select * from chuyenmuc where idChuyenMuc=${id}`);
-  },
-
-  update: (entity) => {
-    return db.update('chuyenmuc', 'idChuyenMuc', entity);
-  },
-
-  delete: id => {
-    db.load(`update chuyenmuc set chuyenMucCha=NULL where chuyenMucCha=${id}`);
-    return db.load(`update chuyenmuc set daXoa=1 where idChuyenMuc=${id}`);
-  },
+  
 
   
 

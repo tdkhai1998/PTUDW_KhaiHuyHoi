@@ -96,9 +96,9 @@
 			<nav id="colorlib-main-menu" role="navigation">
 				<ul>
 					<li {{#if tag}}class="colorlib-active" {{/if}}><a href="/admin/tags">Quản lí Tag</a></li>
-					<li {{#if categories}}class="colorlib-active" {{/if}}><a href="/admin/categories">Quản lí
+					<li {{#if category}}class="colorlib-active" {{/if}}><a href="/admin/categories">Quản lí
 							Category</a></li>
-					<li><a href="Admin_XuatBan.html">Xuất bản bài viết</a></li>
+					<li {{#if article}}class="colorlib-active" {{/if}}><a href="/admin/article">Xuất bản bài viết</a></li>
 					<li {{#if user}}class="colorlib-active" {{/if}}><a href="/admin/user">Quản lí người dùng</a>
 					
 
