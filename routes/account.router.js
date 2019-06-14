@@ -7,7 +7,7 @@ var nodemailer = require('nodemailer');
 var moment = require('moment');
 var randomstring = require("randomstring");
 var auth = require('../middleware/auth');
-
+request = require('request');
 
 
 var saltRounds = 10;
@@ -122,29 +122,46 @@ router.post('/req-from-email', (req, res, next) => {
 })
 
 router.post('/register', (req, res, next) => {
-  var entity = new Object;
-  var password = bcrypt.hashSync(req.body.password, saltRounds);
-  entity.username = req.body.username;
-  entity.password = password;
-  entity.ten = req.body.name;
-  entity.loaiTaiKhoan = req.body.optradio;
-  entity.email = req.body.email
-  if (entity.loaiTaiKhoan == "2") {
-    entity.idChuyenMuc = req.body.category;
-  } else {
+
+  if (req.body['g-recaptcha-response'] === undefined || req.body['g-recaptcha-response'] === '' || req.body['g-recaptcha-response'] === null) {
+    res.redirect('account/register');
+  }
+  const secretKey = "6Lf18agUAAAAADS6EJgFYSGSoGgaqwkKBiLfSFfB";
+
+  const verificationURL = "https://www.google.com/recaptcha/api/siteverify?secret=" + secretKey + "&response=" + req.body['g-recaptcha-response'] + "&remoteip=" + req.connection.remoteAddress;
+
+  request(verificationURL, function (error, response, body) {
+    body = JSON.parse(body);
+
+    if (body.success !== undefined && !body.success) {
+      res.redirect('account/register');
+    }
+    var entity = new Object;
+    var password = bcrypt.hashSync(req.body.password, saltRounds);
+    entity.username = req.body.username;
+    entity.password = password;
+    entity.ten = req.body.name;
+    entity.loaiTaiKhoan = 0
+    entity.email = req.body.email
+
+
     entity.idChuyenMuc = null;
     var date = moment().add(7, 'days').format('YYYY-MM-DD');
     entity.HSD = date;
 
-  }
-  entity.daXoa = 0;
-  entity.code = randomstring.generate(15);
-  userModel.add(entity).then(n => {
-    res.redirect('/admin/categories');
-  }).catch(err => {
-    console.log(err);
-    res.end('error occured');
-  })
+
+    entity.daXoa = 0;
+    entity.code = randomstring.generate(15);
+    userModel.add(entity).then(n => {
+      res.redirect('/admin/categories');
+    }).catch(err => {
+      console.log(err);
+      res.end('error occured');
+    })
+  });
+
+
+
 
 })
 
@@ -174,7 +191,7 @@ router.post('/reset-password', (req, res, next) => {
 
 
 router.get('/login', (req, res, next) => {
-  if(req.user){
+  if (req.user) {
     res.redirect(req.originalUrl);
   }
   console.log(res.locals.url);
@@ -192,7 +209,7 @@ router.post('/login', (req, res, next) => {
     if (!user) {
       return res.render('account/register')
     }
-    
+
     req.logIn(user, err => {
       if (err)
         return next(err);
@@ -209,25 +226,25 @@ router.get('/profile', auth, (req, res, next) => {
   var isWriter = false;
   var isEditor = false;
   var isUser = false;
-  var user =new Object;
+  var user = new Object;
   Object.assign(user, req.user);
   switch (user.loaiTaiKhoan) {
-    case "1": isUser = true; user.loaiTaiKhoan="User";  break;
-    case "2": isWriter = true; user.loaiTaiKhoan="Writer";  break;
-    case "3": isEditor = true ;user.loaiTaiKhoan="Editor";  break;
-    case "4": user.loaiTaiKhoan="Administrator";  break;
+    case "1": isUser = true; user.loaiTaiKhoan = "User"; break;
+    case "2": isWriter = true; user.loaiTaiKhoan = "Writer"; break;
+    case "3": isEditor = true; user.loaiTaiKhoan = "Editor"; break;
+    case "4": user.loaiTaiKhoan = "Administrator"; break;
   }
-  try{
+  try {
     user.ngaySinh = moment(req.user.ngaySinh).format('DD/MM/YYYY');
-  }catch(err){
-    user.ngaySinh =null;
+  } catch (err) {
+    user.ngaySinh = null;
   }
-  try{
+  try {
     user.HSD = moment(req.user.HSD).format('DD/MM/YYYY');
-  }catch(err){
-    user.HSD =null;
+  } catch (err) {
+    user.HSD = null;
   }
- 
+
   //var dob =  moment(req.user.ngaySinh, 'YYYY-MM-DD').format('DD/MM/YYYY'); 
   userModel.findCategory(req.user.idChuyenMuc).then(rows => {
     var cat = rows[0];
@@ -263,7 +280,7 @@ router.post('/profile', (req, res, next) => {
   } catch (err) {
     entity.ngaySinh = null;
   }
-  
+
   entity.ten = req.body.name;
   //entity.HSD = moment(req.user.HSD, 'YYYY-MM-DD').format('YYYY-MM-DD');
   switch (req.user.loaiTaiKhoan) {
@@ -278,6 +295,7 @@ router.post('/profile', (req, res, next) => {
     res.end('error occdured');
   })
 })
+
 
 
 module.exports = router;
