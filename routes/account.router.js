@@ -141,7 +141,7 @@ router.post('/register', (req, res, next) => {
     entity.username = req.body.username;
     entity.password = password;
     entity.ten = req.body.name;
-    entity.loaiTaiKhoan = 0
+    entity.loaiTaiKhoan = 1;
     entity.email = req.body.email
 
 
@@ -220,6 +220,15 @@ router.post('/login', (req, res, next) => {
   })(req, res, next);
 })
 
+
+router.get('/auth/facebook', passport.authenticate('facebook'));
+router.get('/auth/facebook/callback',
+  passport.authenticate('facebook', {
+    successRedirect: '/admin/tags',
+    failureRedirect: 'account/login'
+  }));
+
+
 router.get('/profile', auth, (req, res, next) => {
 
 
@@ -295,6 +304,7 @@ router.post('/profile', (req, res, next) => {
     res.end('error occdured');
   })
 })
+
 
 
 
