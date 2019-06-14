@@ -150,9 +150,7 @@ router.post('/register', (req, res, next) => {
 
 
 router.get('/reset-password', (req, res, next) => {
-  res.render('account/reset_password', {
-    layout: 'account_layout'
-  });
+  res.render('account/reset_password');
 })
 
 router.post('/reset-password', (req, res, next) => {
@@ -176,6 +174,10 @@ router.post('/reset-password', (req, res, next) => {
 
 
 router.get('/login', (req, res, next) => {
+  if(req.user){
+    res.redirect(req.originalUrl);
+  }
+  console.log(res.locals.url);
   res.render('account/login', {
     layout: 'account_layout'
   });
@@ -195,7 +197,7 @@ router.post('/login', (req, res, next) => {
       if (err)
         return next(err);
 
-      return res.redirect('/account/profile');
+      return res.redirect('/admin/tags');
       //return res.redirect(req.originalUrl);
     });
   })(req, res, next);

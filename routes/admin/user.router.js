@@ -2,13 +2,15 @@ var express = require('express');
 var userModel = require('../../models/admin/user.model');
 var catModel = require('../../models/admin/cat.model');
 var bcrypt = require('bcrypt');
-var moment=require('moment');
+var moment = require('moment');
 var randomstring = require("randomstring");
 
 var router = express.Router();
 var StrTypes = ["Tất cả", "User", "Writer", "Editor", "Administrator"];
 var saltRound = 10;
+
 router.get('/', (req, res, next) => {
+    res.locals.user = true;
     var record = 30;
     var keyword = (req.query.keyword) ? req.query.keyword : "";
     var page = (req.query.page) ? req.query.page : 1;
@@ -124,7 +126,21 @@ router.get('/:username/edit', (req, res, next) => {
 
                 }
             });
-            user.ngaySinh= moment(user.ngaySinh).format('DD/MM/YYYY'),
+            try {
+                user.ngaySinh = moment(user.ngaySinh).format('DD/MM/YYYY');
+
+            } catch (err) {
+
+            }
+
+            try {
+                user.HSD = moment(user.HSD).format('DD/MM/YYYY');
+
+            } catch (err) {
+
+            }
+
+
             res.render('admin/user/edit_Account', {
                 user: user,
                 types: types,
@@ -132,7 +148,11 @@ router.get('/:username/edit', (req, res, next) => {
                 categories: categories,
 
             })
-        })
+        }).catch(err => {
+            console.log(err);
+            res.end('error');
+        });
+
     }).catch(err => {
         console.log(err);
         res.end('error');
@@ -145,7 +165,7 @@ router.post('/:username/edit', (req, res, next) => {
         var entity = rows[0];
 
         try {
-            entity.ngaySinh = moment(req.body.dob,'DD/MM/YYYY').format('YYYY-MM-DD');
+            entity.ngaySinh = moment(req.body.dob, 'DD/MM/YYYY').format('YYYY-MM-DD');
         } catch (err) {
             entity.ngaySinh = null;
         }
@@ -218,15 +238,35 @@ router.post('/register', (req, res, next) => {
             } catch (err) {
                 entity.HSD = null;
             }; break;
-        case "2": entity.butDanh=req.body.author; break;
-        case "3": entity.idChuyenMuc=req.body.category; break;
+        case "2": entity.butDanh = req.body.author; break;
+        case "3": entity.idChuyenMuc = req.body.category; break;
     }
-    
+
     userModel.add(entity).then(rows => {
         res.redirect('/admin/user');
     }).catch(err => {
         console.log(err);
         res.end('err');
     })
+})
+
+
+router.post('/:username/extend', (req, res, next) => {
+    var username = req.params.username;
+    userModel.single(username).then(rows => {
+        var user = rows[0];
+        var days = req.body.days;
+        var date = moment(user.HSD).add(days, 'days').format('YYYY-MM-DD');
+        user.HSD = date;
+        userModel.update(user).then(n => {
+            res.redirect('/admin/user/' + username + '/edit');
+        }).catch(err => {
+            console.log(err);
+            res.end('error');
+        });
+    }).catch(err => {
+        console.log(err);
+        res.end('error');
+    });
 })
 module.exports = router;

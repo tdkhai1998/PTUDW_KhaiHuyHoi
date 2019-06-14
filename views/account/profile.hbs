@@ -3,39 +3,7 @@
     href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.min.css">
 {{/section}}
 
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
-  Launch demo modal
-</button>
 
-<!-- Modal -->
-<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Gia hạn tài khoản</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-          <form action="" method="post">
-              <div class="form-group">
-                <label for=""></label>
-                <select class="form-control" name="" id="">
-                  <option>7</option>
-                  <option>14</option>
-                  <option>30</option>
-                </select>
-              </div>
-          </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>
 
 
 <div class="col-md-9">
@@ -43,10 +11,11 @@
     <div class="signup-form">
         <form method="POST">
             <h2>Thông tin tài khoản</h2>
-             <div class="form-group">
+            <div class="form-group">
                 <div class="input-group">
                     <span class="input-group-addon"><i class="fas fa-chess"></i></span>
-                    <input type="text" class="form-control" name="type" value="{{user.loaiTaiKhoan}}" readonly placeholder="Loại tài khoản">
+                    <input type="text" class="form-control" name="type" value="{{user.loaiTaiKhoan}}" readonly
+                        placeholder="Loại tài khoản">
                 </div>
             </div>
             <div class="form-group">
@@ -55,45 +24,57 @@
                     <input type="text" class="form-control" name="name" value="{{user.ten}}" placeholder="Họ và tên">
                 </div>
             </div>
-            <div class="form-group " >
+            <div class="form-group ">
                 <div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-paper-plane"></i></span>
-                    <input type="text" readonly class="form-control" value="{{user.email}}" name="email" placeholder="Email">
+                    <input type="text" readonly class="form-control" value="{{user.email}}" name="email"
+                        placeholder="Email">
                 </div>
             </div>
             <div class="form-group">
                 <div class="input-group">
                     <span class="input-group-addon"><i class="fas fa-birthday-cake"></i></span>
-                    <input type="text" class="form-control" name="dob"  value="{{user.ngaySinh}}" id="dob" placeholder="Ngày sinh">
+                    <input type="text" class="form-control" name="dob" value="{{user.ngaySinh}}" id="dob"
+                        placeholder="Ngày sinh">
                 </div>
             </div>
-           
+
             <div class="form-group  {{#if isWriter}}d-block {{else}}d-none{{/if}}">
                 <div class="input-group">
                     <span class="input-group-addon"><i class="fas fa-signature"></i></span>
-                    <input type="text" class="form-control" name="author" value="{{user.butDanh}}"  placeholder="Bút danh">
+                    <input type="text" class="form-control" name="author" value="{{user.butDanh}}"
+                        placeholder="Bút danh">
                 </div>
             </div>
             <div class="form-group  {{#if isUser}}d-block {{else}}d-none{{/if}}">
                 <div class="input-group">
                     <span class="input-group-addon"><i class="fab fa-cc-visa"></i></span>
-                    <input type="text" class="form-control" name="HSD" value="{{user.HSD}}" readonly  placeholder="Hạn sử dụng (Premium)">
+                    <input type="text" class="form-control" name="HSD" value="{{user.HSD}}" readonly
+                        placeholder="Hạn sử dụng (Premium)">
+                       
+                   
+
                 </div>
             </div>
-             
-          
+
+
+
             <div class="form-group   {{#if isEditor}}d-block {{else}}d-none{{/if}}">
                 <div class="input-group">
                     <span class="input-group-addon"><i class="fas fa-user-edit"></i></span>
-                    <input type="text" readonly class="form-control" name="category" value="{{cat.tenChuyenMuc}}" placeholder="Chuyên mục">
+                    <input type="text" readonly class="form-control" name="category" value="{{cat.tenChuyenMuc}}"
+                        placeholder="Chuyên mục">
                 </div>
             </div>
-           
+
+
             <div class="form-group">
                 <button type="submit" class="btn btn-primary btn-block btn-lg">Cập nhật</button>
             </div>
 
         </form>
+
+
     </div>
 
 </div>
@@ -110,6 +91,6 @@
     });
 
 
-     
+
 </script>
 {{/section}}

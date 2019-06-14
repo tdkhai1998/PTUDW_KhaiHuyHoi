@@ -14,8 +14,8 @@
 			<form role="form" action="" method="post" class="registration-form" id="form">
 				<div class="form-group">
 					<label class="sr-only" for="name">Họ và tên</label>
-					<input type="text" name="name" placeholder="Họ và tên" class="form-first-name form-control"
-						id="name">
+					<input type="text" autofocus name="name" placeholder="Họ và tên"
+						class="form-first-name form-control" id="name">
 				</div>
 				<div class="form-group">
 					<label class="sr-only" for="form-last-name">Username</label>
@@ -36,10 +36,13 @@
 					<input type="password" name="confirm" placeholder="Xác nhận password"
 						class="form-last-name form-control" id="confirm">
 				</div>
-			
-			
+
+
 
 				<button type="submit" class="btn">Đăng kí</button>
+				<div class="d-flex justify-content-end">
+					<a class="btn btn-outline-light" href="/account/login" role="button">Đăng kí tài khoản mới</a>
+				</div>
 			</form>
 		</div>
 	</div>
@@ -48,63 +51,63 @@
 <div class="col-sm-3"></div>
 {{#section 'js'}}
 <script>
-		$(function () {
-		
+	$(function () {
 
 
-			$('#form').validate({
-				rules: {
-					username: {
-						required: true,
-						remote: {
-							url: '/account/is-available'
-						}
-					},
-					password: {
-						required: true,
-						minlength: 6
 
-					},
-					confirm: {
-
-						required: true,
-						equalTo: $('[name="password"]')
-					},
-					email: {
-						required: true,
-						email: true
-					},
-					name: {
-						required: true,
+		$('#form').validate({
+			rules: {
+				username: {
+					required: true,
+					remote: {
+						url: '/account/is-available'
 					}
 				},
-				messages: {
-					username: {
-						required: 'Bạn không được để trống username',
-						remote: 'Username đã tồn tại'
-					},
-					password: {
-						required: 'Bạn không được để trống password',
-						minlength: 'Độ dài password ít nhất 6 ký tự'
-					},
-					email: {
-						required: 'Bạn không được để trống Email',
-						email: 'Email không phù hợp'
-					},
-					confirm: {
+				password: {
+					required: true,
+					minlength: 6
 
-						equalTo: 'Xác nhận mật khẩu không khớp'
-					}
 				},
-				errorElement: 'small',
-				errorClass: 'help-block text-danger',
-				highlight: function (e) {
-					$(e).removeClass('is-valid').addClass('is-invalid');
+				confirm: {
+
+					required: true,
+					equalTo: $('[name="password"]')
 				},
-				unhighlight: function (e) {
-					$(e).removeClass('is-invalid').addClass('is-valid');
+				email: {
+					required: true,
+					email: true
+				},
+				name: {
+					required: true,
 				}
-			});
-		})
-	</script>
+			},
+			messages: {
+				username: {
+					required: 'Bạn không được để trống username',
+					remote: 'Username đã tồn tại'
+				},
+				password: {
+					required: 'Bạn không được để trống password',
+					minlength: 'Độ dài password ít nhất 6 ký tự'
+				},
+				email: {
+					required: 'Bạn không được để trống Email',
+					email: 'Email không phù hợp'
+				},
+				confirm: {
+
+					equalTo: 'Xác nhận mật khẩu không khớp'
+				}
+			},
+			errorElement: 'small',
+			errorClass: 'help-block text-danger',
+			highlight: function (e) {
+				$(e).removeClass('is-valid').addClass('is-invalid');
+			},
+			unhighlight: function (e) {
+				$(e).removeClass('is-invalid').addClass('is-valid');
+			}
+		});
+	})
+</script>
 {{/section}}

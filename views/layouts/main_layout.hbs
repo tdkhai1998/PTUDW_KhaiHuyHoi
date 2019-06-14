@@ -99,13 +99,8 @@
 					<li {{#if categories}}class="colorlib-active" {{/if}}><a href="/admin/categories">Quản lí
 							Category</a></li>
 					<li><a href="Admin_XuatBan.html">Xuất bản bài viết</a></li>
-					<li><a href="#">Quản lí người dùng</a>
-						<div class="submenu">
-							<ul>
-								<li><a href="Admin_Readers.html">Độc giả</a></li>
-								<li><a href="Admin_Editors.html">Biên tập viên</a></li>
-							</ul>
-						</div>
+					<li {{#if user}}class="colorlib-active" {{/if}}><a href="/admin/user">Quản lí người dùng</a>
+					
 
 					</li>
 				</ul>
