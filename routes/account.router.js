@@ -225,8 +225,18 @@ router.get('/auth/facebook', passport.authenticate('facebook'));
 router.get('/auth/facebook/callback',
   passport.authenticate('facebook', {
     successRedirect: '/admin/tags',
-    failureRedirect: 'account/login'
+    failureRedirect: '/account/login'
   }));
+
+
+
+router.get('/auth/google',
+  passport.authenticate('google', { scope: ['https://www.googleapis.com/auth/plus.login'] }));
+router.get('/auth/google/callback',
+  passport.authenticate('google', { failureRedirect: '/account/login' }),
+  function (req, res) {
+    res.redirect('/admin/tags');
+  });
 
 
 router.get('/profile', auth, (req, res, next) => {

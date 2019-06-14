@@ -6,6 +6,18 @@ var moment = require('moment');
 
 
 var FacebookStrategy = require('passport-facebook').Strategy;
+var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
+
+function createEntity(profile,username) {
+  var entity = new Object;
+  entity.username = username;
+  entity.ten = profile.displayName;
+  entity.daXoa = 0;
+  entity.loaiTaiKhoan = 1;
+  var date = moment().add(7, 'days').format('YYYY-MM-DD');
+  entity.HSD = date;
+  return entity;
+}
 
 module.exports = function (app) {
   app.use(passport.initialize());
@@ -40,16 +52,11 @@ module.exports = function (app) {
     callbackURL: "/account/auth/facebook/callback"
   },
     function (accessToken, refreshToken, profile, done) {
-      var username = profile.id;
+      var username = 'fb-' + profile.id;
       userModel.single(username).then(rows => {
         if (rows.length == 0) {
-          var entity = new Object;
-          entity.username = username;
-          entity.ten = profile.displayName;
-          entity.daXoa = 0;
-          entity.loaiTaiKhoan = 0;
-          var date = moment().add(7, 'days').format('YYYY-MM-DD');
-          entity.HSD = date;
+
+          var entity=createEntity(profile,username);
           userModel.add(entity).then(n => {
             userModel.single(username).then(rows1 => {
               var user = rows1[0];
@@ -74,6 +81,43 @@ module.exports = function (app) {
       });
     }
   ));
+
+
+  passport.use(new GoogleStrategy({
+    clientID: "42436615068-825kl2c6821halea911qm0s949a5jhea.apps.googleusercontent.com",
+    clientSecret: "C6JRoNBEzLG2jrJuKM-Jf-AI",
+    callbackURL: "/account/auth/google/callback"
+  },
+  function(accessToken, refreshToken, profile, done) {
+    var username = 'gg-' + profile.id;
+    userModel.single(username).then(rows => {
+      if (rows.length == 0) {
+
+        var entity=createEntity(profile,username);
+        userModel.add(entity).then(n => {
+          userModel.single(username).then(rows1 => {
+            var user = rows1[0];
+            return done(null, user);
+          }).catch(err => {
+            console.log(err);
+          });
+        }).catch(err => {
+          console.log(err);
+        });
+      }
+      else {
+        userModel.single(username).then(rows1 => {
+          var user = rows1[0];
+          return done(null, user);
+        }).catch(err => {
+          console.log(err);
+        });
+      }
+    }).catch(err => {
+      console.log(err);
+    });
+  }
+));
 
   passport.serializeUser((user, done) => {
     return done(null, user);
