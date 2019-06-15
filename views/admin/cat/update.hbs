@@ -1,0 +1,57 @@
+<div class="col-md-6">
+
+    <form method="POST" action="/admin/categories/update/{{category.idChuyenMuc}}">
+        <div class="form-group animate-box">
+            <label for="tenTag">#{{category.idChuyenMuc}}</label>
+            <div class="form-group">
+                <label for="chuyenMucCha">Chuyên mục cha</label>
+                <select class="form-control" name="chuyenMucCha" id="chuyenMucCha">
+                    <option value="" {{#if Null}}selected{{/if}}>None</option>
+                    {{#each categories}}
+                    {{#if isShow}}
+                    {{else}}
+                    <option {{#if isSelected}} selected{{/if}} value="{{idChuyenMuc}}">{{tenChuyenMuc}}</option>
+                    {{/if}}
+                    {{/each}}
+                </select>
+            </div>
+            <label for="tenChuyenMuc">Tên chuyên mục</label>
+
+            <input type="text" style="border-radius: 15px;" id="tenChuyenMuc" name="tenChuyenMuc" class="form-control"
+                aria-describedby="Nhập Tên" placeholder="Tên chuyên mục" value="{{category.tenChuyenMuc}}" autofocus>
+            {{#if haveChild }}
+            <label>Chuyên mục con</label>
+
+            <ul class="category list-group animate-box ">
+                {{#each childCategories}}
+                <li class="list-group-item">
+                    <div class="d-flex justify-content-between">
+                        <a href="" class="d-flex align-items-center">{{tenChuyenMuc}}</a>
+                        <div>
+                            <a class="btn btn-outline-danger" href="/admin/categories/delete/{{idChuyenMuc}}"
+                                role="button">
+                                <i class="fa fa-trash-o" aria-hidden="true"></i>
+                                Xóa</a>
+                            <a class="btn btn-outline-success" href="/admin/categories/update/{{idChuyenMuc}}"
+                                role="button">Cập
+                                nhật</a>
+                        </div>
+                    </div>
+                </li>
+                {{/each}}
+            </ul>
+            {{/if}}
+            <div>
+                <button type="submit" class="btn btn-outline-success animate-box">
+                    <i class="fas fa-edit "></i>
+                    Update
+                </button>
+                <a href="/admin/categories" role="button" class="btn btn-outline-danger animate-box">
+                    <i class="far fa-arrow-alt-circle-left"></i>
+                    Hủy bỏ
+                </a>
+            </div>
+        </div>
+    </form>
+
+</div>

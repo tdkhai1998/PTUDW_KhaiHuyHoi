@@ -2,8 +2,8 @@
 
 $('.db').click(function(){
 	var temp = document.getElementById('tagValue');
-	var newTag = temp[temp.selectedIndex].value;
-	
+	var newTag = temp[temp.selectedIndex].innerText;
+	var tagvalue = temp[temp.selectedIndex].value;
 	var Tag = document.getElementById('tag')
 	if (newTag=="")
 		return;
@@ -22,20 +22,20 @@ $('.db').click(function(){
 	Tag.appendChild(div);
 	document.getElementById('tagValue').value = "";
 	var tags = document.getElementById('inputtag').value
-	tags = tags + "," + newTag;
+	tags = tags + "," + tagvalue;
 	document.getElementById('inputtag').setAttribute("value",tags);
 	
 });
 
-$('.dropdown-toggle, .dropdown-item').click(function(){
-	
-	var value = this.innerText
+$('.con').click(function(){
+	var txt = this.innerText
+	var value = this.value
+	console.log(value);
 	$('#cm').fadeOut("fast",function(){
-		document.getElementById('cm').innerText =  value;
-		document.getElementById('inputcm').setAttribute("value",value);});
+	document.getElementById('cm').innerText = txt;});
+	document.getElementById('inputcm').setAttribute("value",value);
 	$('#cm').fadeIn();
-	
-});
+	});
 
 $('#ngayGioPicker').click(function(){
 	

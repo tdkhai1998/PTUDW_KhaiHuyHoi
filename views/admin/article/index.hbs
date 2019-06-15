@@ -1,0 +1,22 @@
+<div class="col-md-10">
+    <h3 style="margin: 0px 0px 20px 0px" class="animate-box">Xuất bản bài viết</h3>
+    <div class="content-wrap">
+        {{#each articles}}
+        <article class="blog-entry-travel animate-box">
+            <div class="blog-img" style="background-image: url({{anhDaiDien}});"></div>
+            <div class="desc">
+                <h4><a class="tieude" href="writer_baiViet.html">{{tieuDe}}</a></h4>
+                <span class="cat"><a href="/chuyenmuc/{{idChuyenMuc}}">{{tenChuyenMuc}}</a></span>
+                <span>|</span>
+                <span class="date">{{ngayDang}}</span>
+                <span>|</span>
+                 <span class="cat">{{butDanh}}</span>
+                <p>{{moTa}}</p>
+                <a href="/chitietbaiviet/{{idBaiViet}}" class="btn btn-primary">Đọc tiếp <i class="icon-arrow-right22"></i></a>
+                <a href="/admin/article/inspect/{{idBaiViet}}" class="btn btn-primary">Xuất bản <i class="icon-arrow-right22"></i></a>
+
+            </div>
+        </article>
+        {{/each }}
+    </div>
+</div>

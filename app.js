@@ -3,37 +3,60 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-
+var bodyParser = require('body-parser');
 var indexRouter = require('./routes/index');
-var editor_xemdanhsach = require('./routes/editor/editor_xemdanhsach');
-<<<<<<< Updated upstream
 
-=======
-var editor_duyetbaiviet = require('./routes/editor/editor_duyetbaiviet')
+
+
 var admin_tag=require('./routes/admin/tag.router');
 var admin_user=require('./routes/admin/user.router');
+var admin_article=require('./routes/admin/article.router');
 var admin_categories=require('./routes/admin/cat.router');
 var login = require('./routes/account.router');
 var hbs_sections = require('express-handlebars-sections');
 var exphbs = require('express-handlebars');
 var hbs_sections = require('express-handlebars-sections');
->>>>>>> Stashed changes
+
+var editor_xemdanhsach = require('./routes/editor/editor_xemdanhsach');
+var editor_duyetbaiviet = require('./routes/editor/editor_duyetbaiviet');
+var writer_vietbai = require('./routes/writer/writer_vietbai');
+
+
 var app = express();
 
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
+
+app.engine('hbs', exphbs({
+  layoutsDir: 'views/layouts',
+  defaultLayout: 'main_layout',
+  extname: '.hbs',
+  helpers: {
+    
+    section: hbs_sections()
+  }
+}));
 app.set('view engine', 'hbs');
+// app.set('view engine', 'hbs');
+// app.set('views', path.join(__dirname, 'views'));
 
 
+require('./middleware/session')(app);
+require('./middleware/passport')(app);
+
+app.use(bodyParser());
 
 app.use('/', indexRouter);
+
 app.use('/editor_xemdanhsach',  editor_xemdanhsach);
 app.use('/editor_duyetbaiviet', editor_duyetbaiviet);
-app.use('/editor_duyetbaiviet/tuchoi', editor_duyetbaiviet);
+app.use('/writer_vietbai', writer_vietbai);
 
 
-
-
+app.use('/admin/tags', admin_tag)
+app.use('/admin/categories',admin_categories)
+app.use('/account',login)
+app.use('/admin/user',admin_user)
+app.use('/admin/article',admin_article)
 
 
 

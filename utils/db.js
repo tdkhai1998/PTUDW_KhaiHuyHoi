@@ -2,10 +2,10 @@ var mysql = require('mysql');
 
 var createConnection = () => {
   return mysql.createConnection({
-    host: "localhost",
-    user: "root",
-    password: "",
-    database:"16thnewsdb"
+    host: "remotemysql.com",
+    user: "AWS1yRpKF8",
+    password: "FxlsvNiIJ0",
+    database:"AWS1yRpKF8"
   });
 }
 
@@ -18,7 +18,6 @@ module.exports = {
       var connection = createConnection();
       connection.connect();
       connection.query(sql, (error, results, fields) => {
-        
         if (error) {
           reject(error);
         } else {
@@ -31,13 +30,11 @@ module.exports = {
 
   add: (tableName, entity) => {
     return new Promise((resolve, reject) => {
-      
       var sql = `insert into ${tableName} set ?`;
-     
+      console.log(sql,entity);
       var connection = createConnection();
       connection.connect();
       connection.query(sql, entity, (error, value) => {
-        console.log(sql);
         if (error) {
           reject(error);
         } else {

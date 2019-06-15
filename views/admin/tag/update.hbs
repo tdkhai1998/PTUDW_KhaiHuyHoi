@@ -1,0 +1,19 @@
+<div class="col-md-6">
+    <form method="POST" action="/admin/tags/update?id={{tag.idTag}}">
+        <div class="form-group">
+            <label for="tenTag">#{{tag.idTag}}</label>
+            <input type="text" style="border-radius: 15px;" id="tenTag" name="tenTag" class="form-control"
+                aria-describedby="Nhập Tên" placeholder="Tên tag" value="{{tag.tenTag}}" autofocus>
+            <div>
+                <button type="submit" class="btn btn-outline-success animate-box">
+                    <i class="fas fa-edit "></i>
+                    Update
+                </button>
+                <a href="/admin/tags" role="button" class="btn btn-outline-danger animate-box">
+                    <i class="far fa-arrow-alt-circle-left"></i>
+                    Hủy bỏ
+                </a>
+            </div>
+        </div>
+    </form>
+</div>
