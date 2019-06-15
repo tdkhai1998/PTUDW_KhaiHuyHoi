@@ -6,7 +6,18 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var editor_xemdanhsach = require('./routes/editor/editor_xemdanhsach');
+<<<<<<< Updated upstream
 
+=======
+var editor_duyetbaiviet = require('./routes/editor/editor_duyetbaiviet')
+var admin_tag=require('./routes/admin/tag.router');
+var admin_user=require('./routes/admin/user.router');
+var admin_categories=require('./routes/admin/cat.router');
+var login = require('./routes/account.router');
+var hbs_sections = require('express-handlebars-sections');
+var exphbs = require('express-handlebars');
+var hbs_sections = require('express-handlebars-sections');
+>>>>>>> Stashed changes
 var app = express();
 
 // view engine setup
@@ -17,7 +28,8 @@ app.set('view engine', 'hbs');
 
 app.use('/', indexRouter);
 app.use('/editor_xemdanhsach',  editor_xemdanhsach);
-
+app.use('/editor_duyetbaiviet', editor_duyetbaiviet);
+app.use('/editor_duyetbaiviet/tuchoi', editor_duyetbaiviet);
 
 
 

@@ -1,0 +1,158 @@
+<!--Phần popup thông báo lí do-->
+		<div id="myModal1"  class="modal fade" tabindex="-1" role="dialog">
+		  <div class="modal-dialog" role="document">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		        <h4 class="modal-title">Lí do từ chối</h4>
+		      </div>
+		      <div class="modal-body">
+		      	<form action="editor_duyetbaiviet/tuchoi" method="POST">
+					<input name="idBaiViet" value="{{bv.idBaiViet}}" hidden="true"></input>
+		      		<textarea name="lydoTuChoi" id="lido" cols="30" rows="10"></textarea>
+		      		<button class="btn btn-primary" type="submit">Gửi</button>
+		      	</form>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+
+		<div id="myModal2"  class="modal fade" tabindex="-1" role="dialog">
+		  <div class="modal-dialog" role="document">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		        <h4 class="modal-title">Lên lịch</h4>
+		      </div>
+		      <div class="modal-body">
+		      	<form action="">
+		      	
+          		<div class='input-group date' id='datetimepicker1'>
+                     <input id="ngayGioTxt"type='text' class="form-control" />
+                     <span class="input-group-addon">
+                     <span class="glyphicon glyphicon-calendar"></span>
+                     </span>
+                  </div>
+		      	</form>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" id= "ngayGioPicker" class="btn btn-default" data-dismiss="modal">Đóng</button>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+	<form action="editor_duyetbaiviet/duyet" method="POST">
+	<input type="text" name="idBaiViet" value="{{bv.idBaiViet}}" hidden="true">
+		<div id="colorlib-page">
+		<a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle"><i></i></a>
+		<aside id="colorlib-aside" role="complementary" class="js-fullheight">
+			<h1 id="colorlib-logo">PHÂN HỆ EDITER</h1>
+			<nav id="colorlib-main-menu" role="navigation">
+				<ul>
+					
+					<li><a href="editor_xemdanhsach">Danh sách bài chờ duyệt</a></li>
+
+					<button type="button" class="btn btn-primary tuchoi" data-toggle="modal" data-target="#myModal1">Từ chối</button>
+    
+
+					<button  type="button" class="btn btn-primary duyet" data-toggle="modal" data-target="#myModal2">Lên lịch</button> 
+					<h2 class="sidebar-heading ngayGio"><b>Ngày giờ đăng bài</b></h2>
+					<h5 id="ngayGio" class="ngayGio"><script>document.write(new Date().getFullYear());</script></h5>
+					<input type="text" id="inputtime" value="" name="ngaydang" hidden="true">
+					<button class="btn btn-primary duyet" type ="submit">ĐĂNG BÀI</button> 
+
+				</ul>
+
+
+			</nav>
+
+			<div class="colorlib-footer">
+			
+
+				<p><small>
+						<img class= "editimg" src="images/edit2.png" alt="" width="100%">
+						Copyright &copy;<script>document.write(new Date().getFullYear());</script> Create by KhaiHuyHoi</a>
+					</small>
+				</p>
+			</div>
+		</aside>
+
+		<div id="colorlib-main">
+			<div class="colorlib-blog">
+				<div class="container-wrap">
+					<div class="row">
+						<div class="col-md-9">
+							<div class="content-wrap">
+								<article class="animate-box">
+									<div class="blog-img" style="background-image: url({{bv.anhDaiDien}});"></div>
+								
+										
+					
+										<h2><strong>{{bv.tieuDe}}</strong></h2>
+											<div class="catdate">
+											<span class="cat"><a href="#">{{bv.tenChuyenMuc}}</a></span>
+										    <span>|</span>
+											<span class="date">{{bv.ngayDang}}</span>	
+											</div>
+									{{{bv.noiDung}}}
+									
+								</article>
+							
+							</div>
+						</div>
+						<div class="col-md-3 sticky-parent">
+							<div class="sidebar" id="sticky_item">
+								<div class="side animate-box">
+									<h2 class="sidebar-heading"><b>Chuyên mục đang chọn</b></h2>
+									<h1>
+										<strong class="chuyenMucDaChon" id="cm">{{bv.tenChuyenMuc}}</strong>
+										<input name="chuyenmuc" type="text" hidden="true" id="inputcm" value="{{bv.tenChuyenMuc}}">
+									</h1>		
+								</div>
+								<div class="side animate-box">
+									<h2 class="sidebar-heading"><b>Chọn chuyên mục</b></h2>
+								
+										
+										 <div class="dropdown">
+										    <button type="button" class="btn btn-primary dropdown-toggle menu" data-toggle="dropdown">
+										      Đời sống
+										    </button>
+										    <div class="dropdown-menu">
+										      <a class="dropdown-item chuyenmuc" href="#">Gia đình</a>
+										      <a class="dropdown-item chuyenmuc" href="#">Tình yêu</a>
+										      <a class="dropdown-item chuyenmuc" href="#">Hôn nhân</a>
+										    </div>
+										 </div>
+			
+								</div>
+								<div class="side animate-box">
+								<h2 class="sidebar-heading"><b>Thêm nhãn</b></h2>
+								<div id="tag">
+									<input name="tag" id="inputtag" type="text" value="" hidden="true">
+									{{#each this.tags}}
+								<div class="alert alert-success alert-dismissible tag">
+									{{tenTag}}
+								    <button type="button" class="close" data-dismiss="alert">&times;</button>								 
+								  </div>
+								  {{/each}}
+								 
+								</div>
+									<p>
+										<select class="form-control" id="tagValue">
+												{{#each this.alltag}}
+												<option value="{{tenTag}}">{{tenTag}}</option>
+												{{/each}}
+											</select>
+										<button type="button"  class="btn-success db" >Thêm</button>
+									</p>
+							   </div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	</form>

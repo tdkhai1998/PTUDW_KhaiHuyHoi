@@ -10,28 +10,15 @@ var createConnection = () => {
 }
 
 module.exports = {
-    load_newest: sql => {
-        return new Promise((resolve, reject) => {
-            
-          var connection = createConnection();
-          connection.connect();
-          connection.query(sql, (error, results, fields) => {
-            if (error) {
-              reject(error);
-            } else {
-              resolve(results);
-            }
-            connection.end();
-          });
-        });
-      },
 
   load: sql => {
+    console.log(sql);
     return new Promise((resolve, reject) => {
         
       var connection = createConnection();
       connection.connect();
       connection.query(sql, (error, results, fields) => {
+        
         if (error) {
           reject(error);
         } else {
@@ -44,10 +31,13 @@ module.exports = {
 
   add: (tableName, entity) => {
     return new Promise((resolve, reject) => {
+      
       var sql = `insert into ${tableName} set ?`;
+     
       var connection = createConnection();
       connection.connect();
       connection.query(sql, entity, (error, value) => {
+        console.log(sql);
         if (error) {
           reject(error);
         } else {
