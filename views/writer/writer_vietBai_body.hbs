@@ -1,5 +1,5 @@
 
-	<div id="colorlib-page">
+<div id="colorlib-page">
 
 		<a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle"><i></i></a>
 		<aside id="colorlib-aside" role="complementary" class="js-fullheight">
@@ -60,44 +60,44 @@
 
 
 					<div class="col-md-3 sticky-parent">
-							<div class="sidebar" id="sticky_item">
-								<div class="side animate-box">
-									<h2 class="sidebar-heading"><b>Chuyên mục đang chọn</b></h2>
-									<h1>
-										<strong id="cm" class="chuyenMucDaChon">ĐIỆN ẢNH</strong>
-										<input name="chuyenmuc" type="text" hidden="true" id="inputcm" value="Kinh tế">
-									</h1>		
-								</div>
-								<div class="side animate-box">
-									<h2 class="sidebar-heading"><b>Chọn chuyên mục</b></h2>
-									<ul>
-										{{#each this.cm as |value|}}
-											{{#if value.chuyenMucCha}}
-												<li><button type="button" class="btn btn-primary" value="{{value.idChuyenMuc}}">{{value.tenChuyenMuc}}</button>
-													<div class="submenu">
-														<ul>
-															{{#each value.chuyenMucCon as |row|}}
-																<li><button type="button" class="con btn btn-primary" value="{{row.idChuyenMuc}}">{{row.tenChuyenMuc}}</button></a>
-															{{/each}}
-														</ul>
-													</div>
-												</li>
-											{{/if}}
-										{{/each}}
-									</ul>							
-			
-								</div>
+						<div class="sidebar" id="sticky_item">
+							<div class="side animate-box">
+								<h2 class="sidebar-heading"><b>Chuyên mục đang chọn</b></h2>
+								<h1>
+									<strong id="cm" class="chuyenMucDaChon">ĐIỆN ẢNH</strong>
+									<input name="chuyenmuc" type="text" hidden="true" id="inputcm" value="Kinh tế">
+								</h1>		
+							</div>
+							<div class="side animate-box">
+								<h2 class="sidebar-heading"><b>Chọn chuyên mục</b></h2>
+								<ul>
+									{{#each this.cm as |value|}}
+										{{#if value.chuyenMucCha}}
+											<li><button type="button" class="btn btn-primary" value="{{value.idChuyenMuc}}">{{value.tenChuyenMuc}}</button>
+												<div class="submenu">
+													<ul>
+														{{#each value.chuyenMucCon as |row|}}
+															<li><button type="button" class="con btn btn-primary" value="{{row.idChuyenMuc}}">{{row.tenChuyenMuc}}</button></li>
+														{{/each}}
+													</ul>
+												</div>
+											</li>
+										{{/if}}
+									{{/each}}
+								</ul>							
+		
+							</div>
 							<div class="side animate-box">
 								<h2 class="sidebar-heading"><b>Thêm nhãn</b></h2>
 								<div id="tag">
 									<input name="tag" id="inputtag" type="text" value="" hidden="true">
 									{{#each this.tags}}
-								<div class="alert alert-success alert-dismissible tag">
-									{{tenTag}}
-								    <button type="button" class="close" data-dismiss="alert">&times;</button>								 
-								  </div>
-								  {{/each}}
-								 
+										<div class="alert alert-success alert-dismissible tag">
+											{{tenTag}}
+											<button type="button" class="close" data-dismiss="alert">&times;</button>								 
+										</div>
+									{{/each}}
+								
 								</div>
 									<p>
 										<select class="form-control" id="tagValue">
@@ -107,11 +107,11 @@
 											</select>
 										<button type="button"  class="btn-success db" >Thêm</button>
 									</p>
-							</div>
+								</div>
+						</div>
 					</div>
-
-				</div>
-			</div>			
+				</div>	
+			</div>		
 		</div>
-		</form>
-	</div>
+	</form>
+</div>

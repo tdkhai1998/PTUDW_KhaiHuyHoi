@@ -27,7 +27,7 @@ $('.db').click(function(){
 	
 });
 
-$('.con').click(function(){
+$('.con, .cha').click(function(){
 	var txt = this.innerText
 	var value = this.value
 	console.log(value);
