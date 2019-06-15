@@ -1,8 +1,15 @@
 <div class="col-md-9">
     <div class="row d-flex justify-content-end">
         <form class="form-inline" method="GET">
-            <input class="form-control mr-sm-2 " type="search" placeholder="Tìm kiếm" name="keyword" aria-label="Tìm kếm">
-            <button class="btn btn-primary my-2 my-sm-0" type="submit">Tìm kiếm</button>
+            {{!-- <input class="form-control mr-sm-2 " type="search" id="search" placeholder="Tìm kiếm" name="keyword"
+                aria-label="Tìm kếm">
+            <button class="btn btn-primary my-2 my-sm-0" type="submit">Tìm kiếm</button> --}}
+            <div class="side animate-box">
+                <div class="form-group">
+                    <input type="text" class="form-control" id="search" name="keyword" placeholder="Username">
+                    <button type="submit" class="btn submit btn-primary"><i class="icon-search3"></i></button>
+                </div>
+            </div>
         </form>
 
     </div>
@@ -10,19 +17,20 @@
 
         <button type="button" class="btn btn-primary">Thêm tài khoản</button>
 
-     
+
     </div>
     <div class="row d-flex justify-content-end ">
-           <div class="dropdown">
+        <div class="dropdown">
             <button class="btn btn-light dropdown-toggle" type="button" id="triggerId" data-toggle="dropdown"
                 aria-haspopup="true" aria-expanded="false">
                 Loại tài khoản
             </button>
             <div class="dropdown-menu" aria-labelledby="triggerId">
                 {{#each types}}
-                <a role="button" class="dropdown-item {{#if active}}active{{/if}}" href="/admin/user?type={{type}}">{{name}}</a>
+                <a role="button" class="dropdown-item {{#if active}}active{{/if}}"
+                    href="/admin/user?type={{type}}">{{name}}</a>
                 {{/each}}
-               
+
             </div>
 
         </div>
@@ -52,12 +60,13 @@
                     <td>
 
 
-                        <a href="/admin/user/{{username}}/edit" class="btn btn-outline-success" role="button"><i class="fas fa-users-cog"></i>Cập
+                        <a href="/admin/user/{{username}}/edit" class="btn btn-outline-success" role="button"><i
+                                class="fas fa-users-cog"></i>Cập
                             nhật</a>
                     </td>
                     <td>
-                        <a href="/admin/user/{{username}}/remove{{#if page}}?page={{page}}{{/if}}{{#if type}}&type={{type}}{{/if}}{{#if keyword}}&keyword={{keyword}}{{/if}}" class="btn btn-outline-danger" role="button"><i
-                                class="fas fa-user-slash"></i>Xóa</a>
+                        <a href="/admin/user/{{username}}/remove{{#if page}}?page={{page}}{{/if}}{{#if type}}&type={{type}}{{/if}}{{#if keyword}}&keyword={{keyword}}{{/if}}"
+                            class="btn btn-outline-danger" role="button"><i class="fas fa-user-slash"></i>Xóa</a>
                     </td>
                 </tr>
                 {{/each}}
@@ -65,7 +74,7 @@
             </tbody>
         </table>
     </div>
-    <div class="row d-flex justify-content-center ">
+    {{!-- <div class="row d-flex justify-content-center ">
         <nav aria-label="Page navigation example">
             <ul class="pagination justify-content-center">
                 {{#each pages}}
@@ -75,6 +84,21 @@
 
             </ul>
         </nav>
+    </div> --}}
+
+    <div class="col-md-12 d-flex justify-content-center" data-animate-effect="fadeInLeft">
+        <ul class="pagination">
+
+            {{#each pages}}
+            <li {{#if active}} class="active" {{/if}}><a
+                    href="/admin/user?page={{page}}{{#if type}}&type={{type}}{{/if}}{{#if keyword}}&keyword={{keyword}}{{/if}}">{{page}}</a>
+            </li>
+
+            {{/each}}
+
+
+
+        </ul>
     </div>
 
 </div>

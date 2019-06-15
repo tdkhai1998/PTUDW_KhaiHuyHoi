@@ -15,7 +15,7 @@ router.get('/', (req, res, next) => {
     var keyword = (req.query.keyword) ? req.query.keyword : "";
     var page = (req.query.page) ? req.query.page : 1;
     var type = (req.query.type) ? req.query.type : 0;
-    userModel.countUser(keyword).then(n => {
+    userModel.countUser(keyword,type).then(n => {
 
         var count = Math.floor(n[0].count / record) + 1;
         var pages = [];

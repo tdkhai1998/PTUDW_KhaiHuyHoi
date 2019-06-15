@@ -93,12 +93,12 @@
 		<a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle"><i></i></a>
 		<aside id="colorlib-aside" role="complementary" class="js-fullheight">
 			<h1 id="colorlib-logo">PHÂN HỆ Administration</h1>
-			<nav id="colorlib-main-menu" role="navigation">
+			<nav id="colorlib-main-menu" class="animate-box" role="navigation">
 				<ul>
 					<li {{#if tag}}class="colorlib-active" {{/if}}><a href="/admin/tags">Quản lí Tag</a></li>
 					<li {{#if category}}class="colorlib-active" {{/if}}><a href="/admin/categories">Quản lí
 							Category</a></li>
-					<li {{#if article}}class="colorlib-active" {{/if}}><a href="/admin/article">Xuất bản bài viết</a></li>
+					<li {{#if article}}class="colorlib-active" {{/if}}><a href="/admin/article">Quản lí bài viết bài viết</a></li>
 					<li {{#if user}}class="colorlib-active" {{/if}}><a href="/admin/user">Quản lí người dùng</a>
 					
 
@@ -115,10 +115,10 @@
 			</div>
 		</aside>
 
-		<div id="colorlib-main">
+		<div id="colorlib-main" >
 			<div class="colorlib-blog">
 				<div class="container-wrap">
-					<div class="row">
+					<div class="row" >
 						{{{body}}}
 					</div>
 				</div>

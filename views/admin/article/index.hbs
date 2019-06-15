@@ -1,22 +1,76 @@
-<div class="col-md-10">
+<div class="col-md-9">
     <h3 style="margin: 0px 0px 20px 0px" class="animate-box">Xuất bản bài viết</h3>
+
+
     <div class="content-wrap">
         {{#each articles}}
         <article class="blog-entry-travel animate-box">
             <div class="blog-img" style="background-image: url({{anhDaiDien}});"></div>
             <div class="desc">
-                <h4><a class="tieude" href="writer_baiViet.html">{{tieuDe}}</a></h4>
-                <span class="cat"><a href="/chuyenmuc/{{idChuyenMuc}}">{{tenChuyenMuc}}</a></span>
-                <span>|</span>
-                <span class="date">{{ngayDang}}</span>
-                <span>|</span>
-                 <span class="cat">{{butDanh}}</span>
-                <p>{{moTa}}</p>
-                <a href="/chitietbaiviet/{{idBaiViet}}" class="btn btn-primary">Đọc tiếp <i class="icon-arrow-right22"></i></a>
-                <a href="/admin/article/inspect/{{idBaiViet}}" class="btn btn-primary">Xuất bản <i class="icon-arrow-right22"></i></a>
+                <h4><a class="tieude" href="/chitietbaiviet/{{idBaiViet}}">{{tieuDe}}</a></h4>
+                <div>
+                    <span class="cat"><a href="/chuyenmuc/{{idChuyenMuc}}">{{tenChuyenMuc}}</a></span>
+                    <span>|</span>
+                    <span class="date"><b>{{ngayDang}}</b></span>
+                    <span>|</span>
+                    <span class="cat"><b>Bút danh: {{butDanh}}</b></span>
+                    <span>|</span>
+                    <span class="cat"><b>Trạng thái: {{trangThai}}</b></span>
+                </div>
 
+                <p>{{moTa}}</p>
+                <a href="/admin/article/{{idBaiViet}}/remove?page={{page}}{{#if type}}&type={{type}}{{/if}}" class="btn btn-primary">Xóa <i
+                        class="icon-arrow-right22"></i></a>
+                {{#if haveInspect}}
+                <a href="/admin/article/inspect/{{idBaiViet}}" class="btn btn-primary">Xuất bản <i
+                        class="icon-arrow-right22"></i></a>
+                {{/if}}
             </div>
         </article>
         {{/each }}
+
+
+
+
+    </div>
+    <div class="col-md-12" data-animate-effect="fadeInLeft">
+        <div class="d-flex justify-content-center">
+
+            <ul class="pagination">
+                <li {{#if prev}} class="disabled" {{/if}}>
+                    <a href="/admin/article?page={{pagePrev}}{{#if type}}&type={{type}}{{/if}}">&laquo; </a> </li>
+                <li {{#if next}} class="disabled" {{/if}}><a
+                        href="/admin/article?page={{pageNext}}{{#if type}}&type={{type}}{{/if}}">&raquo;</a>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+
+
+</div>
+
+
+
+
+<div class="col-md-3 sticky-parent">
+    <div class="sidebar" id="sticky_item">
+
+        <div class="side animate-box">
+            <h2 class="sidebar-heading">Trạng thái bài viết</h2>
+            <p>
+                <ul class="category">
+                    {{#each types}}
+
+                    <li><a href="/admin/article{{#if value}}?type={{value}}{{/if}}">{{#if isActive}}<i class="icon-check"></i>{{/if}}
+                            {{name}}</a></li>
+                    {{/each}}
+
+                </ul>
+            </p>
+        </div>
+
+
+
     </div>
 </div>
