@@ -6,7 +6,8 @@ var passport = require('passport');
 var nodemailer = require('nodemailer');
 var moment = require('moment');
 var randomstring = require("randomstring");
-var auth = require('../middleware/auth');
+//var auth = require('../middleware/auth').authAdmin;
+var auth = require('../middleware/auth').authUser;
 request = require('request');
 
 
@@ -76,10 +77,16 @@ router.post('/forgot-password', (req, res, next) => {
     };
 
     transporter.sendMail(mailOptions, function (err, info) {
-      if (err)
-        console.log(err)
-      else
+      if (err){
+        res.end('Can\'t sent request to your email\n'+err);
+        console.log(err);
+      }
+       
+      else{
+        res.end('Please check your email: '+req.user.email);
         console.log(info);
+      }
+       
     });
   })
 })
@@ -209,11 +216,13 @@ router.post('/login', (req, res, next) => {
     if (!user) {
       return res.render('account/register')
     }
-
+  
     req.logIn(user, err => {
       if (err)
         return next(err);
-
+      if(req.session.sessionFlash){
+        return res.redirect(req.session.sessionFlash.urlBack);
+      }
       return res.redirect('/admin/tags');
       //return res.redirect(req.originalUrl);
     });
@@ -291,7 +300,7 @@ router.get('/profile', auth, (req, res, next) => {
 })
 
 
-router.post('/profile', (req, res, next) => {
+router.post('/profile',auth, (req, res, next) => {
   var entity = req.user;
 
   try {
@@ -316,6 +325,9 @@ router.post('/profile', (req, res, next) => {
 })
 
 
-
+router.get('/logout',auth,(req,res,next)=>{
+  req.logOut();
+  res.redirect('/account/login');
+})
 
 module.exports = router;

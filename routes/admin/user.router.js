@@ -4,18 +4,18 @@ var catModel = require('../../models/admin/cat.model');
 var bcrypt = require('bcrypt');
 var moment = require('moment');
 var randomstring = require("randomstring");
-
+var auth = require('../../middleware/auth').authAdmin;
 var router = express.Router();
 var StrTypes = ["Tất cả", "User", "Writer", "Editor", "Administrator"];
 var saltRound = 10;
 
-router.get('/', (req, res, next) => {
+router.get('/',auth, (req, res, next) => {
     res.locals.user = true;
     var record = 30;
     var keyword = (req.query.keyword) ? req.query.keyword : "";
     var page = (req.query.page) ? req.query.page : 1;
     var type = (req.query.type) ? req.query.type : 0;
-    userModel.countUser(keyword,type).then(n => {
+    userModel.countUser(keyword, type).then(n => {
 
         var count = Math.floor(n[0].count / record) + 1;
         var pages = [];
@@ -74,7 +74,7 @@ router.get('/', (req, res, next) => {
 
 })
 
-router.get('/:username/remove', (req, res, next) => {
+router.get('/:username/remove',auth, (req, res, next) => {
     var username = req.params.username;
     var page = (req.query.page) ? req.query.page : 1;
     var type = (req.query.type) ? req.query.type : 0;
@@ -91,7 +91,7 @@ router.get('/:username/remove', (req, res, next) => {
     })
 })
 
-router.get('/:username/edit', (req, res, next) => {
+router.get('/:username/edit',auth, (req, res, next) => {
     var username = req.params.username;
     catModel.all().then(cats => {
         userModel.single(username).then(rows => {
@@ -160,7 +160,7 @@ router.get('/:username/edit', (req, res, next) => {
 
 })
 
-router.post('/:username/edit', (req, res, next) => {
+router.post('/:username/edit',auth, (req, res, next) => {
     userModel.single(req.params.username).then(rows => {
         var entity = rows[0];
 
@@ -193,7 +193,7 @@ router.post('/:username/edit', (req, res, next) => {
     })
 })
 
-router.get('/register', (req, res, next) => {
+router.get('/register',auth, (req, res, next) => {
     var types = [];
     for (var i = 1; i < StrTypes.length; i++) {
         var temp = new Object;
@@ -216,7 +216,7 @@ router.get('/register', (req, res, next) => {
 
 })
 
-router.post('/register', (req, res, next) => {
+router.post('/register',auth, (req, res, next) => {
     var entity = new Object;
     entity.ten = req.body.name;
     entity.username = req.body.username;
@@ -251,7 +251,7 @@ router.post('/register', (req, res, next) => {
 })
 
 
-router.post('/:username/extend', (req, res, next) => {
+router.post('/:username/extend',auth, (req, res, next) => {
     var username = req.params.username;
     userModel.single(username).then(rows => {
         var user = rows[0];

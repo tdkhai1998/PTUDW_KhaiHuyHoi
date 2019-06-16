@@ -1,9 +1,9 @@
 var express = require('express');
 var tagModel = require('../../models/admin/tag.model');
-
+var auth = require('../../middleware/auth').authAdmin;
 var router = express.Router();
 
-router.get('/', (req, res) => {
+router.get('/',auth, (req, res) => {
     res.locals.tag=true;
     tagModel.all().then(rows => {
         res.render('admin/tag/index.hbs', {
@@ -18,7 +18,7 @@ router.get('/', (req, res) => {
 })
 
 
-router.post('', (req, res) => {
+router.post('',auth, (req, res) => {
     var entity = req.body;
     entity.daXoa = 0;
     console.log(entity);
@@ -32,7 +32,7 @@ router.post('', (req, res) => {
 })
 
 
-router.get('/update/:id', (req, res) => {
+router.get('/update/:id',auth, (req, res) => {
     var id = req.params.id;
    // console.log(req.body);
     if (isNaN(id)) {
@@ -61,7 +61,7 @@ router.get('/update/:id', (req, res) => {
 })
 
 
-router.post('/update',(req,res)=>{
+router.post('/update',auth,(req,res)=>{
     var entity = req.body;
     entity.idTag= req.query.id;
     entity.daXoa=0;
@@ -74,7 +74,7 @@ router.post('/update',(req,res)=>{
 
 })
 
-router.get('/delete',(req,res)=>{
+router.get('/delete',auth,(req,res)=>{
     var id= req.query.idTag;
     tagModel.delete(id).then(n=>{
     res.redirect('/admin/tags');
