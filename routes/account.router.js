@@ -276,12 +276,15 @@ router.get('/profile', auth, (req, res, next) => {
   //var dob =  moment(req.user.ngaySinh, 'YYYY-MM-DD').format('DD/MM/YYYY'); 
   userModel.findCategory(req.user.idChuyenMuc).then(rows => {
     var cat = rows[0];
+    
     res.render('account/profile', {
+      layout: false,
       user: user,
       isWriter: isWriter,
       isEditor: isEditor,
       isUser: isUser,
-      cat: cat
+      cat: cat,
+     
     });
   }).catch(err => {
     res.render('account/profile', {
