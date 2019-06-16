@@ -20,7 +20,11 @@ var editor_xemdanhsach = require('./routes/editor/editor_xemdanhsach');
 var editor_dsdaxuly = require('./routes/editor/editor_dsdaxuly');
 var editor_duyetbaiviet = require('./routes/editor/editor_duyetbaiviet');
 var writer_vietbai = require('./routes/writer/writer_vietbai');
-
+var writer_chuaduocduyet = require('./routes/writer/writer_chuaduocduyet');
+var writer_daduyet = require('./routes/writer/writer_daduyet');
+var writer_daxuatban = require('./routes/writer/writer_daxuatban');
+var writer_bituchoi = require('./routes/writer/writer_bituchoi');
+var writer_baiviet = require('./routes/writer/writer_baiviet')
 
 var app = express();
 
@@ -51,6 +55,12 @@ app.use('/editor_xemdanhsach',  editor_xemdanhsach);
 app.use('/editor_dsdaxuly',  editor_dsdaxuly);
 app.use('/editor_duyetbaiviet', editor_duyetbaiviet);
 app.use('/writer_vietbai', writer_vietbai);
+app.use('/writer_chuaduocduyet', writer_chuaduocduyet);
+app.use('/writer_bituchoi', writer_bituchoi);
+app.use('/writer_daduyet', writer_daduyet);
+app.use('/writer_daxuatban', writer_daxuatban);
+
+app.use('/writer_baiviet', writer_baiviet);
 
 
 app.use('/admin/tags', admin_tag)
