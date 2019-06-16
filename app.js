@@ -16,8 +16,8 @@ var login = require('./routes/account.router');
 var hbs_sections = require('express-handlebars-sections');
 var exphbs = require('express-handlebars');
 var hbs_sections = require('express-handlebars-sections');
-
 var editor_xemdanhsach = require('./routes/editor/editor_xemdanhsach');
+var editor_dsdaxuly = require('./routes/editor/editor_dsdaxuly');
 var editor_duyetbaiviet = require('./routes/editor/editor_duyetbaiviet');
 var writer_vietbai = require('./routes/writer/writer_vietbai');
 
@@ -48,6 +48,7 @@ app.use(bodyParser());
 app.use('/', indexRouter);
 
 app.use('/editor_xemdanhsach',  editor_xemdanhsach);
+app.use('/editor_dsdaxuly',  editor_dsdaxuly);
 app.use('/editor_duyetbaiviet', editor_duyetbaiviet);
 app.use('/writer_vietbai', writer_vietbai);
 

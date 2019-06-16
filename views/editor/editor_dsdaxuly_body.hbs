@@ -26,8 +26,8 @@
 			<h1 id="colorlib-logo"><strong>PHÂN HỆ EDITOR</strong></h1>
 			<nav id="colorlib-main-menu" role="navigation">
 				<ul>
-					<li class="colorlib-active"><a href="editor_xemdanhsach">Danh sách bài chờ duyệt</a></li>
-					<li><a href="editor_dsdaxuly">Danh sách bài đã xử lý</a></li>
+					<li><a href="editor_xemdanhsach">Danh sách bài chờ duyệt</a></li>
+					<li  class="colorlib-active"><a href="editor_dsdaxuly">Danh sách bài đã xử lý</a></li>
 					
 
 				</ul>
@@ -55,12 +55,12 @@
 								<article class="blog-entry-travel animate-box">
 									<div class="blog-img" style="background-image: url({{anhDaiDien}});"></div>
 									<div class="desc">					
-										<h4><a class="tieude" href="editor_duyetbaiviet?id={{idBaiViet}}">{{tieuDe}}</a></h4>
+										<h4 class="tieude" href="" disabled>{{tieuDe}}</h4>
 										<span class="cat"><a href="#">{{tenChuyenMuc}}</a></span>
 										<span>|</span>
 										<span class="date">{{ngayDang}}</span>		
 										<p>{{moTa}}</p>
-											<a href="editor_duyetbaiviet?id={{idBaiViet}}" class="btn btn-primary tuchoi">Xem chi tiết<i class="icon-arrow-right22"></i></a>
+											<button class="btn btn-primary tuchoi" disabled>{{stt}}<i class="icon-arrow-right22"></i></button>
 										{{!-- <button type="button" class="btn btn-primary tuchoi" data-toggle="modal" data-target="#myModal">Từ chối</button> --}}
 									</div>
 								</article>
@@ -73,9 +73,9 @@
 								<div class="side animate-box">
 									<div class="form-group">
 										<h1 style="margin-bottom:0px">Xin chào !</h1>
-										<h3 style="color:#F75940">{{user.butDanh}}</h3>
+										<h3 style="color:#F75940">Huy đặng</h3>
 										<h2 class="sidebar-heading"><b>Chuyên mục đang quản lí</b></h2>
-										<h3 style="color:#F75940"><b>{{cm.tenChuyenMuc}}</b></h3>
+										<h3 style="color:#F75940"><b>Đời sống</b></h3>
 									
 									</div>
 								</div>

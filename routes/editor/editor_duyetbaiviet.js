@@ -5,7 +5,8 @@ var moment = require('moment');
 
 
 router.get('/', function(req, res, next) {
-  Promise.all([load.one(req.query.id),load.tags(req.query.id),load.alltag(),load.mapping()])
+  if (req.isAuthenticated() && req.user.loaiTaiKhoan == 3){
+  Promise.all([load.one(req.query.id),load.tags(req.query.id),load.alltag(),load.mapping(req.user.idChuyenMuc)])
   .then(([bv,tag,alltags,chuyenmuc]) => {
     console.log(alltags)
     res.render('./editor/editor_duyetbaiviet_body', {
@@ -13,15 +14,20 @@ router.get('/', function(req, res, next) {
       tags: tag,
       alltag: alltags,
       cm:chuyenmuc,
+      user:req.user,
       layout: '../editor/editor_duyetbaiviet_layout'
     })
   });
+  }
+  else
+    res.redirect('account/login')
 });
 
 
 router.post('/tuchoi', function(req, res, next) {
   var entity = req.body;
-  Promise.all([load.tuchoi(entity),load.update(entity.idBaiViet)]).then(
+  console.log(entity)
+  Promise.all([load.tuchoi(entity),load.updatestt('bituchoi',entity.idBaiViet, req.user.username)]).then(
     res.redirect('../editor_xemdanhsach')
   )
 });
@@ -33,19 +39,15 @@ router.post('/duyet', function(req, res, next) {
   var tags = entity.tag.split(",");
   var time = moment(entity.ngaydang,'MM/DD/YYYY HH:mm a').format('YYYY/MM/DD HH:mm:ss')
   console.log(time);
-
-    load.updatebv(time, idcm[0].idChuyenMuc,entity.idBaiViet).then(
-      function(){
-        for(var i = 0; i< tags.length ; i++)
-        {
-           var idTag = load.idtagfromname(tags[i]);
-            load.addtag(idTag,entity.idBaiViet);
-          }
-        }
-      ,
-       res.redirect('../editor_xemdanhsach'),
-    )
-  })
+  load.updatestt('choxuatban',entity.idBaiViet, req.user.username)
+    load.updatebv(time, chuyenmuc,entity.idBaiViet).then(_ =>{
+    {
+        for(var i = 1; i< tags.length ; i++)
+        { 
+            load.addtag(tags[i],entity.idBaiViet);          
+        }}
+       res.redirect('../editor_xemdanhsach')
+    })
 });
 
 

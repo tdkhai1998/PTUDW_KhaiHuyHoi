@@ -1,8 +1,8 @@
 var db = require('../../utils/db');
 
 module.exports = {
-  mapping:()=>{
-    return db.load('select * from chuyenmuc').then((value)=>{
+  mapping:(id)=>{
+    return db.load(`select * from chuyenmuc where idChuyenMuc = '${id}' or chuyenMucCha = '${id}'`).then((value)=>{
       value.forEach((item)=>{
         item.chuyenMucCon=[];
         value.forEach((item2)=>{
@@ -26,8 +26,8 @@ module.exports = {
   tuchoi: (entity) =>{
     return db.add('baiviettuchoi',entity)
   },
-  updatestt: id =>{
-    return db.load(`update baiviet  set trangThai = 'bituchoi' where idBaiViet = '${id}'`)
+  updatestt: (trangthai, id, nguoiduyet) =>{
+    return db.load(`update baiviet  set trangThai = '${trangthai}', nguoiDuyet = '${nguoiduyet}' where idBaiViet = '${id}'`)
   },
   tags: id =>{
     return db.load(`select * from thuoctag, tag where idBaiViet = '${id}' and thuoctag.idTag = tag.idTag`)
@@ -42,7 +42,7 @@ module.exports = {
     return db.load(`select * from chuyenmuc where tenChuyenMuc = N'${name}'`)
   },
   addtag: (idtag, idbv) =>{
-    return db.load(`insert into thuoctag values ${idtag},${idbv}`)
+    return db.load(`insert into thuoctag values (${idbv},${idtag})`)
   },
   idtagfromname: name =>{
     return db.load(`select * from tag where tenTag = '${name}'`)

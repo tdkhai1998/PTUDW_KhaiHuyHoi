@@ -54,14 +54,13 @@
 				<ul>
 					
 					<li><a href="editor_xemdanhsach">Danh sách bài chờ duyệt</a></li>
+					<li></li><a href="editor_dsdaxuly">Danh sách bài đã xử lý</a></li>
 
 					<button type="button" class="btn btn-primary tuchoi" data-toggle="modal" data-target="#myModal1">Từ chối</button>
-    
-
 					<button  type="button" class="btn btn-primary duyet" data-toggle="modal" data-target="#myModal2">Lên lịch</button> 
 					<h2 class="sidebar-heading ngayGio"><b>Ngày giờ đăng bài</b></h2>
-					<h5 id="ngayGio" class="ngayGio">{{bv.ngayDang}}</script></h5>
-					<input type="text" id="inputtime" value="" name="ngaydang" hidden="true">
+					<h5 id="ngayGio" class="ngayGio">01/01/<script>document.write(new Date().getFullYear());</script> 12:00 AM</script></h5>
+					<input type="text" id="inputtime" value="01/01/<script>document.write(new Date().getFullYear());</script> 12:00 AM" name="ngaydang" hidden="true">
 					<button class="btn btn-primary duyet" type ="submit">ĐĂNG BÀI</button> 
 
 				</ul>
@@ -110,7 +109,7 @@
 									<h2 class="sidebar-heading"><b>Chuyên mục đang chọn</b></h2>
 									<h1>
 										<strong class="chuyenMucDaChon" id="cm">{{bv.tenChuyenMuc}}</strong>
-										<input name="chuyenmuc" type="text" hidden="true" id="inputcm" value="{{bv.tenChuyenMuc}}">
+										<input name="chuyenmuc" type="text" hidden="true" id="inputcm" value="{{user.idChuyenMuc}}">
 									</h1>		
 								
 									<h2 class="sidebar-heading"><b>Chọn chuyên mục</b></h2>
