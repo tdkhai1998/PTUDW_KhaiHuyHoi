@@ -1,5 +1,5 @@
 	<!--Phần popup thông báo lí do-->
-		<div id="myModal"  class="modal fade" tabindex="-1" role="dialog">
+		{{!-- <div id="myModal"  class="modal fade" tabindex="-1" role="dialog">
 		  <div class="modal-dialog" role="document">
 		    <div class="modal-content">
 		      <div class="modal-header">
@@ -8,6 +8,7 @@
 		      </div>
 		      <div class="modal-body">
 		      	<form action="">
+					<input name="idBaiViet" value="" hidden="true"><input>
 		      		<textarea name="" id="" cols="30" rows="10"></textarea>
 		      		<button class="btn btn-primary" type="submit">Gửi</button>
 		      	</form>
@@ -17,13 +18,21 @@
 		      </div>
 		    </div>
 		  </div>
-		</div>
+		</div> --}}
 
 	<div id="colorlib-page">
 		<a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle"><i></i></a>
 		<aside id="colorlib-aside" role="complementary" class="js-fullheight">
 			<h1 id="colorlib-logo"><strong>PHÂN HỆ EDITOR</strong></h1>
-			<img class= "editimg"src="images/edit1.png" alt="" width="100%">
+			<nav id="colorlib-main-menu" role="navigation">
+				<ul>
+					<li class="colorlib-active"><a href="editor_xemdanhsach">Danh sách bài chờ duyệt</a></li>
+					<li><a href="editor_dsdaxuly">Danh sách bài đã xử lý</a></li>
+					
+
+				</ul>
+			</nav>
+				<img style="margin-top:20px" class= "editimg"src="images/edit1.png" alt="" width="100%">
 			<img class= "editimg" src="images/edit2.png" alt="" width="100%">
 			<img class= "editimg" src="images/edit3.png" alt="" width="100%">
 			<div class="colorlib-footer">
@@ -44,16 +53,15 @@
 							<div class="content-wrap">
 								 {{#each this.row}}
 								<article class="blog-entry-travel animate-box">
-									<div class="blog-img" style="background-image: url(images/tin1.jpg);"></div>
+									<div class="blog-img" style="background-image: url({{anhDaiDien}});"></div>
 									<div class="desc">					
-										<h4><a class="tieude" href="editor_duyetBaiViet.html">{{tieuDe}}</a></h4>
+										<h4><a class="tieude" href="editor_duyetbaiviet?id={{idBaiViet}}">{{tieuDe}}</a></h4>
 										<span class="cat"><a href="#">{{tenChuyenMuc}}</a></span>
 										<span>|</span>
 										<span class="date">{{ngayDang}}</span>		
 										<p>{{moTa}}</p>
-											<a href="editor_duyetBaiViet.html" class="btn btn-primary duyet">Duyệt <i class="icon-arrow-right22"></i></a>
-
-										<button type="button" class="btn btn-primary tuchoi" data-toggle="modal" data-target="#myModal">Từ chối</button>
+											<a href="editor_duyetbaiviet?id={{idBaiViet}}" class="btn btn-primary tuchoi">Xem chi tiết<i class="icon-arrow-right22"></i></a>
+										{{!-- <button type="button" class="btn btn-primary tuchoi" data-toggle="modal" data-target="#myModal">Từ chối</button> --}}
 									</div>
 								</article>
 								{{/each}}
@@ -64,12 +72,15 @@
 							<div class="sidebar">
 								<div class="side animate-box">
 									<div class="form-group">
-										<input type="text" class="form-control" id="search" placeholder="Nhập để tìm kiếm">
-										<button type="submit" class="btn submit btn-primary"><i class="icon-search3"></i></button>
+										<h1 style="margin-bottom:0px">Xin chào !</h1>
+										<h3 style="color:#F75940">{{user.butDanh}}</h3>
+										<h2 class="sidebar-heading"><b>Chuyên mục đang quản lí</b></h2>
+										<h3 style="color:#F75940"><b>{{cm.tenChuyenMuc}}</b></h3>
+									
 									</div>
 								</div>
 								
-								<div class="side animate-box">
+								{{!-- <div class="side animate-box">
 									<h2 class="sidebar-heading">BÀI VIẾT GẦN ĐÂY</h2>
 									<div class="f-blog">
 										<a href="writer_baiViet.html" class="blog-img" style="background-image: url(images/tin1.jpg);">
@@ -95,7 +106,7 @@
 											<p class="admin"><span><script>document.write(new Date())</script></span></p>
 										</div>
 									</div>
-								</div>
+								</div> --}}
 							</div>
 						</div>
 

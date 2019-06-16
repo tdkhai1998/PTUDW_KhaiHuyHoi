@@ -9,17 +9,16 @@ module.exports={
       },
     
       single:(user)=>{
-        return db.load(`select * from nguoidung where username='${user}'`);
+        return db.load(`select * from nguoidung where username='${user}' and daXoa=0`);
       },
     
       update:(entity)=>{
         return db.update('nguoidung','username',entity);
       },
     
-      delete: username => {
-        
-        return db.load(`update chuyenmuc set daXoa=1 where username=${username}`);
-      },
+     
 
-
+      findCategory: (id)=>{
+        return db.load(`select * from chuyenmuc where idChuyenMuc=${id}`);
+      }
 }

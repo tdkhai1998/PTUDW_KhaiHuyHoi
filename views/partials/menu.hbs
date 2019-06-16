@@ -7,7 +7,7 @@
 			<li class="colorlib-active"><a href="/">Trang Chủ</a></li>
 			{{#each this.r as |value|}}
 				{{#if value.chuyenMucCha}}
-					<li><a id="dm" href="/chuyenmuc/{{value.idChuyenMuc}}">{{value.tenChuyenMuc}}</a>
+					<li><a id="dm" href="/chuyenmuc/{{value.idChuyenMuc}}">{{value.tenChuyenMuc}}{{#if value.chuyenMucCon}} <span class="caret"></span>{{/if}}</a>
 						<div class="submenu">
 							<ul>
 								{{#each value.chuyenMucCon as |row|}}
@@ -18,9 +18,14 @@
 					</li>
 				{{/if}}
 			{{/each}}
-			<li><a href="/login" class="trigger-btn" data-toggle="modal">Login</a></li>
-			<li><a href="/danhsachbaiviet">TAGS</a></li>
-			<li><a href="/taikhoan">Tài khoản</a></li>
+			{{#if daDangNhap}}
+			<li><a href="/account/profile" >Chào <b>{{user.username}}</b></a></li>
+			<li><a href="/account/logout">LOGOUT</a></li>
+			{{else}}
+			<li><a href="/account/login" >LOGIN</a></li>
+			{{/if}}
 		</ul>
+		
 	</nav>
+
 </aside>

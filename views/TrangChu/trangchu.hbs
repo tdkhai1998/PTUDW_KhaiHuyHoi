@@ -1,29 +1,78 @@
-
+<style>
+	.head-article a{
+		text-shadow: 4px 0px 22px rgba(12, 12, 12, 1);
+		font-weight: bold;
+		font-size: 25px;
 		
+		color: black;
+	}
+	.head-article{
+		margin: 5px;
+	}
+	.tag span{
+		text-shadow: 4px 0px 22px rgb(253, 252, 252);
+	}
+	.tag{
+			text-shadow: 4px 0px 22px rgb(253, 252, 252);
+	}
+	.ln a{
+		text-shadow: none;
+		
+	}
+	.ln{
+		text-align: left;
+	}
+	b.cm{
+		color:red;
+	}
+</style>
+
 <div id="colorlib-page">
 	<!--Menu-->
-	{{> menu r=this.rows.chuyenmuc}}
-	<!--Login show-->
-	{{> login }}
+	{{> menu r=chuyenmuc daDangNhap=daDangNhap user=user}}
+	<div class="row">
+		<div class="col-md-8">
+		</div>
+		<div class="col-md-4">
+			<div class="side animate-box">
+				<form action="" method="POST">
+					<div class="form-group">
+						<input type="text" class="form-control" name="key" id="search" placeholder="Enter to search...">
+						<button type="submit" class="btn submit btn-primary"><i class="icon-search3"></i></button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
 	<div id="colorlib-main">
+	
 		<div class="colorlib-blog" >
 			<div class="container-wrap" >
 				<div class="row row-pb-lg">
 					<div class="col-md-12 blog-slider">
 						<div class="owl-carousel1">
-							{{#each this.rows.baivietnoibat as |bvnb|}}
+							{{#each baivietnoibat as |bvnb|}}
 							<div class="item">
 								<div class="blog-entry">
-									<div class="blog-img" style="background-image: url(/images/{{bvnb.anhDaiDien}});" >
+									<div class="blog-img" style="background-image: url({{bvnb.anhDaiDien}});" >
 										<div class="desc desc2 text-center">
-											<p class="tag"><span>{{bvnb.tenChuyenMuc}}</span></p>
+											<p class="tag" ><span>{{bvnb.tenChuyenMuc}}</span></p>
 											<div class="desc-bottom">
 												<h2 class="head-article"><a href="./chitietbaiviet/{{bvnb.idBaiViet}}">{{bvnb.tieuDe}}</a></h2>
-												<p>Ngày đăng:  {{bvnb.ngayDang}}</p>
+												<p>Ngày đăng:  {{formatDate bvnb.ngayDang}}</p>
+												<p>Người đăng:  {{ nguoiDang}}</p>
+												<p style="text-shadow: 4px 0px 22px rgba(12, 12, 12, 1);">{{moTa}}</p>
+												{{#if  premium}}
+													<b>PREMIUM</b>
+												{{/if}}
+												
 											</div>
 										</div>
-									</div>
+									</div>	
+					
+								
 								</div>
+								
 							</div>
 							{{/each}}
 						</div>
@@ -33,51 +82,103 @@
 <!--batdau--> 		<div class="col-md-12 padding-custom" id="bai-viet-moi-nhat" >
 						<hr><h2 class="uppercase">BÀI VIẾT MỚI NHẤT</h2><hr>
 						<div class="row">
-						{{#each this.rows.baivietmoinhat as |bvmn|}}
-							<div class="col-md-6">
-								<div class="blog-entry animate-box">
-									<div class="blog-img blog-img2" style="background-image: url(/images/{{bvmn.anhDaiDien}});">
+						{{#each baivietmoinhat as |bvmn|}}
+							<div class="col-md-4 b"  style="height: 500px; overflow: hidden">
+								<div class="blog-entry animate-box" >
+									<div class="blog-img blog-img2" style="background-image: url({{bvmn.anhDaiDien}});">
 										<div class="desc text-center">
-											<p class="tag"><span>{{bvmn.tenChuyenMuc}}</span></p>
-											<h2 class="head-article"><a href="./chitietbaiviet/{{bvmn.idBaiViet}}">{{bvmn.tieuDe}}</a></h2>
-											<p>Ngày đăng: {{bvmn.ngayDang}}</p>
+											
+											<p>Ngày đăng: {{formatDate bvmn.ngayDang}}</p>
+											<p>Người đăng:  {{ nguoiDang}}</p>
+											
 										</div>
 									</div>
+									<div class="desc">
+											<p class="tag" style="color: red"><span>{{bvmn.tenChuyenMuc}}</span></p>
+											<h2 class="head-article ln"><a href="./chitietbaiviet/{{bvmn.idBaiViet}}">{{bvmn.tieuDe}}</a></h2>
+											 {{#if  premium}}
+													<div class="alert alert-premium alert-dismissible tag">
+                                            PREMIUM
+                                        </div>
+												{{/if}}{{#each tags}}
+                                        <div class="alert alert-success alert-dismissible tag">
+                                            <a href="/tag/{{idTag}}">{{tenTag}}</a>
+                                        </div>
+                                    {{/each}}<p>{{moTa}}</p>
+										</div>
 								</div>
 							</div>
 						{{/each}}
 						</div>
 <!--ketthuc-->		</div>
-<!--Batdau-->		<div class="col-md-6 padding-custom"  id="bai-viet-xem-nhieu-nhat">
-						<hr><h2 class="uppercase">BÀI VIẾT MỚI NHẤT</h2><hr>
+<!--Batdau-->		<div class="col-md-12 padding-custom"  id="bai-viet-xem-nhieu-nhat">
+						<hr><h2 class="uppercase">BÀI VIẾT XEM NHIỀU NHẤT</h2><hr>
 						<div class="row">
-							{{#each this.rows.baivietxemnhieunhat as |bvxnn|}}
-							<div class="col-md-12">
+							{{#each baivietxemnhieunhat }}
+							<div class="row">
+							<div class="col-md-4" >
 								<div class="blog-entry animate-box">
-									<div class="blog-img blog-img2" style="background-image: url(/images/{{bvxnn.anhDaiDien}});">
+									<div class="blog-img blog-img2" style="background-image: url({{anhDaiDien}});">
 										<div class="desc text-center">
-											<p class="tag"><span>{{bvxnn.tenChuyenMuc}}</span></p>
-											<h2 class="head-article"><a href="./chitietbaiviet/{{bvxnn.idBaiViet}}">{{bvxnn.tieuDe}}</a></h2>
-											<p>Ngày đăng: {{bvxnn.ngayDang}}</p>
+											
 										</div>
 									</div>
 								</div>
 							</div>
+							<div class="col-md-8">
+								<div class="blog-entry animate-box">
+									<b class="cm"><a href="/chuyenmuc/{{idChuyenMuc}}"></a>{{tenChuyenMuc}}</b>
+										<h2 class="head-article ln"><a href="./chitietbaiviet/{{idBaiViet}}">{{tieuDe}}</a></h2>
+										<p>Ngày đăng:  {{formatDate ngayDang}}</p>
+										<p>Người đăng:  {{ nguoiDang}}</p>
+									{{#if  premium}}
+													<div class="alert alert-premium alert-dismissible tag">
+                                            PREMIUM
+                                        </div>
+												{{/if}}
+												 {{#each tags}}
+											<div class="alert alert-success alert-dismissible tag">
+												<a href="/tag/{{idTag}}">{{tenTag}}</a>
+											</div>
+											{{/each}}
+									<p>{{moTa}}</p>
+								</div>
+							</div>
+							</div>
 							{{/each}}
 						</div>
 <!--ketthuc      --></div>
-<!--topchuyenmuc-->	<div class="col-md-6 padding-custom" id="top-chuyen-muc">
+<!--topchuyenmuc-->	<div class="col-md-12 padding-custom" id="top-chuyen-muc">
 						<hr><h2 class="uppercase">TOP CHUYÊN MỤC</h2><hr>
-				 		<div class="row">
-							{{#each this.rows.baiviettop10 as |bvt10|}}
-							<div class="col-md-6">
-								<div class="blog-entry animate-box">
-									<div class="blog-img blog-img2" style="background-image: url(/images/{{bvt10.anhDaiDien}});">
-										<div class="desc text-center">
-											<p class="tag"><span>{{bvt10.tenChuyenMuc}}</span></p>
-											<h2 class="head-article"><a href="./chitietbaiviet/{{bvtop10.idBaiViet}}">{{bvt10.tieuDe}}</a></h2>
-											<p>Ngày đăng:  {{bvt10.ngayDang}}</p>
+				 		
+							{{#each top10chuyenmuc}}
+							<div class="row">
+								<div class="col-md-4">
+									<div class="blog-entry animate-box">
+										<div class="blog-img blog-img2" style="background-image: url({{anhDaiDien}});">
+											
 										</div>
+									</div>
+								</div>
+								<div class="col-md-8">
+									<div class="blog-entry animate-box">
+										<b class="cm"><a href="/chuyenmuc/{{idChuyenMuc}}"></a>{{tenChuyenMuc}}</b>
+											<h2 class="head-article ln"><a href="./chitietbaiviet/{{idBaiViet}}">{{tieuDe}}</a></h2>
+											<p>Ngày đăng:  {{formatDate ngayDang}}</p>
+											<p>Người đăng:  {{nguoiDang}}</p>
+											{{#if  premium}}
+													<div class="alert alert-premium alert-dismissible tag">
+                                            PREMIUM
+                                        </div>
+												{{/if}}
+										
+										{{#each tags}}
+											<div class="alert alert-success alert-dismissible tag">
+												<a href="/tag/{{idTag}}">{{tenTag}}</a>
+											</div>
+											{{/each}}
+											<p>{{moTa}}</p>
+										
 									</div>
 								</div>
 							</div>

@@ -1,160 +1,191 @@
-
-
-#colorlib-aside #colorlib-main-menu ul li{
-  text-align: left;
-  color: gray;
-}
-
-#colorlib-aside #colorlib-main-menu ul li .submenu{
-  overflow: hidden;
-  max-height: 0;
-  -webkit-transition: all  0.5s ease-out;
-}
-#colorlib-aside #colorlib-main-menu ul li:hover .submenu {
-   display: block;
-  max-height: 200px;
-
-}
-
-#colorlib-aside #colorlib-main-menu ul li a{
-    color: black;
-
-}
 #colorlib-aside #colorlib-main-menu ul li {
-  transition: height 1s ease-out;
- 
+    text-align: left;
+    color: gray;
 }
 
-#colorlib-aside #colorlib-main-menu ul li .submenu ul li{
-  text-align: right;
+#colorlib-aside #colorlib-main-menu ul li .submenu {
+    overflow: hidden;
+    max-height: 0;
+    -webkit-transition: all 0.5s ease-out;
 }
 
+#colorlib-aside #colorlib-main-menu ul li:hover .submenu {
+    display: block;
+    max-height: 200px;
+}
 
-.blog-img{
-  opacity: 0.8;
+#colorlib-aside #colorlib-main-menu ul li a {
+    color: black;
 }
-#colorlib-main{
-  /*padding-left: 20px;*/
 
+#colorlib-aside #colorlib-main-menu ul li {
+    transition: height 1s ease-out;
 }
-form{
-  padding: 10px;
+
+#colorlib-aside #colorlib-main-menu ul li .submenu ul li {
+    text-align: right;
 }
-.tag
-    {
-              /* Safari/WebKit uses a non-standard name */
-       width: -moz-max-content;   /* Firefox/Gecko */
-       width: -webkit-max-content;
-      height: auto;
-      margin: 2px;
-      padding: 3px;
-      padding-right: 10px;
-      display: inline-block;
-    }
-    .alert-dismissible .close
-    {
-      top:4px;
-      right: -10px;
-    }
-    #comment{
-      padding: 10px;
-    }
-    .colorlib-blog{
-      padding-left: 10px;
-      padding-right: 10px;
-    }
-    .tieude{
+
+.blog-img {
+    opacity: 0.8;
+}
+
+form {
+    padding: 10px;
+}
+
+.tag {
+    /* Safari/WebKit uses a non-standard name */
+    width: -moz-max-content;
+    /* Firefox/Gecko */
+    width: -webkit-max-content;
+    height: auto;
+    margin: 2px;
+    padding: 3px;
+    padding-right: 10px;
+    display: inline-block;
+}
+
+.alert-success {
+    background-color: #dff0d8;
+    border-color: #d6e9c6;
+    color: #3c763d;
+}
+
+.alert-premium {
+    background-color: #401fd3;
+    border-color: #d6e9c6;
+    color: #f0f5f7!important;
+}
+
+.alert-dismissible .close {
+    top: 4px;
+    right: -10px;
+}
+
+#comment {
+    padding: 10px;
+}
+
+.colorlib-blog {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.tieude {
     font-weight: bold;
     text-transform: none;
     padding: 0px;
     color: black;
-    }
-    .blog-entry-travel .desc{
-      padding: 10px;
-      padding-left: 10px;
-    }
-    h4{
-      margin: auto;
-    }
-    p{
-      margin-bottom: 5px;
-    }
-    .tag
-    {
-              /* Safari/WebKit uses a non-standard name */
-       width: -moz-max-content;   /* Firefox/Gecko */
-       width: -webkit-max-content;
-      height: auto;
-      margin: 2px;
-      padding: 3px;
-      padding-right: 10px;
-      display: inline-block;
-    }
-    *{
-        transition:  border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s
-    }
-    .alert-dismissible .close
-    {
-      top:4px;
-      right: -10px;
+}
 
-    }
-    #comment{
-      padding: 10px;
-    }
-    .colorlib-blog{
-      padding-left: 10px;
-      padding-right: 10px;
-    }
-    h1.tieude{
-          
-        text-shadow: 2px 2px 4px white;
-      }
-      h2{
-        text-align: center;
+.blog-entry-travel .desc {
+    padding: 10px;
+    padding-left: 10px;
+}
 
-      }
-      .colorlib-blog{
-        padding:5px;
-      }
-      hr { background-color: black; height: 1px; border: 0;}
-      .blog-entry{
-        padding-top: 10px;
-        padding-bottom: 0px;
-      }
-      .blog-entry:hover{
-        padding-top: 0px;
-        padding-bottom: 10px;
-      }
-      .blog-entry:hover .blog-img{
-        -webkit-box-shadow: 8px 7px 14px -1px rgba(0,0,0,0.76);
-        -moz-box-shadow: 8px 7px 14px -1px rgba(0,0,0,0.76);
-        box-shadow: 8px 7px 14px -1px rgba(0,0,0,0.76);
-      }
-      #colorlib-aside{
-        width: 15%;
-        padding: 2em;
-      }
-      #colorlib-main{
-        width: 85%;
-      }
-      .padding-custom{
-        padding:20px;
-      }
-      .container-wrap{
-        padding:10px;
-        padding-top: 30px;
+h4 {
+    margin: auto;
+}
 
-      }
-      .blog-slider{
-        margin-bottom: 0px;
-      }
-      .owl-theme{
-        padding: 0px;
-      }
-      .blog-slider .owl-theme .owl-controls{
-        padding: 0px;
-      }
-      .side-bar{
-        margin:0px;
-      }
+p {
+    margin-bottom: 5px;
+}
+
+.tag {
+    /* Safari/WebKit uses a non-standard name */
+    width: -moz-max-content;
+    /* Firefox/Gecko */
+    width: -webkit-max-content;
+    height: auto;
+    margin: 2px;
+    padding: 3px;
+    padding-right: 10px;
+    display: inline-block;
+}
+
+* {
+    transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s
+}
+
+.alert-dismissible .close {
+    top: 4px;
+    right: -10px;
+}
+
+#comment {
+    padding: 10px;
+}
+
+.colorlib-blog {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+h1.tieude {
+    text-shadow: 2px 2px 4px white;
+}
+
+h2 {
+    text-align: center;
+}
+
+.colorlib-blog {
+    padding: 5px;
+}
+
+hr {
+    background-color: black;
+    height: 1px;
+    border: 0;
+}
+
+.blog-entry {
+    padding-top: 10px;
+    padding-bottom: 0px;
+}
+
+.blog-entry:hover {
+    padding-top: 0px;
+    padding-bottom: 10px;
+}
+
+.blog-entry:hover .blog-img {
+    -webkit-box-shadow: 8px 7px 14px -1px rgba(0, 0, 0, 0.76);
+    -moz-box-shadow: 8px 7px 14px -1px rgba(0, 0, 0, 0.76);
+    box-shadow: 8px 7px 14px -1px rgba(0, 0, 0, 0.76);
+}
+
+#colorlib-aside {
+    width: 15%;
+    padding: 2em;
+}
+
+#colorlib-main {
+    width: 85%;
+}
+
+.padding-custom {
+    padding: 20px;
+}
+
+.container-wrap {
+    padding: 10px;
+    padding-top: 30px;
+}
+
+.blog-slider {
+    margin-bottom: 0px;
+}
+
+.owl-theme {
+    padding: 0px;
+}
+
+.blog-slider .owl-theme .owl-controls {
+    padding: 0px;
+}
+
+.side-bar {
+    margin: 0px;
+}

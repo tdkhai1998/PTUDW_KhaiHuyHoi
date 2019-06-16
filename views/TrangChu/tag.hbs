@@ -1,0 +1,149 @@
+
+
+<div id="colorlib-page">
+	<!--Menu-->
+	{{> menu r=chuyenmuc daDangNhap=daDangNhap user=user}}
+	<!--Login show-->
+	<div id="colorlib-main">
+		<div class="colorlib-blog">
+			<div class="container-wrap">
+				<div class="row">
+					<div class="col-md-9">
+						<div class="content-wrap">
+							<hr><h2 class="uppercase">DANH SÁCH BÀI VIẾT 
+                                <div class="alert alert-success alert-dismissible tag">
+                                    <a href="/tag/{{tag.idTag}}">{{tag.tenTag}}</a>
+                                </div>
+                            </h2><hr>
+                            {{#each baiviet}}
+<!---->                     <article class="blog-entry-travel animate-box">
+                                <div class="blog-img" style="background-image: url({{anhDaiDien}});"></div>
+                                <div class="desc">						
+                                    <h4><a class="tieude" href="/chitietbaiviet/{{idBaiViet}}">{{tieuDe}}</a></h4>
+                                    <span class="cat"><a href="/chuyenmuc/{{idChuyenMuc}}">{{tenChuyenMuc}}</a></span>
+                                    <span>|</span>
+                                    {{#each tags}}
+                                        <div class="alert alert-success alert-dismissible tag">
+                                            <a href="/tag/{{idTag}}">{{tenTag}}</a>
+                                        </div>
+                                    {{/each}}
+                                    <span class="date"><script>{{formatDate ngayDang}}</script></span>		
+                                    <p>{{moTa}}</p>
+                                    <a href="/chitietbaiviet/{{idBaiViet}}" class="btn btn-primary">Đọc tiếp <i class="icon-arrow-right22"></i></a>
+                                </div>
+<!---->                     </article>
+                            {{/each}}
+						</div>
+					</div>
+                    <div class="col-md-3">
+                        <div class="sidebar">
+                            <div class="side animate-box">
+                                <form action="" method="POST">
+                                <div class="funkyradio">
+                                            <div class="funkyradio-success">
+                                                <input type="checkbox" name="tieuDe" id="checkbox1" />
+                                                <label for="checkbox1">Theo Tiêu Đề</label>
+                                            </div>
+                                            <div class="funkyradio-success">
+                                                <input type="checkbox" name="moTa" id="checkbox2" />
+                                                <label for="checkbox2">Theo Mô Tả</label>
+                                            </div>
+                                            <div class="funkyradio-success">
+                                                <input type="checkbox" name="noiDung" id="checkbox3" />
+                                                <label for="checkbox3">Theo Nội Dung</label>
+                                            </div>
+                                            <div class="funkyradio-success">
+                                                <input  type="checkbox" name="fulltext" id="checkbox" />
+                                                <label for="checkbox">Full text search</label>
+                                            </div>
+                                            
+                                    </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" name="key" id="search" placeholder="Enter to search...">
+                                    <button type="submit" class="btn submit btn-primary"><i class="icon-search3"></i></button>
+                                </div>
+                                </form>
+                            </div>
+                            <div class="side animate-box">
+                                <div id="tags">
+                                    <b>Danh sách TAGs</b>
+                                        <div class="panel panel-primary">
+                                        <div class="panel-body">
+                                            <div id = "tag">
+                                                {{#each tags}}
+                                                <div class="alert alert-success alert-dismissible tag">
+                                                    <a href="/tag/{{idTag}}">{{tenTag}}</a>
+                                                </div>
+                                                {{/each}}
+                                            </div>
+                                        </div>
+                                        </div>
+                                </div>
+                            </div>
+                             <div class="side animate-box">
+                                <h2 class="sidebar-heading">Recent Blog</h2>
+                                {{#each baivietmoinhat}}
+                               <div class="f-blog">
+									<a href="/chitietbaiviet/{{idBaiViet}}" class="blog-img" style="background-image: url({{anhDaiDien}});">
+									</a>
+									<div class="desc">
+										<h3><a href="/chitietbaiviet/{{idBaiViet}}">{{tieuDe}}</a></h3>
+										<p class="admin"><span>{{formatDate ngayDang}}</span></p>
+									</div>
+								</div>
+                                {{/each}}
+                            </div>
+                            <div class="side animate-box">
+                                <div class="form-group">
+                                    
+                                    <input type="text" class="form-control form-email text-center" id="email" placeholder="Enter your email">
+                                    <button type="submit" class="btn btn-primary btn-subscribe">Subscribe</button>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12"  >
+                        <ul class="pagination">
+                            {{!--<li class="disabled"><a href="#">&laquo;</a></li>--}}
+                            {{#each pages}}
+                                {{#if active}}
+                                <li class="active"><a href="./{{id}}?page={{giatri}}">{{giatri}}</a></li>
+                                {{else}}
+                                <li><a href="./{{id}}?page={{giatri}}">{{giatri}}</a></li>
+                                {{/if}}
+                            {{/each}}
+                            {{!-- <li><a href="#">&raquo;</a></li> --}}
+                        </ul>
+                    </div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script>
+      document.getElementById('checkbox1').onclick = function() {
+        if (this.checked) {
+            document.getElementById('checkbox').checked=false;
+        }
+      }
+      document.getElementById('checkbox2').onclick = function() {
+        if (this.checked) {
+            document.getElementById('checkbox').checked=false;
+        }
+      }
+      document.getElementById('checkbox3').onclick = function() {
+        if (this.checked) {
+            document.getElementById('checkbox').checked=false;
+        }
+      }
+    document.getElementById('checkbox').onclick = function() {
+        if (this.checked) {
+            document.getElementById('checkbox1').checked=false;
+            document.getElementById('checkbox2').checked=false;
+            document.getElementById('checkbox3').checked=false;
+        }
+    }
+
+</script>
