@@ -27,7 +27,7 @@
 					<li><a href="writer_biTuChoi">Bị từ chối</a></li>
 					<li><a href="writer_chuaDuocDuyet">Chưa được duyệt</a></li>
 					{{#if fail}}
-					<a href="writer_chinhSua.html" class="btn btn-primary">Chỉnh sửa <i class="icon-arrow-right22"></i></a>
+					<a href="writer_chinhsua?id={{row.idBaiViet}}" class="btn btn-primary">Chỉnh sửa <i class="icon-arrow-right22"></i></a>
 					{{/if}}
 					{{#if reason}}
 					<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Lí do</button>

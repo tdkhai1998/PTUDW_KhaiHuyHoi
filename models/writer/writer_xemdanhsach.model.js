@@ -21,5 +21,6 @@ module.exports = {
   },
   lido: id =>{
     return db.load(`select * from baiviettuchoi where idBaiViet = '${id}'`)
-  }
+  },
+ 
 };

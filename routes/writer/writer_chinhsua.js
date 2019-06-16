@@ -14,57 +14,64 @@ var storage = multer.diskStorage({
 });
 var upload = multer({storage: storage});
 
-
 router.get('/', function(req, res, next) {
-  if (req.isAuthenticated() && req.user.loaiTaiKhoan == 2 ){
-  Promise.all([load.alltag(),load.mapping()])
-  .then(([alltags,chuyenmuc]) => {
-    console.log(chuyenmuc)
+  if (req.isAuthenticated() && req.user.loaiTaiKhoan == 2){
+  Promise.all([load.one(req.query.id),load.tags(req.query.id),load.alltag(),load.mapping()])
+  .then(([bv,tag,alltags,chuyenmuc]) => {
+    console.log(tag)
     res.render('./writer/writer_vietbai_body', {
-        cm: chuyenmuc,
-        alltag: alltags,
-        layout: '../writer/writer_vietbai_layout',  
-      });
+      bv: bv[0],
+      tags: tag,
+      alltag: alltags,
+      cm:chuyenmuc,
+      user:req.user,
+      layout: '../writer/writer_vietbai_layout'
+    })
   });
-}
-else
-res.redirect('account/login')
+  }
+  else
+    res.redirect('account/login')
 });
 
+
+
+
 router.post('/', upload.single('anhdaidien'), function(req,res,next){
-  if (!req.file) {
-    console.log("No file received");
-    return res.send({
-     Message: "No image uploaded ! Please try again !"
-    });
-  }
+ 
   var value = req.body;
   var entity =  new Object;
+  entity.idBaiViet = value.idBaiViet;
   entity.tieuDe = value.tieude;
   entity.moTa = value.tomtat;
-  entity.anhDaiDien = '/images/uploads/' + filename;
+  if(value.anhDaiDien != null)
+    entity.anhDaiDien = '/images/uploads/' + filename;
+
   entity.noiDung = value.noidung;
   entity.idChuyenMuc = value.chuyenmuc;
-  entity.nguoiDang = req.user.username;
+  entity.nguoiDang = 'huy';
   entity.trangThai = "chuaduocduyet";
   entity.ngayDang = new Date();
   entity.daXoa = '0';
   entity.luotxem = '0';
   if(entity.premium == 1)
-    entity.premium = '1';
+  entity.premium = '1';
   else
-    entity.premium = '0';
+  entity.premium = '0';
   console.log(value)
 
   var tags = value.tag.split(",");
   if (tags.length > 1)
-  load.add(entity).then(id => {
+  load.update(entity).then(id => {
     {
      
        for (var i=1; i<tags.length;i++)
         {
-          console.log(tags[i]);
-          load.addtag(tags[i],id)
+          try {
+            load.addtag(tags[i],value.idBaiViet)
+          } catch (error) {
+            
+          }
+         
         }
       }
       res.redirect('/writer_vietbai')

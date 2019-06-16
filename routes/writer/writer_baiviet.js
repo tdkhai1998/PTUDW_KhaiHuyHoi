@@ -4,8 +4,8 @@ var load =  require('../../models/writer/writer_xemdanhsach.model')
 
 
 router.get('/', function(req, res, next) {
-//   if (req.isAuthenticated() && req.user.loaiTaiKhoan == 3 ){
-//     console.log(req.user)
+   if (req.isAuthenticated() && req.user.loaiTaiKhoan == 2 ){
+     console.log(req.user)
       Promise.all([load.one(req.query.id),load.lido(req.query.id)])
       .then(([rows,ld]) => {
           var lido = false;
@@ -16,7 +16,7 @@ router.get('/', function(req, res, next) {
       if (rows[0].trangThai == 'bituchoi')
       lido = true;
         res.render('./writer/writer_baiviet_body', {
-        //   user: req.user,
+          user: req.user,
         lido: ld[0],
         fail: ff,
         reason:lido,
@@ -29,9 +29,9 @@ router.get('/', function(req, res, next) {
       })
     
     
-    // }
-    // else
-    // res.redirect('account/login')
+    }
+    else
+    res.redirect('account/login')
 });
 
 

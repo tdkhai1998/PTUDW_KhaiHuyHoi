@@ -49,11 +49,12 @@ module.exports = {
     return new Promise((resolve, reject) => {
       var id = entity[idField];
       delete entity[idField];
-
+      
       var sql = `update ${tableName} set ? where ${idField} = ?`;
       var connection = createConnection();
       connection.connect();
       connection.query(sql, [entity, id], (error, value) => {
+        console.log(sql,entity,idField)
         if (error) {
           reject(error);
         } else {

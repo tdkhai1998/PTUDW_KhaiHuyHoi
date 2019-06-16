@@ -31,13 +31,13 @@
 								<article class="blog-entry-travel animate-box">
 									<div class="blog-img" style="background-image: url({{anhDaiDien}});"></div>
 									<div class="desc">					
-										<h4><a class="tieude" href="editor_duyetbaiviet?id={{idBaiViet}}">{{tieuDe}}</a></h4>
+										<h4><a class="tieude" href="writer_baiviet?id={{idBaiViet}}">{{tieuDe}}</a></h4>
 										<span class="cat"><a href="#">{{tenChuyenMuc}}</a></span>
 										<span>|</span>
 										<span class="date">{{ngayDang}}</span>		
 										<p>{{moTa}}</p>
 											<a href="writer_baiviet?id={{idBaiViet}}" class="btn btn-primary tuchoi">Xem chi tiết<i class="icon-arrow-right22"></i></a>
-											<button href="writer_chinhSua.html" class="btn btn-primary" disabled="">{{trangThai}} <i class="icon-arrow-right22"></i></button>
+											<button href="writer_chinhsua?id={{row.idBaiViet}}" class="btn btn-primary" disabled="">{{trangThai}} <i class="icon-arrow-right22"></i></button>
 										{{!-- <button type="button" class="btn btn-primary tuchoi" data-toggle="modal" data-target="#myModal">Từ chối</button> --}}
 									</div>
 								</article>

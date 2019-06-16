@@ -20,7 +20,12 @@ module.exports = {
       return value;
     })
   },
-
+  tags: id =>{
+    return db.load(`select * from thuoctag, tag where idBaiViet = '${id}' and thuoctag.idTag = tag.idTag`)
+  },
+  one: (id) => {
+    return db.load(`select * from baiviet, chuyenmuc where idBaiViet = '${id}' and baiviet.idChuyenMuc = chuyenmuc.idChuyenMuc`)
+  },
   alltag: () =>{
     return db.load(`select * from tag`)
   },
@@ -34,6 +39,8 @@ module.exports = {
   
   add: (entity) =>{
     return db.add('baiviet',entity)
+  },
+  update: (entity) =>{
+    return db.update('baiviet','idBaiViet', entity)
   }
-
 }; 

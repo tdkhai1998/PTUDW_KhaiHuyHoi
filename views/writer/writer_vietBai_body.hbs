@@ -31,28 +31,31 @@
 							<div class="row">
 								<div class="col-md-12 animate-box fadeInUp animated">
 								<h1>VIẾT BÀI</h1>
-								
+									<input hidden="true" name="idBaiViet" value="{{bv.idBaiViet}}">
 									<label for="">TIÊU ĐỀ</label>
 									<br>	
-									<input name='tieude' class="nd" type="text" required>	
+									<input name='tieude' class="nd" type="text" value="{{bv.tieuDe}}" required>	
 									<br>	
 									<label for="">ẢNH ĐẠI DIỆN</label>
 									<br>	
-									<input name='anhdaidien' class="nd" type="file"  required>	
+									
+									<img class="anhdaidien" id='myimage' src="{{bv.anhDaiDien}}">
+									<input name='anhdaidien' class="nd" type="file" value="" onchange="onFileSelected(event)">	
 									<br>	
 
 									<label >BÀI VIẾT PREMIUM</label>
-									<input name="premium" type="checkbox" value="1" >Premium</input>
+									<input name="premium" type="checkbox" value="1" {{#if bv.premium }}checked{{/if}}>Premium</input>
 									<br>
 									<label for="">TÓM TẮT</label>
 									<br>	
-									<textarea name="tomtat" id="" cols="30" rows="10"  required></textarea>
+									<textarea name="tomtat" id="" cols="30" rows="10"  required> {{bv.moTa}}</textarea>
 					
 									<br>	
 									<label for="">NỘI DUNG</label>
 									<br>	
 									<textarea class="txtnd" name="noidung" id="editor" rows="10" cols="500"  required>
-		
+										
+										{{{bv.noiDung}}}
 						            </textarea>
 						            <script>
 						            	CKEDITOR.config.height = '400';
@@ -72,8 +75,8 @@
 							<div class="side animate-box">
 								<h2 class="sidebar-heading"><b>Chuyên mục đang chọn</b></h2>
 								<h1>
-									<strong id="cm" class="chuyenMucDaChon">Chưa chọn chuyên mục</strong>
-									<input name="chuyenmuc" type="text" hidden="true" id="inputcm" value=""  required>
+									<strong id="cm" class="chuyenMucDaChon">{{bv.tenChuyenMuc}}</strong>
+									<input name="chuyenmuc" type="text" hidden="true" id="inputcm" value="{{bv.idChuyenMuc}}"  required>
 								</h1>		
 							</div>
 							<div class="side animate-box">
