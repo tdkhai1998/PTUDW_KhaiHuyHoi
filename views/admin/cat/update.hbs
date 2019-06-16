@@ -1,0 +1,36 @@
+<div class="col-md-6">
+
+    <form method="POST" action="/admin/categories/update/{{category.idChuyenMuc}}">
+        <div class="form-group">
+            <label for="tenTag">#{{category.idChuyenMuc}}</label>
+            <div class="form-group">
+                <label for="chuyenMucCha">Chuyên mục cha</label>
+                <select class="form-control" name="chuyenMucCha" id="chuyenMucCha">
+                    <option value="" {{#if Null}}selected{{/if}}>None</option>
+                    {{#each categories}}
+                    {{#if isShow}}
+                    {{else}}
+                    <option {{#if isSelected}} selected{{/if}} value="{{idChuyenMuc}}">{{tenChuyenMuc}}</option>
+                    {{/if}}
+                    {{/each}}
+                </select>
+            </div>
+            <label for="tenChuyenMuc">Tên chuyên mục</label>
+
+            <input type="text" style="border-radius: 15px;" id="tenChuyenMuc" name="tenChuyenMuc" class="form-control"
+                aria-describedby="Nhập Tên" placeholder="Tên chuyên mục" value="{{category.tenChuyenMuc}}"
+                autofocus><br>
+            <div>
+                <button type="submit" class="btn btn-outline-success animate-box">
+                    <i class="fas fa-edit "></i>
+                    Update
+                </button>
+                <a href="/admin/categories" role="button" class="btn btn-outline-danger animate-box">
+                    <i class="far fa-arrow-alt-circle-left"></i>
+                    Hủy bỏ
+                </a>
+            </div>
+        </div>
+    </form>
+
+</div>

@@ -1,0 +1,143 @@
+<div class="col-sm-3"></div>
+<div class="col-sm-6">
+
+	<div class="form-box">
+		<div class="form-top">
+			<div class="form-top-left">
+				<h3>Đăng kí tài khoản</h3>
+			</div>
+			<div class="form-top-right">
+				<i class="fa fa-pencil"></i>
+			</div>
+		</div>
+		<div class="form-bottom">
+			<form role="form" action="" method="post" class="registration-form" id="form">
+				<div class="form-group">
+					<label class="sr-only" for="name">Họ và tên</label>
+					<input type="text" name="name" placeholder="Họ và tên" class="form-first-name form-control"
+						id="name">
+				</div>
+				<div class="form-group">
+					<label class="sr-only" for="form-last-name">Username</label>
+					<input type="text" name="username" placeholder="Username" class="form-last-name form-control"
+						id="username">
+				</div>
+				<div class="form-group">
+					<label class="sr-only" for="email">Email</label>
+					<input type="text" name="email" placeholder="Email" class="form-email form-control" id="email">
+				</div>
+				<div class="form-group">
+					<label class="sr-only" for="password">Password</label>
+					<input type="password" name="password" placeholder="Password" class="form-last-name form-control"
+						id="password">
+				</div>
+				<div class="form-group">
+					<label class="sr-only" for="confirm">Xác nhận password</label>
+					<input type="password" name="confirm" placeholder="Xác nhận password"
+						class="form-last-name form-control" id="confirm">
+				</div>
+				<div class="form-group">
+					<div class="input-group">
+						<div class="form-check-inline">
+							<label class="form-check-label">
+								<input type="radio" class="form-check-input" value="1" checked="checked"
+									name="optradio">User
+							</label>
+						</div>
+						<div class="form-check-inline">
+							<label class="form-check-label">
+								<input type="radio" class="form-check-input" value="2" name="optradio">Editor
+							</label>
+						</div>
+					</div>
+
+				</div>
+				<div class="form-group">
+					<div class="input-group">
+						<select class="form-control shadow" id="category" name="category">
+							<option>1</option>
+							<option>2</option>
+							<option>3</option>
+							<option>4</option>
+						</select>
+					</div>
+
+				</div>
+
+				<button type="submit" class="btn">Đăng kí</button>
+			</form>
+		</div>
+	</div>
+
+</div>
+<div class="col-sm-3"></div>
+{{#section 'js'}}
+<script>
+		$(function () {
+			$('#category').hide();
+			$('input[name=optradio]').on('click', function () {
+				var selectedValue = $('input[name=optradio]:checked').val();
+				if (selectedValue == "2") {
+					$('#category').show();
+				} else {
+					$('#category').hide();
+				}
+			});
+
+
+			$('#form').validate({
+				rules: {
+					username: {
+						required: true,
+						remote: {
+							url: '/account/is-available'
+						}
+					},
+					password: {
+						required: true,
+						minlength: 6
+
+					},
+					confirm: {
+
+						required: true,
+						equalTo: $('[name="password"]')
+					},
+					email: {
+						required: true,
+						email: true
+					},
+					name: {
+						required: true,
+					}
+				},
+				messages: {
+					username: {
+						required: 'Bạn không được để trống username',
+						remote: 'Username đã tồn tại'
+					},
+					password: {
+						required: 'Bạn không được để trống password',
+						minlength: 'Độ dài password ít nhất 6 ký tự'
+					},
+					email: {
+						required: 'Bạn không được để trống Email',
+						email: 'Email không phù hợp'
+					},
+					confirm: {
+
+						equalTo: 'Xác nhận mật khẩu không khớp'
+					}
+				},
+				errorElement: 'small',
+				errorClass: 'help-block text-danger',
+				highlight: function (e) {
+					$(e).removeClass('is-valid').addClass('is-invalid');
+				},
+				unhighlight: function (e) {
+					$(e).removeClass('is-invalid').addClass('is-valid');
+				}
+			});
+		})
+	</script>
+{{/section}}
