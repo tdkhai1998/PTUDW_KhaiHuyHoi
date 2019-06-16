@@ -17,6 +17,11 @@ var hbs_sections = require('express-handlebars-sections');
 var moment = require('moment');
 var app = express();
 
+
+require('./middleware/session')(app);
+require('./middleware/passport')(app);
+
+
 // view engine setup
 var editor_xemdanhsach = require('./routes/editor/editor_xemdanhsach');
 var editor_dsdaxuly = require('./routes/editor/editor_dsdaxuly');
@@ -54,8 +59,7 @@ app.set('view engine', 'hbs');
 // app.set('views', path.join(__dirname, 'views'));
 
 
-require('./middleware/session')(app);
-require('./middleware/passport')(app);
+
 
 app.use(bodyParser());
 

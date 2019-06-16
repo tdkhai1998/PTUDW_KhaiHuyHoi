@@ -2,7 +2,8 @@ var express = require('express');
 var router = express.Router();
 var load = require('../../models/writer/writer_vietbai.model')
 var multer = require('multer');
-var filename = ""
+var filename = "";
+var auth = require('../../middleware/auth').authWriter;
 var storage = multer.diskStorage({
     destination: (req, file, cb) => {
         cb(null, 'public/images/uploads')
@@ -15,27 +16,31 @@ var storage = multer.diskStorage({
 var upload = multer({ storage: storage });
 
 
-router.get('/', function(req, res, next) {
-    if (req.isAuthenticated()) {
-        console.log("da dn");
-        res.redirect('/');
-    } else {
-        console.log('chua dn');
-        res.redirect('/chuaDangNhap');
-    }
+router.get('/', auth, function (req, res, next) {
+    // if (req.isAuthenticated()) {
+    //     console.log("da dn");
+    //     res.redirect('/');
+    // } else {
+    //     console.log('chua dn');
+    //     res.redirect('/chuaDangNhap');
+    // }
 
 
     // if (req.isAuthenticated() && req.user.loaiTaiKhoan == 2) {
-    //     console.log("zsxcfvgbhnj");
-    //     Promise.all([load.alltag(), load.mapping()])
-    //         .then(([alltags, chuyenmuc]) => {
-    //             // console.log(chuyenmuc)
-    //             res.render('./writer/writer_vietbai_body', {
-    //                 cm: chuyenmuc,
-    //                 alltag: alltags,
-    //                 layout: '../writer/writer_vietbai_layout',
-    //             });
-    //         });
+    console.log("zsxcfvgbhnj");
+    Promise.all([load.alltag(), load.mapping()])
+        .then(([alltags, chuyenmuc]) => {
+            // console.log(chuyenmuc)
+            res.render('./writer/writer_vietbai_body', {
+                cm: chuyenmuc,
+                alltag: alltags,
+                 layout: '../writer/writer_vietbai_layout',
+               // layout: 'writer_vietbai_layout',
+            });
+        }).catch(err => {
+            res.end('error');
+            console.log(err);
+        });
     // } else {
     //     console.log(req.isAuthenticated());
     //     if (req.isAuthenticated()) {
@@ -48,7 +53,7 @@ router.get('/', function(req, res, next) {
     // }
 });
 
-router.post('/', upload.single('anhdaidien'), function(req, res, next) {
+router.post('/', upload.single('anhdaidien'), function (req, res, next) {
     if (!req.file) {
         console.log("No file received");
         return res.send({

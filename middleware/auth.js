@@ -18,7 +18,23 @@
 module.exports = {
     authAdmin: (req, res, next) => {
         if (req.user) {
-            if (req.user.loaiTaiKhoan !== "4") {
+            if (req.user.loaiTaiKhoan != "4") {
+                res.end('Not access\n<a href="/">Back</a>');
+
+            } else
+                next();
+        } else {
+            req.session.sessionFlash = {
+                urlBack: req.baseUrl + req.url
+            }
+            res.redirect('/account/login');
+
+        }
+    },
+
+    authWriter: (req, res, next) => {
+        if (req.user) {
+            if (req.user.loaiTaiKhoan != "2") {
                 res.end('Not access\n<a href="/">Back</a>');
 
             } else
@@ -33,20 +49,12 @@ module.exports = {
     },
 
     authEditor: (req, res, next) => {
-        if (req.user && req.user.loaiTaiKhoan >= "3") {
-            next();
-        } else {
-            req.session.sessionFlash = {
-                urlBack: req.baseUrl + req.url
-            }
-            res.redirect('/account/login');
+        if (req.user) {
+            if (req.user.loaiTaiKhoan != "3") {
+                res.end('Not access\n<a href="/">Back</a>');
 
-        }
-    },
-
-    authEditor: (req, res, next) => {
-        if (req.user && req.user.loaiTaiKhoan >= "2") {
-            next();
+            } else
+                next();
         } else {
             req.session.sessionFlash = {
                 urlBack: req.baseUrl + req.url

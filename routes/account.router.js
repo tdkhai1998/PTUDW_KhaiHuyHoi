@@ -218,8 +218,8 @@ router.post('/login', (req, res, next) => {
         req.logIn(user, err => {
             if (err)
                 return next(err);
-            if (req.session.urlBack) {
-                return res.redirect(req.session.urlBack);
+            if (req.session.sessionFlash) {
+                return res.redirect(req.session.sessionFlash.urlBack);
             } else {
                 return res.redirect('/');
             }
