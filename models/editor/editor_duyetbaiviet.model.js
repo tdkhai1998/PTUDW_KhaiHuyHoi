@@ -46,5 +46,8 @@ module.exports = {
   },
   idtagfromname: name =>{
     return db.load(`select * from tag where tenTag = '${name}'`)
+  },
+  deletetag: (id,baiviet) =>{
+    return db.load(`delete from thuoctag where idTag ='${id}' and idBaiViet = '${baiviet}'`)
   }
 };

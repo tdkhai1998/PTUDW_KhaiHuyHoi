@@ -102,17 +102,18 @@
 							<div class="side animate-box">
 								<h2 class="sidebar-heading"><b>Thêm nhãn</b></h2>
 								<div id="tag">
-									<input name="tag" id="inputtag" type="text" value="" hidden="true">
+									<input name="tag" id="inputtag" type="text" value="{{inputtags}}" hidden="true">
 									{{#each this.tags}}
 										<div class="alert alert-success alert-dismissible tag">
 											{{tenTag}}
-											<button type="button" class="close" data-dismiss="alert">&times;</button>								 
+											<button type="button" class="close" data-dismiss="alert" onclick="tagclose({{idTag}})">&times;</button>								 
 										</div>
 									{{/each}}
 								
 								</div>
 									<p>
 										<select class="form-control" id="tagValue">
+											<option value="" selected disabled hidden>Chọn nhãn</option>
 												{{#each this.alltag}}
 												<option value="{{idTag}}">{{tenTag}}</option>
 												{{/each}}

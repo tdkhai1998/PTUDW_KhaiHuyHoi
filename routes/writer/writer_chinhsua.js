@@ -13,13 +13,20 @@ var storage = multer.diskStorage({
     }
 });
 var upload = multer({ storage: storage });
-
+var oldtag =""
 router.get('/', function(req, res, next) {
     if (req.isAuthenticated() && req.user.loaiTaiKhoan == 2) {
         Promise.all([load.one(req.query.id), load.tags(req.query.id), load.alltag(), load.mapping()])
             .then(([bv, tag, alltags, chuyenmuc]) => {
+                var inputtag = "";
+                for (var i = 0;i<tag.length ; i++)
+                {
+                    inputtag = inputtag + "," + tag[i].idTag;
+                }
+               oldtag = inputtag;
                 console.log(tag)
                 res.render('./writer/writer_vietbai_body', {
+                    inputtags: inputtag,
                     chinhsua: true,
                     bv: bv[0],
                     tags: tag,
@@ -59,21 +66,28 @@ router.post('/', upload.single('anhdaidien'), function(req, res, next) {
         entity.premium = '0';
     console.log(value)
 
+    console.log(oldtag + " => " + value.tag )
+    load.deleteLido(entity.idBaiViet);
     var tags = value.tag.split(",");
+    oldtag = oldtag + ",";
     if (tags.length > 1)
         load.update(entity).then(id => {
             {
 
                 for (var i = 1; i < tags.length; i++) {
-                    try {
-                        load.addtag(tags[i], value.idBaiViet)
-                    } catch (error) {
-
-                    }
-
+                    if( oldtag.indexOf("," + tags[i] + ",") == -1 ) //tag mới
+                     load.addtag(tags[i], value.idBaiViet);
+                    else //tag cũ
+                    {
+                        oldtag = oldtag.replace(","+tags[i],"");
+                    }          
                 }
+                oldtag = oldtag.split(",");
+                for (var i = 1; i < oldtag.length - 1 ; i++) {
+                    load.deletetag(oldtag[i], value.idBaiViet)
+                }      
             }
-            res.redirect('/writer_vietbai')
+            res.redirect('/writer_chuaduocduyet')
         })
 })
 module.exports = router;

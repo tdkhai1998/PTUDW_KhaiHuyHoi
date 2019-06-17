@@ -2,10 +2,10 @@ var db = require('../../utils/db');
 
 module.exports = {
   allbyuserStt: (user,stt) => {
-    return db.load(`select * from baiviet, chuyenmuc where baiviet.idChuyenMuc = chuyenmuc.idChuyenMuc and  baiviet.nguoiDang ='${user}' and trangThai='${stt}'`);
+    return db.load(`select * from baiviet, chuyenmuc where baiviet.idChuyenMuc = chuyenmuc.idChuyenMuc and  baiviet.nguoiDang ='${user}' and trangThai='${stt}' order by ngayDang DESC`);
   },
   all: (idChuyenMuc) => {
-    return db.load(`select * from baiviet, chuyenmuc where baiviet.idChuyenMuc = chuyenmuc.idChuyenMuc and  baiviet.idChuyenMuc ='${idChuyenMuc}' `);
+    return db.load(`select * from baiviet, chuyenmuc where baiviet.idChuyenMuc = chuyenmuc.idChuyenMuc and  baiviet.idChuyenMuc ='${idChuyenMuc}' order by ngayDang DESC`);
   },
   tuchoi: (entity) =>{
     return db.add('baiviettuchoi',entity)
@@ -21,6 +21,6 @@ module.exports = {
   },
   lido: id =>{
     return db.load(`select * from baiviettuchoi where idBaiViet = '${id}'`)
-  },
+  }
  
 };

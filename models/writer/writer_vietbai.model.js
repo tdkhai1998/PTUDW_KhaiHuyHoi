@@ -42,5 +42,11 @@ module.exports = {
   },
   update: (entity) =>{
     return db.update('baiviet','idBaiViet', entity)
+  },
+  deleteLido: id =>{
+    return db.delete('baiviettuchoi','idBaiViet', id)
+  },
+  deletetag: (id,baiviet) =>{
+    return db.load(`delete from thuoctag where idTag ='${id}' and idBaiViet = '${baiviet}'`)
   }
 }; 

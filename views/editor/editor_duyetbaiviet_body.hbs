@@ -59,8 +59,8 @@
 					<button type="button" class="btn btn-primary tuchoi" data-toggle="modal" data-target="#myModal1">Từ chối</button>
 					<button  type="button" class="btn btn-primary duyet" data-toggle="modal" data-target="#myModal2">Lên lịch</button> 
 					<h2 class="sidebar-heading ngayGio"><b>Ngày giờ đăng bài</b></h2>
-					<h5 id="ngayGio" class="ngayGio">01/01/<script>document.write(new Date().getFullYear());</script> 12:00 AM</script></h5>
-					<input type="text" id="inputtime" value="01/01/<script>document.write(new Date().getFullYear());</script> 12:00 AM" name="ngaydang" hidden="true">
+					<h5 id="ngayGio" class="ngayGio">01/01/2019 12:00 AM</script></h5>
+					<input type="text" id="inputtime" value="01/01/2019 12:00 AM" name="ngaydang" hidden="true" required>
 					<button class="btn btn-primary duyet" type ="submit">ĐĂNG BÀI</button> 
 
 				</ul>
@@ -133,17 +133,18 @@
 									</ul>		
 								<h2 class="sidebar-heading"><b>Thêm nhãn</b></h2>
 								<div id="tag">
-									<input name="tag" id="inputtag" type="text" value="" hidden="true">
+									<input name="tag" id="inputtag" type="text" value="{{inputtags}}" hidden="true">
 									{{#each this.tags}}
 									<div class="alert alert-success alert-dismissible tag">
 										{{tenTag}}
-										<button type="button" class="close" data-dismiss="alert">&times;</button>								 
+										<button type="button" class="close" data-dismiss="alert" onclick="tagclose({{idTag}})">&times;</button>								 
 								  	</div>
 								  {{/each}}
 								 
 								</div>
 									<p>
-										<select class="form-control" id="tagValue">
+										<select class="form-control" id="tagValue" value="">
+												<option value="" selected disabled hidden>Chọn nhãn</option>
 												{{#each this.alltag}}
 												<option value="{{idTag}}">{{tenTag}}</option>
 												{{/each}}

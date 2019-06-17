@@ -15,6 +15,8 @@ $('.db').click(function(){
 	var button =  document.createElement("button");  
 	button.type = "button";
 	button.className = "close";
+	var close = "tagclose(" + tagValue.value + ")";
+	button.setAttribute("onclick", close); 	  
 	button.setAttribute("data-dismiss", "alert"); 	  
 	var buttonTxt = document.createTextNode("×");        
     button.appendChild(buttonTxt);   
@@ -36,6 +38,15 @@ $('.con, .cha').click(function(){
 	document.getElementById('inputcm').setAttribute("value",value);
 	$('#cm').fadeIn();
 	});
+
+
+function tagclose(id){
+
+	console.log(id)
+	var tags = document.getElementById('inputtag').value
+	tags = tags.replace(','+id,'');
+	document.getElementById('inputtag').setAttribute("value",tags);
+}
 
 $('#ngayGioPicker').click(function(){
 	
