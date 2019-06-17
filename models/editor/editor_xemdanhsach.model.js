@@ -16,5 +16,4 @@ module.exports = {
     tenchuyenmuc: id => {
         return db.load(`select * from chuyenmuc where idChuyenMuc = ${id}`)
     }
-
 };

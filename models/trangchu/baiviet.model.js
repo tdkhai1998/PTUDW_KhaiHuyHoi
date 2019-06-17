@@ -78,7 +78,7 @@ var tatCaBaiVietChuyenMuc = (id, limit, offset) => db.load(`Select * from (SELEC
     Where cm.idChuyenMuc=${id} UNION select idChuyenMuc, tenChuyenMuc from chuyenmuc where idChuyenMuc=${id}) as id join baiviet as bv on id.idChuyenMuc=bv.idChuyenMuc where  bv.trangThai='daxuatban'  and bv.daXoa=false order by premium DESC , ngaydang DESC limit ${limit} offset ${offset}`);
 var multiSimpleSearchString = (tenCots, key) => {
     var keys = key.split(" ");
-    var sql = ``;
+    var sql = ` `;
     tenCots.forEach(i => {
         sql += ` select * from baiviet join chuyenmuc on chuyenmuc.idChuyenMuc=baiviet.idChuyenMuc  where baiviet.trangThai='daxuatban' and baiviet.daXoa=false and  ( `
         keys.forEach(e => {

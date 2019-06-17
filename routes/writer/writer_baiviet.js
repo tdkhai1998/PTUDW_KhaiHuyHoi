@@ -13,7 +13,7 @@ router.get('/', auth, function(req, res, next) {
                 ff = true;
             if (rows[0].trangThai == 'bituchoi')
                 lido = true;
-            res.render('./writer/writer_baiviet_body', {
+            res.render('writer/writer_baiviet_body', {
                 user: req.user,
                 lido: ld[0],
                 fail: ff,

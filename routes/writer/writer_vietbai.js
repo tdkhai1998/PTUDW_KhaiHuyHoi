@@ -17,7 +17,7 @@ var upload = multer({ storage: storage });
 router.get('/', auth, function(req, res, next) {
     Promise.all([load.alltag(), load.mapping()])
         .then(([alltags, chuyenmuc]) => {
-            res.render('./writer/writer_vietbai_body', {
+            res.render('writer/writer_vietbai_body', {
                 chinhsua: false,
                 cm: chuyenmuc,
                 alltag: alltags,

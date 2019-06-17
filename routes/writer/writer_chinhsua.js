@@ -24,7 +24,7 @@ router.get('/', auth, function(req, res, next) {
             }
             oldtag = inputtag;
             console.log(tag)
-            res.render('./writer/writer_vietbai_body', {
+            res.render('writer/writer_vietbai_body', {
                 inputtags: inputtag,
                 chinhsua: true,
                 bv: bv[0],

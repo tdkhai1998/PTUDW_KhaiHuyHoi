@@ -22,7 +22,7 @@ router.get('/', auth, function(req, res, next) {
                 else obj.active = false;
                 pages.push(obj);
             }
-            res.render('./writer/writer_chuaduocduyet_body', {
+            res.render('writer/writer_chuaduocduyet_body', {
                 user: req.user,
                 tab: true,
                 pages,

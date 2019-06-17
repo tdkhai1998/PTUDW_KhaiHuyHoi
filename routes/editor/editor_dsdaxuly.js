@@ -27,7 +27,7 @@ router.get('/', auth, function(req, res, next) {
                 else obj.active = false;
                 pages.push(obj);
             }
-            res.render('./editor/editor_dsdaxuly_body', {
+            res.render('editor/editor_dsdaxuly_body', {
                 user: req.user,
                 row: rows,
                 pages,

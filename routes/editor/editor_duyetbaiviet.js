@@ -15,7 +15,7 @@ router.get('/', auth, function(req, res, next) {
                 inputtag = inputtag + "," + tag[i].idTag;
             }
             oldtag = inputtag;
-            res.render('./editor/editor_duyetbaiviet_body', {
+            res.render('editor/editor_duyetbaiviet_body', {
                 bv: bv[0],
                 tags: tag,
                 inputtags: inputtag,

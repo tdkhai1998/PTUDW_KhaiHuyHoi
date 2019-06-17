@@ -59,14 +59,9 @@ router.get('/:id', function(req, res, next) {
         .catch(e => next(e));
 });
 router.post('/:id', function(req, res, next) {
-    res.redirect(url.format({
-        pathname: '/timkiem',
-        query: req.body
-    }));
-})
-router.post('/:id', function(req, res, next) {
     if (req.isAuthenticated()) {
         var val = req.body;
+        console.log(val);
         if (val.type) {
             res.redirect(url.format({
                 pathname: '/timkiem',
