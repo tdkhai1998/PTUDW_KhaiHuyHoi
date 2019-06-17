@@ -30,11 +30,13 @@
 			<div class="container-wrap">
 				<div class="row">
 					<div class="col-md-9">
-						<div class="content-wrap">
-							<article class="animate-box">
+						<div class="content-wrap" style="padding: 15px;background-color: white">
+							<div class="animate-box">
+								<article>
 								<div class="blog-img" style="background-image: url('{{baiviet.anhDaiDien}}');"></div>
+								</article>
 								<div class="desc" style=" padding:30px;">
-									<h2><a href="/chitietbaiviet/{{baiviet.idBaiViet}}">{{baiviet.tieuDe}}</a></h2>
+									<h2><a href="/chitietbaiviet/{{baiviet.idBaiViet}}"><b>{{baiviet.tieuDe}}</b></a></h2>
 									<span><a  style="color: red" href="/chuyenmuc/{{baiviet.idChuyenMuc}}">
 												{{baiviet.tenChuyenMuc}}</a>
 									</span>
@@ -43,7 +45,7 @@
 									<hr>
 									{{{baiviet.noiDung}}}
 								</div>
-							</article>
+							</div>
 								<hr>
 							<div id="tags" class="animate-box" style="margin-left:20px; margin-bottom: 20px;">
 									<b>Tags</b>
@@ -109,7 +111,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="col-md-3 sticky-parent" style="background-color: white">
+					<div class="col-md-3 sticky-parent" style="background-color: white;padding-top:15px;">
 						<div class="sidebar" id="sticky_item">
 							<div class="side animate-box">
 								<div class="form-group">
@@ -134,12 +136,6 @@
 							
 							</div>
 	
-							<div class="side animate-box">
-								<div class="form-group">
-									<input type="text" class="form-control form-email text-center" id="email" placeholder="Enter your email">
-									<button type="submit" class="btn btn-primary btn-subscribe">Subscribe</button>
-								</div>
-							</div>
 						</div>
 					</div>
 				</div>
