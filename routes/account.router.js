@@ -18,9 +18,9 @@ var check = (loai) => {
         case "1":
             return "/"
         case "2":
-            return "/writer_vietbai"
+            return "writer_vietbai"
         case "3":
-            return "/edior_xemdanhsach"
+            return "edior_xemdanhsach"
         case "4":
             return "/"
     }
@@ -260,7 +260,7 @@ router.post('/login', (req, res, next) => {
                 return res.redirect(req.session.sessionFlash.urlBack);
 
             } else {
-
+                console.log(check(user.loaiTaiKhoan));
                 return res.redirect(check(user.loaiTaiKhoan));
 
             }

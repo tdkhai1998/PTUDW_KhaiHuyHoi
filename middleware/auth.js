@@ -21,9 +21,9 @@ var check = (loai) => {
         case "2":
             return "/writer_vietbai"
         case "3":
-            return "/edior_xemdanhsach"
+            return "/editor_xemdanhsach"
         case "4":
-            return "/"
+            return "/admin/tags"
     }
 }
 module.exports = {
