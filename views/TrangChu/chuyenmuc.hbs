@@ -28,7 +28,7 @@
                                 <h3>KHÔNG TÌM THẤY BÀI VIẾT NÀO</h3>
                             {{/if}}
                             {{#each baiviet}}
-<!---->                     <div class="blog-entry-travel animate-box" style="margin: 15px;">
+<!---->                     <div class="blog-entry-travel animate-box" style="margin: 0;">
                                 <div class="blog-img" style="background-image: url({{anhDaiDien}});"></div>
                                 <div class="desc">						
                                     <h4><a class="tieude" href="/chitietbaiviet/{{idBaiViet}}">{{tieuDe}}</a></h4>
@@ -51,6 +51,19 @@
 <!---->                     </div>
                             {{/each}}
 						</div>
+                        <div class="col-md-12"  >
+                        <ul class="pagination">
+                            {{!--<li class="disabled"><a href="#">&laquo;</a></li>--}}
+                            {{#each pages}}
+                                {{#if active}}
+                                <li class="active"><a href="./{{id}}?page={{giatri}}">{{giatri}}</a></li>
+                                {{else}}
+                                <li><a href="./{{id}}?page={{giatri}}">{{giatri}}</a></li>
+                                {{/if}}
+                            {{/each}}
+                            {{!-- <li><a href="#">&raquo;</a></li> --}}
+                        </ul>
+                    </div>
 					</div>
                     <div class="col-md-3">
                         <div class="sidebar">
@@ -95,19 +108,7 @@
                             </div> 
                         </div>
                     </div>
-                    <div class="col-md-12"  >
-                        <ul class="pagination">
-                            {{!--<li class="disabled"><a href="#">&laquo;</a></li>--}}
-                            {{#each pages}}
-                                {{#if active}}
-                                <li class="active"><a href="./{{id}}?page={{giatri}}">{{giatri}}</a></li>
-                                {{else}}
-                                <li><a href="./{{id}}?page={{giatri}}">{{giatri}}</a></li>
-                                {{/if}}
-                            {{/each}}
-                            {{!-- <li><a href="#">&raquo;</a></li> --}}
-                        </ul>
-                    </div>
+                   
 				</div>
 			</div>
 		</div>

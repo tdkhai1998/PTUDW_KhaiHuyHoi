@@ -37,6 +37,19 @@
 <!---->                     </div>
                             {{/each}}
 						</div>
+                        <div class="col-md-12"  >
+                        <ul class="pagination">
+                            {{!--<li class="disabled"><a href="#">&laquo;</a></li>--}}
+                            {{#each pages}}
+                                {{#if active}}
+                                <li class="active"><a href="./{{id}}?page={{giatri}}">{{giatri}}</a></li>
+                                {{else}}
+                                <li><a href="./{{id}}?page={{giatri}}">{{giatri}}</a></li>
+                                {{/if}}
+                            {{/each}}
+                            {{!-- <li><a href="#">&raquo;</a></li> --}}
+                        </ul>
+                    </div>
 					</div>
                     <div class="col-md-3">
                         <div class="sidebar">
@@ -95,19 +108,6 @@
                                 {{/each}}
                             </div>
                         </div>
-                    </div>
-                    <div class="col-md-12"  >
-                        <ul class="pagination">
-                            {{!--<li class="disabled"><a href="#">&laquo;</a></li>--}}
-                            {{#each pages}}
-                                {{#if active}}
-                                <li class="active"><a href="./{{id}}?page={{giatri}}">{{giatri}}</a></li>
-                                {{else}}
-                                <li><a href="./{{id}}?page={{giatri}}">{{giatri}}</a></li>
-                                {{/if}}
-                            {{/each}}
-                            {{!-- <li><a href="#">&raquo;</a></li> --}}
-                        </ul>
                     </div>
 				</div>
 			</div>

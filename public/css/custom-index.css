@@ -79,6 +79,10 @@ form {
     color: black;
 }
 
+.blog-entry-travel {
+    margin: 0;
+}
+
 .blog-entry-travel .desc {
     padding: 10px;
     padding-left: 10px;
