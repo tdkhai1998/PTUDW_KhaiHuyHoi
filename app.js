@@ -21,6 +21,9 @@ var app = express();
 require('./middleware/session')(app);
 require('./middleware/passport')(app);
 
+app.use(bodyParser());
+
+app.use(bodyParser.urlencoded({ extended: true }));
 
 // view engine setup
 var editor_xemdanhsach = require('./routes/editor/editor_xemdanhsach');
@@ -61,8 +64,6 @@ app.set('view engine', 'hbs');
 
 
 
-app.use(bodyParser());
-
 app.use('/', require('./routes/trangchu/trangchu_router'));
 app.use('/editor_xemdanhsach', editor_xemdanhsach);
 app.use('/chitietbaiviet', require('./routes/trangchu/chitietbaiviet'));
@@ -97,7 +98,18 @@ app.use(function(err, req, res, next) {
 
     // render the error page
     res.status(err.status || 500);
-    res.render('error');
+    console.log(err.message);
+    if (err.status == 404) {
+        res.render('error', {
+            layout: false
+        });
+    } else {
+        res.render('loi', {
+            loi: '404',
+            message: err.message,
+            layout: false
+        });
+    }
 });
 
 module.exports = app;

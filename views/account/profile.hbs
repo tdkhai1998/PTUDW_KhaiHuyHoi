@@ -1,13 +1,19 @@
 {{#section 'css'}}
 <link rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.min.css">
+
+{{#if message}}
+<script>
+// self executing function here
+(function() {
+  alert('{{message}}');
+
+})();
+</script>
+{{/if}}
 {{/section}}
-
-
-
-
-<div class="col-md-9">
-
+<div class="col-md-3"></div>
+<div class="col-md-6">
     <div class="signup-form">
         <form method="POST">
             <h2>Thông tin tài khoản</h2>
@@ -73,11 +79,10 @@
             </div>
 
         </form>
-
-
     </div>
 
 </div>
+<div class="col-md-3"></div>
 
 {{#section 'js'}}
 <script

@@ -1,5 +1,14 @@
+{{#section 'css'}}
+{{#if message}}
+<script>
+// self executing function here
+(function() {
+  alert('{{message}}');
 
-
+})();
+</script>
+{{/if}}
+{{/section}}
 <div id="colorlib-page">
 	<!--Menu-->
 	{{> menu r=chuyenmuc daDangNhap=daDangNhap user=user}}
@@ -41,7 +50,7 @@
                                 <form action="" method="POST">
                                 <div class="funkyradio">
                                             <div class="funkyradio-success">
-                                                <input type="checkbox" name="tieuDe" id="checkbox1" />
+                                                <input type="checkbox" name="tieuDe" id="checkbox1" checked />
                                                 <label for="checkbox1">Theo Tiêu Đề</label>
                                             </div>
                                             <div class="funkyradio-success">
@@ -93,14 +102,7 @@
 								</div>
                                 {{/each}}
                             </div>
-                            <div class="side animate-box">
-                                <div class="form-group">
-                                    
-                                    <input type="text" class="form-control form-email text-center" id="email" placeholder="Enter your email">
-                                    <button type="submit" class="btn btn-primary btn-subscribe">Subscribe</button>
-                                    
-                                </div>
-                            </div>
+                           
                         </div>
                     </div>
                     <div class="col-md-12"  >

@@ -16,44 +16,22 @@ var storage = multer.diskStorage({
 var upload = multer({ storage: storage });
 
 
-router.get('/', auth, function (req, res, next) {
-    // if (req.isAuthenticated()) {
-    //     console.log("da dn");
-    //     res.redirect('/');
-    // } else {
-    //     console.log('chua dn');
-    //     res.redirect('/chuaDangNhap');
-    // }
-
-
-    // if (req.isAuthenticated() && req.user.loaiTaiKhoan == 2) {
-    console.log("zsxcfvgbhnj");
+router.get('/', auth, function(req, res, next) {
     Promise.all([load.alltag(), load.mapping()])
         .then(([alltags, chuyenmuc]) => {
-            // console.log(chuyenmuc)
             res.render('./writer/writer_vietbai_body', {
                 cm: chuyenmuc,
                 alltag: alltags,
-                 layout: '../writer/writer_vietbai_layout',
-               // layout: 'writer_vietbai_layout',
+                layout: '../writer/writer_vietbai_layout',
             });
         }).catch(err => {
             res.end('error');
             console.log(err);
         });
-    // } else {
-    //     console.log(req.isAuthenticated());
-    //     if (req.isAuthenticated()) {
-    //         console.log("sd");
-    //         res.redirect('/');
-    //     } else {
-    //         console.log("dfvgb");
-    //         res.redirect('account/login');
-    //     }
-    // }
+
 });
 
-router.post('/', upload.single('anhdaidien'), function (req, res, next) {
+router.post('/', upload.single('anhdaidien'), function(req, res, next) {
     if (!req.file) {
         console.log("No file received");
         return res.send({

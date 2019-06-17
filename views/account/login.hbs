@@ -1,3 +1,14 @@
+{{#section 'css'}}
+{{#if message}}
+<script>
+// self executing function here
+(function() {
+  alert('{{message}}');
+
+})();
+</script>
+{{/if}}
+{{/section}}
 <div class="col-sm-4"></div>
 <div class="col-sm-4">
 

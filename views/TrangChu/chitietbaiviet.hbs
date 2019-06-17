@@ -11,7 +11,7 @@
 			<div class="row form-group">
 				<input type="hidden" name="idcmt" value="${id}">
 				<div class="col-md-12">
-					<textarea rows="10" style="background-color:white;" type="text" name="noiDung" id="noiDung" class="form-control" placeholder="Your cmt"></textarea>
+					<textarea rows="5" style="background-color:white;" type="text" name="noiDung" id="noiDung" class="form-control" placeholder="Your cmt"></textarea>
 				</div>
 				<div class="col-md-3" style="margin-top:20px">
 					<input style="color:black" type="submit" class=" btn btn-primary" value="Bình Luận">
@@ -33,18 +33,14 @@
 						<div class="content-wrap">
 							<article class="animate-box">
 								<div class="blog-img" style="background-image: url('{{baiviet.anhDaiDien}}');"></div>
-								<div class="desc">
-									<div class="meta">
-										<p>
-											<span>
-												{{baiviet.tenChuyenMuc}}
-											</span>
-											<span>{{formatDate baiviet.ngayDang}}</span>
-											<span>{{baiviet.tenNguoiDang}} </span>
-											<span><a href="#"></a>{{socmt}} Comments</a></span>
-										</p>
-									</div>
+								<div class="desc" style="background-color: white; padding:30px;">
 									<h2><a href="/chitietbaiviet/{{baiviet.idBaiViet}}">{{baiviet.tieuDe}}</a></h2>
+									<span><a  style="color: red" href="/chuyenmuc/{{baiviet.idChuyenMuc}}">
+												{{baiviet.tenChuyenMuc}}</a>
+									</span>
+									<span>{{formatDate baiviet.ngayDang}}</span>
+									<span>{{baiviet.nguoiDang}} </span><br>
+									<hr>
 									{{{baiviet.noiDung}}}
 								</div>
 							</article>
@@ -63,11 +59,11 @@
 									<h4 style="margin-left:20px " >{{socmt}} Comments</h4>
 									{{#each comments}}
 									<div class="review">
-										 <div class="user-img" style="background-image: url(/images/person1.jpg)"></div>
+										 <div class="user-img" style="background-image: url(/images/acc.jpg)"></div>
 										 <div id='{{id}}' class="desc" id='{{id}}'>
 											 <h4>
 												 <span class="text-left">{{tenNguoiCmt}}</span>
-												 <span class="text-right">{{formatDate ngayDang}}</span>
+												 <span class="text-right">{{formatDate ngayBinhLuan}}</span>
 											 </h4>
 											 <p>{{noiDung}}</p>
 											 <p class="star">
@@ -76,11 +72,11 @@
 											
 											 {{#each child}}
 												<div class="review">
-													<div class="user-img" style="background-image: url(/images/person1.jpg)"></div>
+													<div class="user-img" style="background-image: url(/images/acc.jpg)"></div>
 													<div class="desc">
 														<h4>
 															<span class="text-left">{{tenNguoiCmt}}</span>
-															<span class="text-right">{{formatDate ngayDang}}</span>
+															<span class="text-right">{{formatDate ngayBinhLuan}}</span>
 														</h4>
 														<p>{{noiDung}}</p>
 													</div>
@@ -102,7 +98,7 @@
 										<div class="row form-group">
 											<div class="col-md-12">
 												<!-- <label for="message">Message</label> -->
-												<textarea style="background-color:white;" name="noiDung" id="noiDung" cols="30" rows="10" class="form-control" placeholder="Say something about us"></textarea>
+												<textarea style="background-color:white;" name="noiDung" id="noiDung" cols="30" rows="5" class="form-control" placeholder="Say something about us"></textarea>
 											</div>
 										</div>
 										<div class="form-group">

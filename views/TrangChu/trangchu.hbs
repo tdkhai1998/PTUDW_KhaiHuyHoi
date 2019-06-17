@@ -1,3 +1,14 @@
+{{#section 'css'}}
+{{#if message}}
+<script>
+// self executing function here
+(function() {
+  alert('{{message}}');
+
+})();
+</script>
+{{/if}}
+{{/section}}
 <style>
 	.head-article a{
 		text-shadow: 4px 0px 22px rgba(12, 12, 12, 1);
@@ -17,10 +28,12 @@
 	}
 	.ln a{
 		text-shadow: none;
+		font-size: 18px;
 		
 	}
 	.ln{
 		text-align: left;
+		
 	}
 	b.cm{
 		color:red;
@@ -45,7 +58,6 @@
 		</div>
 	</div>
 	<div id="colorlib-main">
-	
 		<div class="colorlib-blog" >
 			<div class="container-wrap" >
 				<div class="row row-pb-lg">

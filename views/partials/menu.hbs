@@ -19,10 +19,11 @@
 				{{/if}}
 			{{/each}}
 			{{#if daDangNhap}}
-			<li><a href="/account/profile" >Chào <b>{{user.username}}</b></a></li>
-			<li><a href="/account/logout">LOGOUT</a></li>
+			<li><a href="/account/profile" >Chào <b>{{user.ten}}</b></a></li>
+			<li><a href="/account/logout">ĐĂNG XUẤT</a></li>
 			{{else}}
-			<li><a href="/account/login" >LOGIN</a></li>
+			<li><a href="/account/login" >ĐĂNG NHẬP</a></li>
+			<li><a href="/account/register" >ĐĂNG KÝ</a></li>
 			{{/if}}
 		</ul>
 		

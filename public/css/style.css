@@ -187,7 +187,7 @@ figure figcaption {
 }
 
 #colorlib-aside #colorlib-main-menu ul li a {
-    color: rgba(255, 255, 255, 0.4);
+    color: black;
     text-decoration: none;
     position: relative;
     padding: 10px 0;
@@ -418,7 +418,7 @@ figure figcaption {
     position: absolute;
     bottom: 15px;
     left: 0;
-    padding: 2em;
+    padding: 5px;
 }
 
 #colorlib-hero .flexslider .slider-text>.slider-text-inner .desc.desc2 {
@@ -1092,9 +1092,9 @@ article .colorlib-video:hover a {
     transform: scale(1.1);
 }
 
-article .desc {
+#colorlib-main-menu ui article .desc {
     padding: 3em;
-    width: 80%;
+    width: 100%;
     float: right;
     margin-top: -3em;
     z-index: 1;

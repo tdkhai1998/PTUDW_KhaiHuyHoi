@@ -4,18 +4,16 @@ var url = require('url');
 var baiviet_model = require('../../models/baiviet.model');
 var chuyenmuc_model = require('../../models/chuyenmuc.model');
 var tag_model = require('../../models/tag.model')
-var si = require('../../utils/db').si;
+
 /* GET home page. */
 router.get('/', function(req, res, next) {
-    if (req.isAuthenticated()) {
-        console.log("da dn");
-    } else {
-        console.log('chua dn');
-    }
     Promise.all([chuyenmuc_model.mapping(), baiviet_model.getTagsForBaiViets(baiviet_model.baiVietNoiBat()), baiviet_model.getTagsForBaiViets(baiviet_model.baivietxemnhieunhat()), baiviet_model.getTagsForBaiViets(baiviet_model.baiVietMoiNhat(10, 0)), baiviet_model.getTagsForBaiViets(baiviet_model.top10chuyenmuc())])
         .then(([chuyenmuc, baivietnoibat, baivietxemnhieunhat, baivietmoinhat, top10chuyenmuc]) => {
-            //console.log(top10chuyenmuc);
+            var m = req.session.message;
+            req.session.message = null;
             res.render('TrangChu/trangchu', {
+                title: "Trang chủ",
+                message: m,
                 layout: 'main',
                 chuyenmuc,
                 daDangNhap: req.isAuthenticated(),
@@ -23,7 +21,8 @@ router.get('/', function(req, res, next) {
                 baivietmoinhat,
                 baivietnoibat,
                 baivietxemnhieunhat,
-                top10chuyenmuc
+                top10chuyenmuc,
+
             })
         }).catch((err) => {
             next(err);
@@ -31,9 +30,13 @@ router.get('/', function(req, res, next) {
 });
 router.get('/tag/:id', function(req, res, next) {
     var id = req.params.id;
+    if (isNaN(id)) {
+        req.session.message = "Tag không hợp lệ";
+        return res.redirect('/');
+    }
     var page = (req.query.page ? req.query.page : 1);
     page = page <= 0 ? 1 : page;
-    var limit = 2;
+    var limit = 5;
     var offset = (page - 1) * limit;
     var bvWithTags = baiviet_model.getTagsForBaiViets(baiviet_model.baiVietChuaTag(id, limit, offset));
     Promise.all([chuyenmuc_model.mapping(), baiviet_model.tongBaiVietChuaTag(id), bvWithTags, tag_model.all(), baiviet_model.baiVietMoiNhat(5, 0)]).then(([chuyenmuc, tongbaiviet, baiviet, tags, baivietmoinhat]) => {
@@ -58,7 +61,11 @@ router.get('/tag/:id', function(req, res, next) {
         if (tag == null) {
             res.redirect('/');
         } else {
+            var m = req.session.message;
+            req.session.message = null;
             res.render('TrangChu/tag', {
+                message: req.session.message,
+                title: "Bài Viết Theo TAG",
                 layout: 'main',
                 chuyenmuc,
                 baiviet,
@@ -107,6 +114,10 @@ router.post('/timkiem', function(req, res, next) {
 })
 router.get('/chuyenmuc/:id', function(req, res, next) {
     var id = req.params.id;
+    if (isNaN(id)) {
+        req.session.message = "Chuyên mục không hợp lệ";
+        return res.redirect('/');
+    }
     var page = (req.query.page ? req.query.page : 1);
     page = page <= 0 ? 1 : page;
     var limit = 5;
@@ -130,9 +141,16 @@ router.get('/chuyenmuc/:id', function(req, res, next) {
                         else obj.active = false;
                         pages.push(obj);
                     }
+                    var m = req.session.message;
+                    req.session.message = null;
                     res.render('TrangChu/chuyenmuc', {
+                        title: "Bài Viết Theo Chuyên Mục",
+                        message: req.session.message,
+                        empty: (baiviet.length == 0) ? true : false,
                         layout: 'main',
                         chuyenmuc,
+                        tenchuyenmuc: e.tenChuyenMuc,
+                        empty: (baiviet.length == 0) ? true : false,
                         baiviet,
                         daDangNhap: req.isAuthenticated(),
                         user: req.user,
@@ -181,7 +199,13 @@ router.get('/timkiem', function(req, res, next) {
             else obj.active = false;
             pages.push(obj);
         }
+        var m = req.session.message;
+        req.session.message = null;
         res.render('TrangChu/chuyenmuc', {
+            title: "Tìm kiếm",
+            key,
+            message: req.session.message,
+            empty: (baiviet.length == 0) ? true : false,
             layout: 'main',
             chuyenmuc,
             baiviet,
@@ -192,4 +216,4 @@ router.get('/timkiem', function(req, res, next) {
         })
     }).catch(e => next(e))
 })
-module.exports = router;
+module.exports = router

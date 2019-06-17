@@ -11,6 +11,20 @@ var auth = require('../middleware/auth').authUser;
 request = require('request');
 
 
+
+
+var check = (loai) => {
+    switch (loai) {
+        case "1":
+            return "/"
+        case "2":
+            return "/writer_vietbai"
+        case "3":
+            return "/edior_xemdanhsach"
+        case "4":
+            return "/"
+    }
+}
 var saltRounds = 10;
 router.get('/register', (req, res, next) => {
     res.render('account/register', {
@@ -78,11 +92,12 @@ router.post('/forgot-password', (req, res, next) => {
 
         transporter.sendMail(mailOptions, function(err, info) {
             if (err) {
-                res.end('Can\'t sent request to your email\n' + err);
-                console.log(err);
+                err.message = "Bị lỗi email rồi";
+                next(err);
+                //console.log(err);
             } else {
                 res.end('Please check your email: ' + req.user.email);
-                console.log(info);
+                //console.log(info);
             }
 
         });
@@ -192,16 +207,17 @@ router.post('/reset-password', (req, res, next) => {
         res.end('error occured');
     }
 })
-
-
 router.get('/login', (req, res, next) => {
     if (req.user) {
         console.log(req.originalUrl);
         res.redirect(req.originalUrl);
     } else {
         console.log(res.locals.url);
+        var m = req.session.message;
+        req.session.message = null;
         res.render('account/login', {
-            layout: 'account_layout'
+            layout: 'account_layout',
+            message: m
         });
     }
 })
@@ -213,15 +229,16 @@ router.post('/login', (req, res, next) => {
         if (err)
             return next(err);
         if (!user) {
-            return res.redirect('/account/register')
+            req.session.message = "Đăng Nhâp Không Thành Công"
+            return res.redirect('/account/login')
         }
         req.logIn(user, err => {
             if (err)
                 return next(err);
-            if (req.session.sessionFlash) {
+            if (req.session.sessionFlash.urlBack) {
                 return res.redirect(req.session.sessionFlash.urlBack);
             } else {
-                return res.redirect('/');
+                return res.redirect(check(user.loaiTaiKhoan));
             }
         });
     })(req, res, next);
@@ -286,7 +303,11 @@ router.get('/profile', auth, (req, res, next) => {
     //var dob =  moment(req.user.ngaySinh, 'YYYY-MM-DD').format('DD/MM/YYYY'); 
     userModel.findCategory(req.user.idChuyenMuc).then(rows => {
         var cat = rows[0];
+        var m = req.session.message;
+        req.session.message = null;
         res.render('account/profile', {
+            message: m,
+            layout: 'account_layout',
             user: user,
             isWriter: isWriter,
             isEditor: isEditor,
@@ -296,6 +317,7 @@ router.get('/profile', auth, (req, res, next) => {
     }).catch(err => {
 
         res.render('account/profile', {
+
 
             user: req.user,
             isWriter: isWriter,
@@ -324,18 +346,15 @@ router.post('/profile', auth, (req, res, next) => {
         case "2":
             entity.butDanh = req.body.author;
             break;
-
-
     }
     userModel.update(entity).then(n => {
+        req.session.message = "Cập Nhật Thành Công";
         res.redirect(req.baseUrl + req.url);
     }).catch(err => {
         console.log(err);
         res.end('error occdured');
     })
 })
-
-
 router.get('/logout', auth, (req, res, next) => {
     req.logOut();
     res.redirect('/account/login');

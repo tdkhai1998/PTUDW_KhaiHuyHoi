@@ -8,9 +8,7 @@ var acc = require('../../models/account/account.model');
 router.get('/:id', function(req, res, next) {
     var idBaiViet = req.params.id;
     var check;
-
     if (req.isAuthenticated()) {
-
         if (new Date(req.user.HSD) >= Date.now()) {
             check = 1; //đăng nhập và còn hạn
         } else {
@@ -30,6 +28,7 @@ router.get('/:id', function(req, res, next) {
                             console.log(cungchuyenmuc);
                             res.render('TrangChu/chitietbaiviet', {
                                 layout: 'main',
+                                title: baiviet.tieuDe,
                                 chuyenmuc,
                                 daDangNhap: req.isAuthenticated(),
                                 user: req.user,
@@ -47,6 +46,9 @@ router.get('/:id', function(req, res, next) {
                         res.redirect('/');
                     } else { // chưa đăng nhập
                         req.session.message = " Vui lòng đăng nhập để đọc bài viết này!";
+                        req.session.sessionFlash = {
+                            urlBack: req.baseUrl + req.url
+                        }
                         res.redirect('/account/login');
                     }
                 }
