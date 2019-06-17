@@ -158,11 +158,10 @@ hr {
 
 #colorlib-aside {
     width: 15%;
-    padding: 2em;
 }
 
 #colorlib-main {
-    width: 85%;
+    width: 100%;
 }
 
 .padding-custom {

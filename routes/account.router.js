@@ -143,13 +143,12 @@ router.post('/register', (req, res, next) => {
         userModel.add(entity).then(n => {
             res.redirect('/admin/categories');
         }).catch(err => {
-            console.log(err);
-            res.end('error occured');
+            next(e);
         })
     });
 })
 router.get('/reset-password', (req, res, next) => {
-    res.render('account/reset_password');
+    res.render('account/reset_password', { layout: 'account_layout' });
 })
 router.post('/reset-password', (req, res, next) => {
     var old = req.body.old_password;
@@ -161,8 +160,7 @@ router.post('/reset-password', (req, res, next) => {
         userModel.update(entity).then(n => {
             res.redirect('/admin/categories');
         }).catch(err => {
-            console.log(err);
-            res.end('error occured');
+            next(e);
         })
     } else {
         res.end('error occured');
