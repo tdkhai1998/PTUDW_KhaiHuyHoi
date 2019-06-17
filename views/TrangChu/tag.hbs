@@ -1,18 +1,12 @@
 {{#section 'css'}}
-{{#if message}}
-<script>
-// self executing function here
-(function() {
-  alert('{{message}}');
-
-})();
-</script>
-{{/if}}
+    {{#if message}}
+        <script>
+            (function() {alert('{{message}}');})();
+        </script>
+    {{/if}}
 {{/section}}
 <div id="colorlib-page">
-	<!--Menu-->
 	{{> menu r=chuyenmuc daDangNhap=daDangNhap user=user}}
-	<!--Login show-->
 	<div id="colorlib-main">
 		<div class="colorlib-blog">
 			<div class="container-wrap">
@@ -48,35 +42,34 @@
                         <div class="sidebar">
                             <div class="side animate-box">
                                 <form action="" method="POST">
-                                <div class="funkyradio">
-                                            <div class="funkyradio-success">
-                                                <input type="checkbox" name="tieuDe" id="checkbox1" checked />
-                                                <label for="checkbox1">Theo Tiêu Đề</label>
-                                            </div>
-                                            <div class="funkyradio-success">
-                                                <input type="checkbox" name="moTa" id="checkbox2" />
-                                                <label for="checkbox2">Theo Mô Tả</label>
-                                            </div>
-                                            <div class="funkyradio-success">
-                                                <input type="checkbox" name="noiDung" id="checkbox3" />
-                                                <label for="checkbox3">Theo Nội Dung</label>
-                                            </div>
-                                            <div class="funkyradio-success">
-                                                <input  type="checkbox" name="fulltext" id="checkbox" />
-                                                <label for="checkbox">Full text search</label>
-                                            </div>
-                                            
+                                    <div class="funkyradio">
+                                        <div class="funkyradio-success">
+                                            <input type="checkbox" name="tieuDe" id="checkbox1" checked />
+                                            <label for="checkbox1">Theo Tiêu Đề</label>
+                                        </div>
+                                        <div class="funkyradio-success">
+                                            <input type="checkbox" name="moTa" id="checkbox2" />
+                                            <label for="checkbox2">Theo Mô Tả</label>
+                                        </div>
+                                        <div class="funkyradio-success">
+                                            <input type="checkbox" name="noiDung" id="checkbox3" />
+                                            <label for="checkbox3">Theo Nội Dung</label>
+                                        </div>
+                                        <div class="funkyradio-success">
+                                            <input  type="checkbox" name="fulltext" id="checkbox" />
+                                            <label for="checkbox">Full text search</label>
+                                        </div>
                                     </div>
-                                <div class="form-group">
-                                    <input type="text" class="form-control" name="key" id="search" placeholder="Enter to search...">
-                                    <button type="submit" class="btn submit btn-primary"><i class="icon-search3"></i></button>
-                                </div>
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" name="key" id="search" placeholder="Enter to search...">
+                                        <button type="submit" class="btn submit btn-primary"><i class="icon-search3"></i></button>
+                                    </div>
                                 </form>
                             </div>
                             <div class="side animate-box">
                                 <div id="tags">
                                     <b>Danh sách TAGs</b>
-                                        <div class="panel panel-primary">
+                                    <div class="panel panel-primary">
                                         <div class="panel-body">
                                             <div id = "tag">
                                                 {{#each tags}}
@@ -86,15 +79,14 @@
                                                 {{/each}}
                                             </div>
                                         </div>
-                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                             <div class="side animate-box">
+                            <div class="side animate-box">
                                 <h2 class="sidebar-heading">Recent Blog</h2>
                                 {{#each baivietmoinhat}}
-                               <div class="f-blog">
-									<a href="/chitietbaiviet/{{idBaiViet}}" class="blog-img" style="background-image: url({{anhDaiDien}});">
-									</a>
+                                <div class="f-blog">
+									<a href="/chitietbaiviet/{{idBaiViet}}" class="blog-img" style="background-image: url({{anhDaiDien}});"></a>
 									<div class="desc">
 										<h3><a href="/chitietbaiviet/{{idBaiViet}}">{{tieuDe}}</a></h3>
 										<p class="admin"><span>{{formatDate ngayDang}}</span></p>
@@ -102,7 +94,6 @@
 								</div>
                                 {{/each}}
                             </div>
-                           
                         </div>
                     </div>
                     <div class="col-md-12"  >
@@ -123,7 +114,6 @@
 		</div>
 	</div>
 </div>
-
 <script>
       document.getElementById('checkbox1').onclick = function() {
         if (this.checked) {
@@ -147,5 +137,4 @@
             document.getElementById('checkbox3').checked=false;
         }
     }
-
 </script>

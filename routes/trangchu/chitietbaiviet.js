@@ -1,8 +1,8 @@
 var express = require('express');
 var router = express.Router();
-var baiviet_model = require('../../models/baiviet.model')
-var chuyenmuc_model = require('../../models/chuyenmuc.model');
-var comments = require('../../models/comment_model');
+var baiviet_model = require('../../models/trangchu/baiviet.model')
+var chuyenmuc_model = require('../../models/trangchu/chuyenmuc.model');
+var comments = require('../../models/trangchu/comment_model');
 var passport = require('passport');
 var acc = require('../../models/account/account.model');
 router.get('/:id', function(req, res, next) {
@@ -25,17 +25,18 @@ router.get('/:id', function(req, res, next) {
                 if (!baiviet.premium || (check == 1)) { // bài viết thường hoặc đã đăng nhập tài khoản còn hạn
                     Promise.all([chuyenmuc_model.mapping(), comments.getAll(idBaiViet), baiviet_model.baiVietCungChuyenMuc(baiviet.idChuyenMuc, 5, 0)])
                         .then(([chuyenmuc, comment, cungchuyenmuc]) => {
-                            console.log(cungchuyenmuc);
-                            res.render('TrangChu/chitietbaiviet', {
-                                layout: 'main',
-                                title: baiviet.tieuDe,
-                                chuyenmuc,
-                                daDangNhap: req.isAuthenticated(),
-                                user: req.user,
-                                baiviet,
-                                comments: comment[0],
-                                socmt: comment[1],
-                                cungchuyenmuc
+                            baiviet_model.tangLuotXem(baiviet.idBaiViet).then(val => {
+                                res.render('TrangChu/chitietbaiviet', {
+                                    layout: 'main',
+                                    title: baiviet.tieuDe,
+                                    chuyenmuc,
+                                    daDangNhap: req.isAuthenticated(),
+                                    user: req.user,
+                                    baiviet,
+                                    comments: comment[0],
+                                    socmt: comment[1],
+                                    cungchuyenmuc
+                                })
                             })
                         })
                         .catch(e => next(e));
@@ -56,7 +57,6 @@ router.get('/:id', function(req, res, next) {
         })
         .catch(e => next(e));
 });
-
 router.post('/:id', function(req, res, next) {
     if (req.isAuthenticated()) {
         var val = req.body;

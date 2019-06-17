@@ -1,20 +1,15 @@
 {{#section 'css'}}
-{{#if message}}
-<script>
-// self executing function here
-(function() {
-  alert('{{message}}');
-
-})();
-</script>
-{{/if}}
+	{{#if message}}
+		<script>
+			(function() {alert('{{message}}');})();
+		</script>
+	{{/if}}
 {{/section}}
 <style>
 	.head-article a{
 		text-shadow: 4px 0px 22px rgba(12, 12, 12, 1);
 		font-weight: bold;
 		font-size: 25px;
-		
 		color: black;
 	}
 	.head-article{
@@ -29,17 +24,14 @@
 	.ln a{
 		text-shadow: none;
 		font-size: 18px;
-		
 	}
 	.ln{
 		text-align: left;
-		
 	}
 	b.cm{
 		color:red;
 	}
 </style>
-
 <div id="colorlib-page">
 	<!--Menu-->
 	{{> menu r=chuyenmuc daDangNhap=daDangNhap user=user}}
@@ -77,14 +69,10 @@
 												{{#if  premium}}
 													<b>PREMIUM</b>
 												{{/if}}
-												
 											</div>
 										</div>
 									</div>	
-					
-								
 								</div>
-								
 							</div>
 							{{/each}}
 						</div>
@@ -94,103 +82,96 @@
 <!--batdau--> 		<div class="col-md-12 padding-custom" id="bai-viet-moi-nhat" >
 						<hr><h2 class="uppercase">BÀI VIẾT MỚI NHẤT</h2><hr>
 						<div class="row">
-						{{#each baivietmoinhat as |bvmn|}}
+							{{#each baivietmoinhat as |bvmn|}}
 							<div class="col-md-4 b"  style="height: 500px; overflow: hidden">
 								<div class="blog-entry animate-box" >
 									<div class="blog-img blog-img2" style="background-image: url({{bvmn.anhDaiDien}});">
 										<div class="desc text-center">
-											
 											<p>Ngày đăng: {{formatDate bvmn.ngayDang}}</p>
 											<p>Người đăng:  {{butDanh}}</p>
-											
 										</div>
 									</div>
 									<div class="desc">
-											<p class="tag" style="color: red"><span>{{bvmn.tenChuyenMuc}}</span></p>
-											<h2 class="head-article ln"><a href="./chitietbaiviet/{{bvmn.idBaiViet}}">{{bvmn.tieuDe}}</a></h2>
-											 {{#if  premium}}
-													<div class="alert alert-premium alert-dismissible tag">
-                                            PREMIUM
-                                        </div>
-												{{/if}}{{#each tags}}
-                                        <div class="alert alert-success alert-dismissible tag">
-                                            <a href="/tag/{{idTag}}">{{tenTag}}</a>
-                                        </div>
-                                    {{/each}}<p>{{moTa}}</p>
+										<p class="tag" style="color: red"><span>{{bvmn.tenChuyenMuc}}</span></p>
+										<h2 class="head-article ln"><a href="./chitietbaiviet/{{bvmn.idBaiViet}}">{{bvmn.tieuDe}}</a></h2>
+										{{#if  premium}}
+										<div class="alert alert-premium alert-dismissible tag">
+											PREMIUM
 										</div>
+										{{/if}}
+										{{#each tags}}
+										<div class="alert alert-success alert-dismissible tag">
+											<a href="/tag/{{idTag}}">{{tenTag}}</a>
+										</div>
+										{{/each}}
+										<p>{{moTa}}</p>
+									</div>
 								</div>
 							</div>
-						{{/each}}
+							{{/each}}
 						</div>
-<!--ketthuc-->		</div>
+	<!--ketthuc-->	</div>
 <!--Batdau-->		<div class="col-md-12 padding-custom"  id="bai-viet-xem-nhieu-nhat">
 						<hr><h2 class="uppercase">BÀI VIẾT XEM NHIỀU NHẤT</h2><hr>
 						<div class="row">
 							{{#each baivietxemnhieunhat }}
 							<div class="row">
-							<div class="col-md-4" >
-								<div class="blog-entry animate-box">
-									<div class="blog-img blog-img2" style="background-image: url({{anhDaiDien}});">
-										<div class="desc text-center">
-											
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="col-md-8">
-								<div class="blog-entry animate-box">
-									<b class="cm"><a href="/chuyenmuc/{{idChuyenMuc}}"></a>{{tenChuyenMuc}}</b>
-										<h2 class="head-article ln"><a href="./chitietbaiviet/{{idBaiViet}}">{{tieuDe}}</a></h2>
-										<p>Ngày đăng:  {{formatDate ngayDang}}</p>
-										<p>Người đăng:  {{butDanh}}</p>
-									{{#if  premium}}
-													<div class="alert alert-premium alert-dismissible tag">
-                                            PREMIUM
-                                        </div>
-												{{/if}}
-												 {{#each tags}}
-											<div class="alert alert-success alert-dismissible tag">
-												<a href="/tag/{{idTag}}">{{tenTag}}</a>
-											</div>
-											{{/each}}
-									<p>{{moTa}}</p>
-								</div>
-							</div>
-							</div>
-							{{/each}}
-						</div>
-<!--ketthuc      --></div>
-<!--topchuyenmuc-->	<div class="col-md-12 padding-custom" id="top-chuyen-muc">
-						<hr><h2 class="uppercase">TOP CHUYÊN MỤC</h2><hr>
-				 		
-							{{#each top10chuyenmuc}}
-							<div class="row">
-								<div class="col-md-4">
+								<div class="col-md-4" >
 									<div class="blog-entry animate-box">
 										<div class="blog-img blog-img2" style="background-image: url({{anhDaiDien}});">
-											
 										</div>
 									</div>
 								</div>
 								<div class="col-md-8">
 									<div class="blog-entry animate-box">
 										<b class="cm"><a href="/chuyenmuc/{{idChuyenMuc}}"></a>{{tenChuyenMuc}}</b>
-											<h2 class="head-article ln"><a href="./chitietbaiviet/{{idBaiViet}}">{{tieuDe}}</a></h2>
-											<p>Ngày đăng:  {{formatDate ngayDang}}</p>
-											<p>Người đăng:  {{butDanh}}</p>
-											{{#if  premium}}
-													<div class="alert alert-premium alert-dismissible tag">
-                                            PREMIUM
-                                        </div>
-												{{/if}}
-										
-										{{#each tags}}
-											<div class="alert alert-success alert-dismissible tag">
-												<a href="/tag/{{idTag}}">{{tenTag}}</a>
+										<h2 class="head-article ln"><a href="./chitietbaiviet/{{idBaiViet}}">{{tieuDe}}</a></h2>
+										<p>Ngày đăng:  {{formatDate ngayDang}}</p>
+										<p>Người đăng:  {{butDanh}}</p>
+										{{#if  premium}}
+											<div class="alert alert-premium alert-dismissible tag">
+												PREMIUM
 											</div>
-											{{/each}}
-											<p>{{moTa}}</p>
-										
+										{{/if}}
+										{{#each tags}}
+										<div class="alert alert-success alert-dismissible tag">
+											<a href="/tag/{{idTag}}">{{tenTag}}</a>
+										</div>
+										{{/each}}
+										<p>{{moTa}}</p>
+									</div>
+								</div>
+							</div>
+							{{/each}}
+						</div>
+<!--ketthuc      --></div>
+<!--topchuyenmuc-->	<div class="col-md-12 padding-custom" id="top-chuyen-muc">
+						<hr><h2 class="uppercase">TOP CHUYÊN MỤC</h2><hr>
+							{{#each top10chuyenmuc}}
+							<div class="row">
+								<div class="col-md-4">
+									<div class="blog-entry animate-box">
+										<div class="blog-img blog-img2" style="background-image: url({{anhDaiDien}});">
+										</div>
+									</div>
+								</div>
+								<div class="col-md-8">
+									<div class="blog-entry animate-box">
+										<b class="cm"><a href="/chuyenmuc/{{idChuyenMuc}}"></a>{{tenChuyenMuc}}</b>
+										<h2 class="head-article ln"><a href="./chitietbaiviet/{{idBaiViet}}">{{tieuDe}}</a></h2>
+										<p>Ngày đăng:  {{formatDate ngayDang}}</p>
+										<p>Người đăng:  {{butDanh}}</p>
+										{{#if  premium}}
+										<div class="alert alert-premium alert-dismissible tag">
+											PREMIUM
+										</div>
+										{{/if}}
+										{{#each tags}}
+										<div class="alert alert-success alert-dismissible tag">
+											<a href="/tag/{{idTag}}">{{tenTag}}</a>
+										</div>
+										{{/each}}
+										<p>{{moTa}}</p>
 									</div>
 								</div>
 							</div>

@@ -1,12 +1,8 @@
-var db = require('../utils/db');
-var chuyenmuc_m = require('../models/chuyenmuc.model');
-var nguoidung_m = require('../models/admin/user.model');
-var tag_model = require('../models/tag.model');
-
+var db = require('../../utils/db');
+var chuyenmuc_m = require('../../models/trangchu/chuyenmuc.model');
 
 var premiumSearchString = `order by premium DESC , ngaydang DESC `;
 var orderByDate = 'order by ngaydang DESC ';
-
 var baiVietNoiBat_QS = `select bv.tieuDe, bv.idBaiViet, bv.anhDaiDien, bv.moTa, bv.ngayDang, cm.*, nd.butDanh from baiviet as bv JOIN chuyenmuc as cm ON bv.idChuyenMuc=cm.idChuyenMuc join nguoidung nd on nd.username=bv.nguoiDang WHERE trangThai='daxuatban' and ngaydang BETWEEN (SELECT Date_sub(CURRENT_DATE(), INTERVAL WEEKDAY(CURRENT_DATE()) DAY)) AND(SELECT Date_add(CURRENT_DATE(), INTERVAL (7-WEEKDAY(CURRENT_DATE())) DAY)) ORDER BY luotxem Asc limit 10`;
 var baiVietXemNhieuNhat_QS = (limit, offset) => `select bv.tieuDe, bv.idBaiViet, bv.anhDaiDien, bv.moTa, bv.ngayDang, cm.*, nd.butDanh from baiviet as bv JOIN chuyenmuc as cm ON bv.idChuyenMuc=cm.idChuyenMuc join nguoidung nd on nd.username=bv.nguoiDang where trangThai='daxuatban' order by luotxem DESC ` + limitString(limit, offset);
 var top10ChuyenMuc_QS = `select bv.tieuDe, bv.idBaiViet, bv.anhDaiDien, bv.moTa, bv.ngayDang, cm.*, nd.butDanh from baiviet as bv JOIN chuyenmuc as cm ON bv.idChuyenMuc=cm.idChuyenMuc join nguoidung nd on nd.username=bv.nguoiDang where bv.trangThai='daxuatban' order by ngaydang asc limit 10`; //
@@ -17,7 +13,7 @@ var full_text_search_QS = (key, limit, offset) => `SELECT * FROM baiviet as bv J
 var count_full_text_search_QS = key => `SELECT count(*) FROM baiviet as bv JOIN chuyenmuc as cm ON bv.idChuyenMuc=cm.idChuyenMuc WHERE bv.trangThai='daxuatban' and round(MATCH(tieuDe,moTa, noiDung) AGAINST (N'${key}' IN BOOLEAN MODE),5)>0 `;
 var tongBaiVietChuaTag_QS = (idTag) => `select count(*) as tong from thuoctag  join baiviet on thuoctag.idBaiViet=baiviet.idBaiViet join chuyenmuc on baiviet.idChuyenMuc=chuyenmuc.idChuyenMuc where baiviet.trangThai='daxuatban' and thuoctag.idTag=${idTag}`;
 var baiVietChuaTag_QS = (idTag, limit, offset) => `select * from thuoctag  join baiviet on thuoctag.idBaiViet=baiviet.idBaiViet join chuyenmuc on baiviet.idChuyenMuc=chuyenmuc.idChuyenMuc  where baiviet.trangThai='daxuatban' and thuoctag.idTag=${idTag} order by premium DESC , ngaydang DESC ` + limitString(limit, offset);
-var single = id => db.load(`SELECT bv.*, cm.tenChuyenMuc FROM baiviet as bv JOIN chuyenmuc as cm ON bv.idChuyenMuc=cm.idChuyenMuc  join nguoidung on nguoidung.username=bv.nguoiDang WHERE bv.trangThai='daxuatban' and idBaiViet= ${id}`);
+var single = id => db.load(`SELECT bv.*, cm.tenChuyenMuc, nguoidung.butDanh FROM baiviet as bv JOIN chuyenmuc as cm ON bv.idChuyenMuc=cm.idChuyenMuc  join nguoidung on nguoidung.username=bv.nguoiDang WHERE bv.trangThai='daxuatban' and idBaiViet= ${id}`);
 var singleWithTags = id => Promise.all([single(id), db.load(`select * from thuoctag tg join tag t on tg.idTag=t.idTag and tg.idBaiViet=${id}`)]).then(([baiviet, tags]) => {
     if (baiviet.length <= 0) return null;
     else {
@@ -56,21 +52,22 @@ var getTagsForBaiViets = baiViet => Promise.all([baiViet, db.load('select * from
 }).catch(e => console.log(e.sqlMessage));
 var baiVietXemNhieuNhatChuyenMuc = (id) => {
     return db.load(`SELECT * FROM baiviet bv join chuyenmuc cm  on bv.idChuyenMuc=cm.idChuyenMuc join nguoidung nd on bv.nguoiDang=nd.username 
-    WHERE trangThai='daxuatban' and luotxem=(
+    WHERE trangThai='daxuatban' and bv.idChuyenMuc = ${id} and luotxem=(
         SELECT MAX(luotxem) FROM baiviet WHERE idChuyenMuc = ${id} )  ORDER BY ngayDang DESC LIMIT 1 `);
 }
 var top10chuyenmuc = () => {
     return chuyenmuc_m.top10ChuyenMuc().then(val => {
         var baiviet = [];
         val.forEach(e => {
+
             baiviet.push(baiVietXemNhieuNhatChuyenMuc(e.idChuyenMuc));
         })
         return Promise.all(baiviet).then(r => {
             bv = [];
             r.forEach(i => {
                 bv.push(i[0]);
+                console.log(i[0].tenChuyenMuc)
             })
-            console.log(bv.length);
             return bv;
         })
     })
@@ -93,7 +90,7 @@ var multiSimpleSearchString = (tenCots, key) => {
     sql = sql.substring(0, sql.length - 6);
     return sql;
 }
-
+var tangLuotXem = (id) => db.load(`UPDATE baiviet SET luotxem=luotxem+1 WHERE idBaiViet=${id }`);
 module.exports = {
     singleWithTags,
     getTagsForBaiViets,
@@ -111,5 +108,6 @@ module.exports = {
     baiVietMoiNhat: (limit, offset) => db.load(baiVietMoiNhat_QS(limit, offset)),
     baiVietNoiBat: () => db.load(baiVietNoiBat_QS),
     top10chuyenmuc,
+    tangLuotXem,
     baivietxemnhieunhat: () => db.load(baiVietXemNhieuNhat_QS(10, 0)),
 };

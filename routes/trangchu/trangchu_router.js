@@ -1,9 +1,9 @@
 var express = require('express');
 var router = express.Router();
 var url = require('url');
-var baiviet_model = require('../../models/baiviet.model');
-var chuyenmuc_model = require('../../models/chuyenmuc.model');
-var tag_model = require('../../models/tag.model')
+var baiviet_model = require('../../models/trangchu/baiviet.model');
+var chuyenmuc_model = require('../../models/trangchu/chuyenmuc.model');
+var tag_model = require('../../models/trangchu/tag.model')
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -11,7 +11,6 @@ router.get('/', function(req, res, next) {
         .then(([chuyenmuc, baivietnoibat, baivietxemnhieunhat, baivietmoinhat, top10chuyenmuc]) => {
             var m = req.session.message;
             req.session.message = null;
-            console.log(baivietxemnhieunhat);
             res.render('TrangChu/trangchu', {
                 title: "Trang chủ",
                 message: m,
@@ -23,7 +22,6 @@ router.get('/', function(req, res, next) {
                 baivietnoibat,
                 baivietxemnhieunhat,
                 top10chuyenmuc,
-
             })
         }).catch((err) => {
             next(err);
@@ -78,9 +76,6 @@ router.get('/tag/:id', function(req, res, next) {
                 tag
             })
         }
-
-
-
     })
 });
 router.post('/tag/:id', function(req, res, next) {

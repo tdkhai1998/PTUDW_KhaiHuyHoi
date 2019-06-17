@@ -22,29 +22,31 @@
 </script>
 
 <div id="colorlib-page">
-	<!--Menu-->
 	{{> menu r=chuyenmuc daDangNhap=daDangNhap user=user}}
-	<!--Login show-->
 	<div id="colorlib-main">
 		<div class="colorlib-blog">
 			<div class="container-wrap">
 				<div class="row">
 					<div class="col-md-9">
-						<div class="content-wrap">
-							<article class="animate-box">
-								<div class="blog-img" style="background-image: url('{{baiviet.anhDaiDien}}');"></div>
+						<div class="content-wrap" style="padding: 15px;background-color: white">
+							<div class="animate-box">
+								<article>
+									<div class="blog-img" style="background-image: url('{{baiviet.anhDaiDien}}');"></div>
+								</article>
 								<div class="desc" style=" padding:30px;">
-									<h2><a href="/chitietbaiviet/{{baiviet.idBaiViet}}">{{baiviet.tieuDe}}</a></h2>
-									<span><a  style="color: red" href="/chuyenmuc/{{baiviet.idChuyenMuc}}">
-												{{baiviet.tenChuyenMuc}}</a>
+									<h2><a href="/chitietbaiviet/{{baiviet.idBaiViet}}"><b>{{baiviet.tieuDe}}</b></a></h2>
+									<span>
+										<a style="color: red" href="/chuyenmuc/{{baiviet.idChuyenMuc}}">
+											{{baiviet.tenChuyenMuc}}
+										</a>
 									</span>
-									<span>{{formatDate baiviet.ngayDang}}</span>
+									<span>{{formatDate baiviet.ngayDang}}</span><br>
 									<span>{{baiviet.butDanh}} </span><br>
 									<hr>
 									{{{baiviet.noiDung}}}
 								</div>
-							</article>
-								<hr>
+							</div>
+							<hr>
 							<div id="tags" class="animate-box" style="margin-left:20px; margin-bottom: 20px;">
 									<b>Tags</b>
 									{{#each baiviet.tags}}
@@ -53,7 +55,6 @@
 										</div>
 									{{/each}}
 							</div>
-
 							<div class="row row-bottom-padded-md">
 								<div class="col-md-12 animate-box">
 									<h4 style="margin-left:20px " >{{socmt}} Comments</h4>
@@ -69,7 +70,6 @@
 											 <p class="star">
 												 <span class="text-left"><a onclick="myFunction({{id}})" class="reply"><i class="icon-reply2"></i></a></span>
 											 </p>
-											
 											 {{#each child}}
 												<div class="review">
 													<div class="user-img" style="background-image: url(/images/acc.jpg)"></div>
@@ -87,9 +87,6 @@
 									{{/each}}
 								</div>
 							</div>
-
-
-
 							<div class="row" id="comment">
 								<div class="col-md-12 animate-box">
 									<h2 class="heading-2">Say something</h2>
@@ -97,7 +94,6 @@
 										<input type="hidden" name="idcmt" value="">
 										<div class="row form-group">
 											<div class="col-md-12">
-												<!-- <label for="message">Message</label> -->
 												<textarea style="background-color:white;" name="noiDung" id="noiDung" cols="30" rows="5" class="form-control" placeholder="Say something about us"></textarea>
 											</div>
 										</div>
@@ -109,7 +105,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="col-md-3 sticky-parent" style="background-color: white">
+					<div class="col-md-3 sticky-parent" style="background-color: white;padding-top:15px;">
 						<div class="sidebar" id="sticky_item">
 							<div class="side animate-box">
 								<div class="form-group">
@@ -118,7 +114,6 @@
                                     <button type="submit" class="btn submit btn-primary"><i class="icon-search3"></i></button>
                                 </div>
 							</div>
-					
 							<div class="side animate-box">
 								<h2 class="sidebar-heading">Recent Blog</h2>
 								{{#each cungchuyenmuc}}
@@ -131,14 +126,6 @@
 									</div>
 								</div>
 								{{/each}}
-							
-							</div>
-	
-							<div class="side animate-box">
-								<div class="form-group">
-									<input type="text" class="form-control form-email text-center" id="email" placeholder="Enter your email">
-									<button type="submit" class="btn btn-primary btn-subscribe">Subscribe</button>
-								</div>
 							</div>
 						</div>
 					</div>
