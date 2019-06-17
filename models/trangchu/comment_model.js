@@ -1,4 +1,4 @@
-var db = require('../utils/db');
+var db = require('../../utils/db');
 var mm = require('moment');
 var getAll = id => db.load(`select nd.ten as tenNguoiCmt, cmt.* from comment as cmt join nguoidung as nd on cmt.nguoiBinhLuan=nd.username  where baiBinhLuan=${id}`)
     .then(val => {

@@ -1,63 +1,57 @@
 
-	<div id="colorlib-page">
-		<a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle"><i></i></a>
-		<aside id="colorlib-aside" role="complementary" class="js-fullheight">
-			<h1 id="colorlib-logo">PHÂN HỆ WRITER</h1>
-			<nav id="colorlib-main-menu" role="navigation">
-				<ul>
-					
-					<li><a href="writer_vietbai">Viết bài</a></li>
-					<li {{#if tab}}class="colorlib-active"{{/if}}><a href="writer_daduyet">Đã duyệt & chờ xuất bản</a></li>
-					<li {{#unless tab}}class="colorlib-active"{{/unless}}><a href="writer_daxuatBan">Đã xuất bản</a></li>
-					<li><a href="writer_bituchoi">Bị từ chối</a></li>
-					<li><a href="writer_chuaduocduyet">Chưa được duyệt</a></li>
-					<li ><a href="/account/logout">Đăng xuất</a></li>
-				</ul>
-			</nav>
-			<div class="colorlib-footer">
-				<p><small>
-						Copyright &copy;<script>document.write(new Date().getFullYear());</script> Create by KhaiHuyHoi</a>
-					</small>
-				</p>
-			</div>
-		</aside>
-
-		<div id="colorlib-main">
-			<div class="colorlib-blog">
-				<div class="container-wrap">
-					<div class="row">
-						<div class="col-md-9">
-							<div class="content-wrap">
-								{{#each this.row}}
-								<article class="blog-entry-travel animate-box">
-									<div class="blog-img" style="background-image: url({{anhDaiDien}});"></div>
-									<div class="desc">					
-										<h4><a class="tieude" href="writer_baiviet?id={{idBaiViet}}">{{tieuDe}}</a></h4>
-										<span class="cat"><a href="#">{{tenChuyenMuc}}</a></span>
-										<span>|</span>
-										<span class="date">{{ngayDang}}</span>		
-										<p>{{moTa}}</p>
-											<a href="writer_baiviet?id={{idBaiViet}}" class="btn btn-primary tuchoi">Xem chi tiết<i class="icon-arrow-right22"></i></a>
-											<button href="writer_chinhsua?id={{row.idBaiViet}}" class="btn btn-primary" disabled="">{{trangThai}} <i class="icon-arrow-right22"></i></button>
-										{{!-- <button type="button" class="btn btn-primary tuchoi" data-toggle="modal" data-target="#myModal">Từ chối</button> --}}
-									</div>
-								</article>
-								{{/each}}
-								
-							</div>
+<div id="colorlib-page">
+	<a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle"><i></i></a>
+	<aside id="colorlib-aside" role="complementary" class="js-fullheight">
+		<h1 id="colorlib-logo">PHÂN HỆ WRITER</h1>
+		<nav id="colorlib-main-menu" role="navigation">
+			<ul>
+				<li><a href="writer_vietbai">Viết bài</a></li>
+				<li {{#if tab}}class="colorlib-active"{{/if}}><a href="writer_daduyet">Đã duyệt & chờ xuất bản</a></li>
+				<li {{#unless tab}}class="colorlib-active"{{/unless}}><a href="writer_daxuatBan">Đã xuất bản</a></li>
+				<li><a href="writer_bituchoi">Bị từ chối</a></li>
+				<li><a href="writer_chuaduocduyet">Chưa được duyệt</a></li>
+				<li ><a href="/account/logout">Đăng xuất</a></li>
+			</ul>
+		</nav>
+		<div class="colorlib-footer">
+			<p>
+				<small>
+					Copyright &copy;<script>document.write(new Date().getFullYear());</script> Create by KhaiHuyHoi</a>
+				</small>
+			</p>
+		</div>
+	</aside>
+	<div id="colorlib-main">
+		<div class="colorlib-blog">
+			<div class="container-wrap">
+				<div class="row">
+					<div class="col-md-9">
+						<div class="content-wrap">
+							{{#each this.row}}
+							<article class="blog-entry-travel animate-box">
+								<div class="blog-img" style="background-image: url({{anhDaiDien}});"></div>
+								<div class="desc">					
+									<h4><a class="tieude" href="writer_baiviet?id={{idBaiViet}}">{{tieuDe}}</a></h4>
+									<span class="cat"><a href="#">{{tenChuyenMuc}}</a></span>
+									<span>|</span>
+									<span class="date">{{ngayDang}}</span>		
+									<p>{{moTa}}</p>
+									<a href="writer_baiviet?id={{idBaiViet}}" class="btn btn-primary tuchoi">Xem chi tiết<i class="icon-arrow-right22"></i></a>
+									<button href="writer_chinhsua?id={{row.idBaiViet}}" class="btn btn-primary" disabled="">{{trangThai}} <i class="icon-arrow-right22"></i></button>
+								</div>
+							</article>
+							{{/each}}
 						</div>
-						<div class="col-md-3">
-							<div class="sidebar">
-								<div class="side animate-box">
-									<div class="form-group">
-										<input type="text" class="form-control" id="search" placeholder="Nhập để tìm kiếm">
-										<button type="submit" class="btn submit btn-primary"><i class="icon-search3"></i></button>
-									</div>
+					</div>
+					<div class="col-md-3">
+						<div class="sidebar">
+							<div class="side animate-box">
+								<div class="form-group">
+									<input type="text" class="form-control" id="search" placeholder="Nhập để tìm kiếm">
+									<button type="submit" class="btn submit btn-primary"><i class="icon-search3"></i></button>
 								</div>
-								
-								<div class="side animate-box">
-									
-								</div>
+							</div>
+							<div class="side animate-box">
 							</div>
 						</div>
 					</div>
@@ -65,6 +59,7 @@
 			</div>
 		</div>
 	</div>
+</div>
 
 
 

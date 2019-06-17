@@ -1,4 +1,4 @@
-var db = require('../utils/db');
+var db = require('../../utils/db');
 module.exports = {
     top10ChuyenMuc: () => db.load(`SELECT idChuyenMuc, sum(luotxem) luotxem FROM baiviet WHERE baiviet.trangThai='daxuatban' group BY idChuyenMuc ORDER by luotxem desc LIMIT 10`),
     mapping: () => {
