@@ -211,10 +211,9 @@ router.post('/reset-password', (req, res, next) => {
 })
 router.get('/login', (req, res, next) => {
     if (req.user) {
-        console.log(req.originalUrl);
-        res.redirect(req.originalUrl);
+        res.redirect(check(req.user.loaiTaiKhoan));
     } else {
-        console.log(res.locals.url);
+        //console.log(res.locals.url);
         var m = req.session.message;
         req.session.message = null;
         res.render('account/login', {
@@ -227,139 +226,43 @@ router.get('/login', (req, res, next) => {
 
 router.post('/login', (req, res, next) => {
 
+
+
     passport.authenticate('local', (err, user, info) => {
+
         if (err)
+
             return next(err);
+
         if (!user) {
+
             req.session.message = "Đăng Nhâp Không Thành Công"
+
             return res.redirect('/account/login')
+
         }
+
         req.logIn(user, err => {
+
             if (err)
+
                 return next(err);
+
             if (req.session.sessionFlash) {
+
                 return res.redirect(req.session.sessionFlash.urlBack);
+
             } else {
+
                 return res.redirect(check(user.loaiTaiKhoan));
+
             }
+
         });
+
     })(req, res, next);
 
+
+
 })
-
-
-router.get('/auth/facebook', passport.authenticate('facebook'));
-router.get('/auth/facebook/callback',
-    passport.authenticate('facebook', {
-        successRedirect: '/',
-        failureRedirect: '/account/login'
-    }));
-
-
-
-router.get('/auth/google',
-    passport.authenticate('google', { scope: ['https://www.googleapis.com/auth/plus.login'] }));
-router.get('/auth/google/callback',
-    passport.authenticate('google', { failureRedirect: '/account/login' }),
-    function(req, res) {
-        res.redirect('/');
-    });
-
-
-router.get('/profile', auth, (req, res, next) => {
-
-
-    var isWriter = false;
-    var isEditor = false;
-    var isUser = false;
-    var user = new Object;
-    Object.assign(user, req.user);
-    switch (user.loaiTaiKhoan) {
-        case "1":
-            isUser = true;
-            user.loaiTaiKhoan = "User";
-            break;
-        case "2":
-            isWriter = true;
-            user.loaiTaiKhoan = "Writer";
-            break;
-        case "3":
-            isEditor = true;
-            user.loaiTaiKhoan = "Editor";
-            break;
-        case "4":
-            user.loaiTaiKhoan = "Administrator";
-            break;
-    }
-    try {
-        user.ngaySinh = moment(req.user.ngaySinh).format('DD/MM/YYYY');
-    } catch (err) {
-        user.ngaySinh = null;
-    }
-    try {
-        user.HSD = moment(req.user.HSD).format('DD/MM/YYYY');
-    } catch (err) {
-        user.HSD = null;
-    }
-
-    //var dob =  moment(req.user.ngaySinh, 'YYYY-MM-DD').format('DD/MM/YYYY'); 
-    userModel.findCategory(req.user.idChuyenMuc).then(rows => {
-        var cat = rows[0];
-        var m = req.session.message;
-        req.session.message = null;
-        res.render('account/profile', {
-            message: m,
-            layout: 'account_layout',
-            user: user,
-            isWriter: isWriter,
-            isEditor: isEditor,
-            isUser: isUser,
-            cat: cat
-        });
-    }).catch(err => {
-
-        res.render('account/profile', {
-
-
-            user: req.user,
-            isWriter: isWriter,
-            isEditor: isEditor,
-            isUser: isUser,
-            dob: dob,
-            HSD: moment(req.user.HSD).format('DD/MM/YYYY'),
-        })
-
-
-
-    })
-})
-
-
-router.post('/profile', auth, (req, res, next) => {
-    var entity = req.user;
-    try {
-        entity.ngaySinh = moment(req.body.dob, 'DD/MM/YYYY').format('YYYY-MM-DD');
-    } catch (err) {
-        entity.ngaySinh = null;
-    }
-    entity.ten = req.body.name;
-    entity.HSD = moment(req.user.HSD, 'YYYY-MM-DD').format('YYYY-MM-DD');
-    switch (req.user.loaiTaiKhoan) {
-        case "2":
-            entity.butDanh = req.body.author;
-            break;
-    }
-    userModel.update(entity).then(n => {
-        req.session.message = "Cập Nhật Thành Công";
-        res.redirect(req.baseUrl + req.url);
-    }).catch(err => {
-        console.log(err);
-        res.end('error occdured');
-    })
-})
-router.get('/logout', auth, (req, res, next) => {
-    req.logOut();
-    res.redirect('/account/login');
-})
-
 module.exports = router

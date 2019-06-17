@@ -3,13 +3,11 @@ var tagModel = require('../../models/admin/tag.model');
 var auth = require('../../middleware/auth').authAdmin;
 var router = express.Router();
 
-router.get('/',auth, (req, res) => {
-    res.locals.tag=true;
+router.get('/', auth, (req, res) => {
+    res.locals.tag = true;
     tagModel.all().then(rows => {
         res.render('admin/tag/index.hbs', {
             tags: rows,
-           
-           
         });
 
     }).catch(err => {
@@ -18,7 +16,7 @@ router.get('/',auth, (req, res) => {
 })
 
 
-router.post('',auth, (req, res) => {
+router.post('', auth, (req, res) => {
     var entity = req.body;
     entity.daXoa = 0;
     console.log(entity);
@@ -32,25 +30,25 @@ router.post('',auth, (req, res) => {
 })
 
 
-router.get('/update/:id',auth, (req, res) => {
+router.get('/update/:id', auth, (req, res) => {
     var id = req.params.id;
-   // console.log(req.body);
+    // console.log(req.body);
     if (isNaN(id)) {
         res.render('admin/tag/update', {
-          
+
             err: true
         });
     }
     tagModel.single(id).then(rows => {
         if (rows.length > 0) {
             res.render('admin/tag/update', {
-                
+
                 tag: rows[0],
                 err: false
             })
         } else {
             res.render('admin/tag/update', {
-                
+
                 err: true
             });
         }
@@ -61,24 +59,24 @@ router.get('/update/:id',auth, (req, res) => {
 })
 
 
-router.post('/update',auth,(req,res)=>{
+router.post('/update', auth, (req, res) => {
     var entity = req.body;
-    entity.idTag= req.query.id;
-    entity.daXoa=0;
-    tagModel.update(entity).then(n=>{
+    entity.idTag = req.query.id;
+    entity.daXoa = 0;
+    tagModel.update(entity).then(n => {
         res.redirect('/admin/tags');
-    }).catch(err=>{
+    }).catch(err => {
         console.log(err);
         res.end('error occured.')
     })
 
 })
 
-router.get('/delete',auth,(req,res)=>{
-    var id= req.query.idTag;
-    tagModel.delete(id).then(n=>{
-    res.redirect('/admin/tags');
-    }).catch(err=>{
+router.get('/delete', auth, (req, res) => {
+    var id = req.query.idTag;
+    tagModel.delete(id).then(n => {
+        res.redirect('/admin/tags');
+    }).catch(err => {
         console.log(err);
         res.end('error occured.');
     })

@@ -30,6 +30,7 @@ module.exports = {
     authAdmin: (req, res, next) => {
         if (req.user) {
             if (req.user.loaiTaiKhoan != "4") {
+                console.log('loi truy cap');
                 res.render('error', {
                     loi: '403',
                     urlBack: check(req.user.loaiTaiKhoan),

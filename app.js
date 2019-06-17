@@ -101,11 +101,13 @@ app.use(function(err, req, res, next) {
     console.log(err.message);
     if (err.status == 404) {
         res.render('error', {
+            loi: '404',
+            urlBack: '/account/login',
+            message: err.message,
             layout: false
         });
     } else {
         res.render('loi', {
-            loi: '404',
             message: err.message,
             layout: false
         });
