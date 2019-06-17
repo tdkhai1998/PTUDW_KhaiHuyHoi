@@ -156,14 +156,6 @@ hr {
     box-shadow: 8px 7px 14px -1px rgba(0, 0, 0, 0.76);
 }
 
-#colorlib-aside {
-    width: 15%;
-}
-
-#colorlib-main {
-    width: 100%;
-}
-
 .padding-custom {
     padding: 20px;
 }
