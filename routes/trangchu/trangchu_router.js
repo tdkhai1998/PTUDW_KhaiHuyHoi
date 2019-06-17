@@ -41,7 +41,7 @@ router.get('/tag/:id', function(req, res, next) {
     Promise.all([chuyenmuc_model.mapping(), baiviet_model.tongBaiVietChuaTag(id), bvWithTags, tag_model.all(), baiviet_model.baiVietMoiNhat(5, 0)]).then(([chuyenmuc, tongbaiviet, baiviet, tags, baivietmoinhat]) => {
         var n = tongbaiviet[0].tong;
         n = n / limit;
-        n += (n % limit <= 0) ? 1 : 0;
+
         var pages = [];
         for (var i = 0; i < n; i++) {
             var obj = new Object();
@@ -128,7 +128,7 @@ router.get('/chuyenmuc/:id', function(req, res, next) {
                     check = false;
                     var n = tongbaiviet[0].tong;
                     n = n / limit;
-                    n += (n % limit <= 0) ? 1 : 0;
+
                     var pages = [];
                     for (var i = 0; i < n; i++) {
                         var obj = new Object();
@@ -192,7 +192,7 @@ router.get('/timkiem', function(req, res, next) {
         check = false;
         var n = tongbaiviet;
         n = n / limit;
-        n += (n % limit <= 0) ? 1 : 0;
+
         var pages = [];
         for (var i = 0; i < n; i++) {
             var obj = new Object();

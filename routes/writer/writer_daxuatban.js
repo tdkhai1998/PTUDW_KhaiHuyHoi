@@ -1,26 +1,36 @@
 var express = require('express');
 var router = express.Router();
 var load = require('../../models/writer/writer_xemdanhsach.model')
+var auth = require('../../middleware/auth').authWriter;
 
+router.get('/', auth, function(req, res, next) {
+    var page = (req.query.page ? req.query.page : 1);
+    page = page <= 0 ? 1 : page;
+    var limit = 5;
+    var offset = (page - 1) * limit;
+    Promise.all([load.allbyuserStt(req.user.username, 'daxuatban', limit, offset), load.countAllByUserStt(req.user.username, 'daxuatban')])
+        .then(([rows, count]) => {
+            var n = count[0].count;
+            n = n / limit;
 
-router.get('/', function(req, res, next) {
-    if (req.isAuthenticated() && req.user.loaiTaiKhoan == 2) {
-        console.log(req.user)
-        Promise.all([load.allbyuserStt(req.user.username, 'daxuatban')])
-            .then(([rows]) => {
-
-                res.render('./writer/writer_daduyet_body', {
-                    user: req.user,
-                    tab: false,
-                    row: rows,
-                    layout: '../writer/writer_daduyet_layout'
-                });
-            }).catch(err => {
-                console.log(err);
-                res.end('error occured.')
+            console.log(n);
+            var pages = [];
+            for (var i = 0; i < n; i++) {
+                var obj = new Object();
+                obj.giatri = i + 1;
+                if (page == i + 1) obj.active = true
+                else obj.active = false;
+                pages.push(obj);
+            }
+            res.render('./writer/writer_daduyet_body', {
+                user: req.user,
+                tab: false,
+                pages,
+                row: rows,
+                layout: '../writer/writer_daduyet_layout'
             });
-    } else
-        res.redirect('account/login')
+        }).catch(e => next(e));
+
 });
 
 

@@ -17,7 +17,7 @@ var check = (loai) => {
         case "3":
             return "/editor_xemdanhsach"
         case "4":
-            return "/"
+            return "/admin/tags"
     }
 }
 var saltRounds = 10;
@@ -35,8 +35,7 @@ router.get('/is-available', (req, res, next) => {
             return res.json(true);
         }
     }).catch(err => {
-        console.log(err);
-        return res.json(false);
+        next(e);
     })
 })
 router.get('/is-available2', (req, res, next) => {
@@ -48,8 +47,7 @@ router.get('/is-available2', (req, res, next) => {
             return res.json(false);
         }
     }).catch(err => {
-        console.log(err);
-        return res.json(false);
+        next(e);
     })
 })
 router.get('/forgot-password', (req, res, next) => {
@@ -172,8 +170,7 @@ router.post('/reset-password', (req, res, next) => {
 })
 router.get('/login', (req, res, next) => {
     if (req.user) {
-        console.log(req.originalUrl);
-        res.redirect(req.originalUrl);
+        res.redirect(check(req.user.loaiTaiKhoan));
     } else {
         console.log(res.locals.url);
         var m = req.session.message;
@@ -287,8 +284,7 @@ router.post('/profile', auth, (req, res, next) => {
         req.session.message = "Cập Nhật Thành Công";
         res.redirect(req.baseUrl + req.url);
     }).catch(err => {
-        console.log(err);
-        res.end('error occdured');
+        next(e);
     })
 })
 router.get('/logout', auth, (req, res, next) => {

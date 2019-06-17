@@ -108,14 +108,33 @@
 					<div class="col-md-3 sticky-parent" style="background-color: white;padding-top:15px;">
 						<div class="sidebar" id="sticky_item">
 							<div class="side animate-box">
-								<div class="form-group">
-									<input type="hidden" name="type" value="timkiem">
-                                    <input type="text" class="form-control" name="key" id="search" placeholder="Enter to search...">
-                                    <button type="submit" class="btn submit btn-primary"><i class="icon-search3"></i></button>
-                                </div>
-							</div>
+                               <form action="" method="POST">
+                                    <div class="funkyradio">
+                                            <div class="funkyradio-success">
+                                                <input type="checkbox" name="tieuDe" id="checkbox1" checked/>
+                                                <label for="checkbox1">Theo Tiêu Đề</label>
+                                            </div>
+                                            <div class="funkyradio-success">
+                                                <input type="checkbox" name="moTa" id="checkbox2" />
+                                                <label for="checkbox2">Theo Mô Tả</label>
+                                            </div>
+                                            <div class="funkyradio-success">
+                                                <input type="checkbox" name="noiDung" id="checkbox3" />
+                                                <label for="checkbox3">Theo Nội Dung</label>
+                                            </div>
+                                            <div class="funkyradio-success">
+                                                <input  type="checkbox" name="fulltext" id="checkbox" />
+                                                <label for="checkbox">Full text search</label>
+                                            </div> 
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" name="key" id="search" placeholder="Enter to search...">
+                                        <button type="submit" class="btn submit btn-primary"><i class="icon-search3"></i></button>
+                                    </div>
+                                </form>
+                            </div>
 							<div class="side animate-box">
-								<h2 class="sidebar-heading">Recent Blog</h2>
+								<h2 class="sidebar-heading">Cùng chuyên mục</h2>
 								{{#each cungchuyenmuc}}
 								<div class="f-blog">
 									<a href="./{{idBaiViet}}" class="blog-img" style="background-image: url({{anhDaiDien}});">
@@ -134,3 +153,27 @@
 		</div>
 	</div>
 </div>
+<script>
+      document.getElementById('checkbox1').onclick = function() {
+        if (this.checked) {
+            document.getElementById('checkbox').checked=false;
+        }
+      }
+      document.getElementById('checkbox2').onclick = function() {
+        if (this.checked) {
+            document.getElementById('checkbox').checked=false;
+        }
+      }
+      document.getElementById('checkbox3').onclick = function() {
+        if (this.checked) {
+            document.getElementById('checkbox').checked=false;
+        }
+      }
+    document.getElementById('checkbox').onclick = function() {
+        if (this.checked) {
+            document.getElementById('checkbox1').checked=false;
+            document.getElementById('checkbox2').checked=false;
+            document.getElementById('checkbox3').checked=false;
+        }
+    }
+</script>

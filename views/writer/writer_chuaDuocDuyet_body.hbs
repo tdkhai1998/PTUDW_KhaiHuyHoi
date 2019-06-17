@@ -6,11 +6,12 @@
 			<h1 id="colorlib-logo">PHÂN HỆ WRITER</h1>
 			<nav id="colorlib-main-menu" role="navigation">
 				<ul>
-					<li><a href="writer_vietBai">Viết bài</a></li>
-					<li><a href="writer_daDuyet">Đã duyệt & chờ xuất bản</a></li>
-					<li><a href="writer_daXuatBan">Đã xuất bản</a></li>
-					<li {{#if tab}}class="colorlib-active"{{/if}}><a href="writer_biTuChoi">Bị từ chối</a></li>
-					<li {{#unless tab}}class="colorlib-active"{{/unless}}><a href="writer_chuaDuocDuyet">Chưa được duyệt</a></li>
+					<li ><a href="/">Trang Chủ</a></li>
+					<li><a href="/writer_vietBai">Viết bài</a></li>
+					<li><a href="/writer_daDuyet">Đã duyệt & chờ xuất bản</a></li>
+					<li><a href="/writer_daXuatBan">Đã xuất bản</a></li>
+					<li {{#if tab}}class="colorlib-active"{{/if}}><a href="/writer_biTuChoi">Bị từ chối</a></li>
+					<li {{#unless tab}}class="colorlib-active"{{/unless}}><a href="/writer_chuaDuocDuyet">Chưa được duyệt</a></li>
 					<li ><a href="/account/logout">Đăng xuất</a></li>
 				</ul>
 			</nav>
@@ -37,7 +38,7 @@
 										<h4><a class="tieude" href="writer_baiviet?id={{idBaiViet}}">{{tieuDe}}</a></h4>
 										<span class="cat"><a href="#">{{tenChuyenMuc}}</a></span>
 										<span>|</span>
-										<span class="date">{{ngayDang}}</span>		
+										<span class="date">{{formatDate ngayDang}}</span>		
 										<p>{{moTa}}</p>
 											<a href="writer_baiviet?id={{idBaiViet}}" class="btn btn-primary tuchoi">Xem chi tiết<i class="icon-arrow-right22"></i></a>
 											<a href="writer_chinhsua?id={{idBaiViet}}" class="btn btn-primary">Chỉnh sửa <i class="icon-arrow-right22"></i></a>
@@ -61,7 +62,19 @@
 							
 							</div>
 						</div>
-
+						<div class="col-md-12"  >
+							<ul class="pagination">
+								{{!--<li class="disabled"><a href="#">&laquo;</a></li>--}}
+								{{#each pages}}
+									{{#if active}}
+									<li class="active"><a href="?page={{giatri}}">{{giatri}}</a></li>
+									{{else}}
+									<li><a href="?page={{giatri}}">{{giatri}}</a></li>
+									{{/if}}
+								{{/each}}
+								{{!-- <li><a href="#">&raquo;</a></li> --}}
+							</ul>
+						</div>
 					</div>
 				</div>
 			</div>

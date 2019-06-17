@@ -14,8 +14,6 @@ var storage = multer.diskStorage({
     }
 });
 var upload = multer({ storage: storage });
-
-
 router.get('/', auth, function(req, res, next) {
     Promise.all([load.alltag(), load.mapping()])
         .then(([alltags, chuyenmuc]) => {
@@ -28,10 +26,9 @@ router.get('/', auth, function(req, res, next) {
         }).catch(err => {
             res.end('error');
             console.log(err);
-        });
-
+        })
+        .catch(e => next(e));
 });
-
 router.post('/', upload.single('anhdaidien'), function(req, res, next) {
     if (!req.file) {
         console.log("No file received");

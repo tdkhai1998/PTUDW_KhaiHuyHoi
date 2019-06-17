@@ -5,6 +5,7 @@ var chuyenmuc_model = require('../../models/trangchu/chuyenmuc.model');
 var comments = require('../../models/trangchu/comment_model');
 var passport = require('passport');
 var acc = require('../../models/account/account.model');
+var url = require('url');
 router.get('/:id', function(req, res, next) {
     var idBaiViet = req.params.id;
     var check;
@@ -57,6 +58,12 @@ router.get('/:id', function(req, res, next) {
         })
         .catch(e => next(e));
 });
+router.post('/:id', function(req, res, next) {
+    res.redirect(url.format({
+        pathname: '/timkiem',
+        query: req.body
+    }));
+})
 router.post('/:id', function(req, res, next) {
     if (req.isAuthenticated()) {
         var val = req.body;
