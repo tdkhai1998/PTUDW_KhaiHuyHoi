@@ -20,6 +20,7 @@ router.get('/', auth, function(req, res, next) {
     Promise.all([load.alltag(), load.mapping()])
         .then(([alltags, chuyenmuc]) => {
             res.render('./writer/writer_vietbai_body', {
+                chinhsua: false,
                 cm: chuyenmuc,
                 alltag: alltags,
                 layout: '../writer/writer_vietbai_layout',
@@ -66,7 +67,7 @@ router.post('/', upload.single('anhdaidien'), function(req, res, next) {
                     load.addtag(tags[i], id)
                 }
             }
-            res.redirect('/writer_vietbai')
+            res.redirect('/writer_chuaduocduyet')
         })
 })
 

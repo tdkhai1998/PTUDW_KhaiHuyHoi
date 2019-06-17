@@ -6,7 +6,7 @@
 			<h1 id="colorlib-logo">PHÂN HỆ WRITER</h1>
 			<nav id="colorlib-main-menu" role="navigation">
 				<ul>
-					<li class="colorlib-active"><a href="writer_vietBai">Viết bài</a></li>
+					<li class="colorlib-active"><a href="writer_vietBai">{{#if chinhsua}}Chỉnh sửa{{else}}Viết bài {{/if}} </a></li>
 					<li><a href="writer_daDuyet">Đã duyệt & chờ xuất bản</a></li>
 					<li><a href="writer_daXuatBan">Đã xuất bản</a></li>
 					<li><a href="writer_biTuChoi">Bị từ chối</a></li>
@@ -30,7 +30,7 @@
 						<div class="content-wrap">
 							<div class="row">
 								<div class="col-md-12 animate-box fadeInUp animated">
-								<h1>VIẾT BÀI</h1>
+								<h1>{{#if chinhsua}}CHỈNH SỬA{{else}}VIẾT BÀI {{/if}}</h1>
 									<input hidden="true" name="idBaiViet" value="{{bv.idBaiViet}}">
 									<label for="">TIÊU ĐỀ</label>
 									<br>	

@@ -20,6 +20,7 @@ router.get('/', function(req, res, next) {
             .then(([bv, tag, alltags, chuyenmuc]) => {
                 console.log(tag)
                 res.render('./writer/writer_vietbai_body', {
+                    chinhsua: true,
                     bv: bv[0],
                     tags: tag,
                     alltag: alltags,
