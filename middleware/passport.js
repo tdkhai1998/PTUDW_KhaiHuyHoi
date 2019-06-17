@@ -124,10 +124,4 @@ module.exports = function(app) {
     passport.deserializeUser((user, done) => {
         return done(null, user);
     });
-
-
-
-
-
-
 }
