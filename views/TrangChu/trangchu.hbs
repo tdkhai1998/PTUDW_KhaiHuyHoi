@@ -72,7 +72,7 @@
 											<div class="desc-bottom">
 												<h2 class="head-article"><a href="./chitietbaiviet/{{bvnb.idBaiViet}}">{{bvnb.tieuDe}}</a></h2>
 												<p>Ngày đăng:  {{formatDate bvnb.ngayDang}}</p>
-												<p>Người đăng:  {{ nguoiDang}}</p>
+												<p>Người đăng:  {{ butDanh}}</p>
 												<p style="text-shadow: 4px 0px 22px rgba(12, 12, 12, 1);">{{moTa}}</p>
 												{{#if  premium}}
 													<b>PREMIUM</b>
@@ -101,7 +101,7 @@
 										<div class="desc text-center">
 											
 											<p>Ngày đăng: {{formatDate bvmn.ngayDang}}</p>
-											<p>Người đăng:  {{ nguoiDang}}</p>
+											<p>Người đăng:  {{butDanh}}</p>
 											
 										</div>
 									</div>
@@ -142,7 +142,7 @@
 									<b class="cm"><a href="/chuyenmuc/{{idChuyenMuc}}"></a>{{tenChuyenMuc}}</b>
 										<h2 class="head-article ln"><a href="./chitietbaiviet/{{idBaiViet}}">{{tieuDe}}</a></h2>
 										<p>Ngày đăng:  {{formatDate ngayDang}}</p>
-										<p>Người đăng:  {{ nguoiDang}}</p>
+										<p>Người đăng:  {{butDanh}}</p>
 									{{#if  premium}}
 													<div class="alert alert-premium alert-dismissible tag">
                                             PREMIUM
@@ -177,7 +177,7 @@
 										<b class="cm"><a href="/chuyenmuc/{{idChuyenMuc}}"></a>{{tenChuyenMuc}}</b>
 											<h2 class="head-article ln"><a href="./chitietbaiviet/{{idBaiViet}}">{{tieuDe}}</a></h2>
 											<p>Ngày đăng:  {{formatDate ngayDang}}</p>
-											<p>Người đăng:  {{nguoiDang}}</p>
+											<p>Người đăng:  {{butDanh}}</p>
 											{{#if  premium}}
 													<div class="alert alert-premium alert-dismissible tag">
                                             PREMIUM

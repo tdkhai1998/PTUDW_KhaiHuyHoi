@@ -11,6 +11,7 @@ router.get('/', function(req, res, next) {
         .then(([chuyenmuc, baivietnoibat, baivietxemnhieunhat, baivietmoinhat, top10chuyenmuc]) => {
             var m = req.session.message;
             req.session.message = null;
+            console.log(baivietxemnhieunhat);
             res.render('TrangChu/trangchu', {
                 title: "Trang chủ",
                 message: m,
@@ -126,6 +127,7 @@ router.get('/chuyenmuc/:id', function(req, res, next) {
     Promise.all([chuyenmuc_model.mapping(), baiviet_model.tongBaiVietChuyenMuc(id), bvWithTags, baiviet_model.baiVietMoiNhat(5, 0)])
         .then(([chuyenmuc, tongbaiviet, baiviet, baivietmoinhat]) => {
             var check = true;
+            console.log(chuyenmuc);
             chuyenmuc.forEach(e => {
                 if (e.idChuyenMuc == id) {
                     check = false;
@@ -143,7 +145,12 @@ router.get('/chuyenmuc/:id', function(req, res, next) {
                     }
                     var m = req.session.message;
                     req.session.message = null;
+                    e.active = true;
+                    if (!e.chuyenMucCha) {
+                        e.Cha.active = true;
+                    }
                     res.render('TrangChu/chuyenmuc', {
+                        active: true,
                         title: "Bài Viết Theo Chuyên Mục",
                         message: req.session.message,
                         empty: (baiviet.length == 0) ? true : false,

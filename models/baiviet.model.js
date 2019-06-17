@@ -7,17 +7,17 @@ var tag_model = require('../models/tag.model');
 var premiumSearchString = `order by premium DESC , ngaydang DESC `;
 var orderByDate = 'order by ngaydang DESC ';
 
-var baiVietNoiBat_QS = `select * from baiviet as bv JOIN chuyenmuc as cm ON bv.idChuyenMuc=cm.idChuyenMuc WHERE trangThai='daxuatban' and ngaydang BETWEEN (SELECT Date_sub(CURRENT_DATE(), INTERVAL WEEKDAY(CURRENT_DATE()) DAY)) AND(SELECT Date_add(CURRENT_DATE(), INTERVAL (7-WEEKDAY(CURRENT_DATE())) DAY)) ORDER BY luotxem Asc limit 10`;
-var baiVietXemNhieuNhat_QS = (limit, offset) => `select * from baiviet as bv JOIN chuyenmuc as cm ON bv.idChuyenMuc=cm.idChuyenMuc where trangThai='daxuatban' order by luotxem DESC ` + limitString(limit, offset);
-var top10ChuyenMuc_QS = `select * from baiviet as bv JOIN chuyenmuc as cm ON bv.idChuyenMuc=cm.idChuyenMuc where bv.trangThai='daxuatban' order by ngaydang asc limit 10`; //
-var baiVietMoiNhat_QS = (limit, offset) => `select * from baiviet as bv JOIN chuyenmuc as cm ON bv.idChuyenMuc=cm.idChuyenMuc where trangThai='daxuatban'` + orderByDate + limitString(limit, offset);
+var baiVietNoiBat_QS = `select bv.tieuDe, bv.idBaiViet, bv.anhDaiDien, bv.moTa, bv.ngayDang, cm.*, nd.butDanh from baiviet as bv JOIN chuyenmuc as cm ON bv.idChuyenMuc=cm.idChuyenMuc join nguoidung nd on nd.username=bv.nguoiDang WHERE trangThai='daxuatban' and ngaydang BETWEEN (SELECT Date_sub(CURRENT_DATE(), INTERVAL WEEKDAY(CURRENT_DATE()) DAY)) AND(SELECT Date_add(CURRENT_DATE(), INTERVAL (7-WEEKDAY(CURRENT_DATE())) DAY)) ORDER BY luotxem Asc limit 10`;
+var baiVietXemNhieuNhat_QS = (limit, offset) => `select bv.tieuDe, bv.idBaiViet, bv.anhDaiDien, bv.moTa, bv.ngayDang, cm.*, nd.butDanh from baiviet as bv JOIN chuyenmuc as cm ON bv.idChuyenMuc=cm.idChuyenMuc join nguoidung nd on nd.username=bv.nguoiDang where trangThai='daxuatban' order by luotxem DESC ` + limitString(limit, offset);
+var top10ChuyenMuc_QS = `select bv.tieuDe, bv.idBaiViet, bv.anhDaiDien, bv.moTa, bv.ngayDang, cm.*, nd.butDanh from baiviet as bv JOIN chuyenmuc as cm ON bv.idChuyenMuc=cm.idChuyenMuc join nguoidung nd on nd.username=bv.nguoiDang where bv.trangThai='daxuatban' order by ngaydang asc limit 10`; //
+var baiVietMoiNhat_QS = (limit, offset) => `select bv.tieuDe, bv.idBaiViet, bv.anhDaiDien, bv.moTa, bv.ngayDang, cm.*, nd.butDanh from baiviet as bv JOIN chuyenmuc as cm ON bv.idChuyenMuc=cm.idChuyenMuc join nguoidung nd on nd.username=bv.nguoiDang where trangThai='daxuatban'` + orderByDate + limitString(limit, offset);
 var baiVietCungChuyenMuc_QS = (id, limit, offset) => `select * from baiviet as bv JOIN chuyenmuc as cm ON bv.idChuyenMuc=cm.idChuyenMuc  where bv.trangThai='daxuatban' and bv.idChuyenMuc=${id} order by ngaydang asc ` + limitString(limit, offset);
 var limitString = (limit, offset) => `limit ${limit} offset ${offset}`;
 var full_text_search_QS = (key, limit, offset) => `SELECT * FROM baiviet as bv JOIN chuyenmuc as cm ON bv.idChuyenMuc=cm.idChuyenMuc WHERE bv.trangThai='daxuatban' and round(MATCH(tieuDe,moTa, noiDung) AGAINST (N'${key}' IN BOOLEAN MODE),5)>0  order by premium DESC , ngaydang DESC limit ${limit} offset ${offset}`;
 var count_full_text_search_QS = key => `SELECT count(*) FROM baiviet as bv JOIN chuyenmuc as cm ON bv.idChuyenMuc=cm.idChuyenMuc WHERE bv.trangThai='daxuatban' and round(MATCH(tieuDe,moTa, noiDung) AGAINST (N'${key}' IN BOOLEAN MODE),5)>0 `;
 var tongBaiVietChuaTag_QS = (idTag) => `select count(*) as tong from thuoctag  join baiviet on thuoctag.idBaiViet=baiviet.idBaiViet join chuyenmuc on baiviet.idChuyenMuc=chuyenmuc.idChuyenMuc where baiviet.trangThai='daxuatban' and thuoctag.idTag=${idTag}`;
 var baiVietChuaTag_QS = (idTag, limit, offset) => `select * from thuoctag  join baiviet on thuoctag.idBaiViet=baiviet.idBaiViet join chuyenmuc on baiviet.idChuyenMuc=chuyenmuc.idChuyenMuc  where baiviet.trangThai='daxuatban' and thuoctag.idTag=${idTag} order by premium DESC , ngaydang DESC ` + limitString(limit, offset);
-var single = id => db.load(`SELECT bv.*, cm.tenChuyenMuc FROM baiviet as bv JOIN chuyenmuc as cm ON bv.idChuyenMuc=cm.idChuyenMuc WHERE bv.trangThai='daxuatban' and idBaiViet= ${id}`);
+var single = id => db.load(`SELECT bv.*, cm.tenChuyenMuc FROM baiviet as bv JOIN chuyenmuc as cm ON bv.idChuyenMuc=cm.idChuyenMuc  join nguoidung on nguoidung.username=bv.nguoiDang WHERE bv.trangThai='daxuatban' and idBaiViet= ${id}`);
 var singleWithTags = id => Promise.all([single(id), db.load(`select * from thuoctag tg join tag t on tg.idTag=t.idTag and tg.idBaiViet=${id}`)]).then(([baiviet, tags]) => {
     if (baiviet.length <= 0) return null;
     else {
@@ -55,7 +55,7 @@ var getTagsForBaiViets = baiViet => Promise.all([baiViet, db.load('select * from
     }
 }).catch(e => console.log(e.sqlMessage));
 var baiVietXemNhieuNhatChuyenMuc = (id) => {
-    return db.load(`SELECT * FROM baiviet join chuyenmuc on baiviet.idChuyenMuc=chuyenmuc.idChuyenMuc 
+    return db.load(`SELECT * FROM baiviet bv join chuyenmuc cm  on bv.idChuyenMuc=cm.idChuyenMuc join nguoidung nd on bv.nguoiDang=nd.username 
     WHERE trangThai='daxuatban' and luotxem=(
         SELECT MAX(luotxem) FROM baiviet WHERE idChuyenMuc = ${id} )  ORDER BY ngayDang DESC LIMIT 1 `);
 }

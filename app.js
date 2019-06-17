@@ -108,7 +108,7 @@ app.use(function(err, req, res, next) {
         });
     } else {
         res.render('loi', {
-            message: err.message,
+            message: err,
             layout: false
         });
     }

@@ -28,6 +28,7 @@ var check = (loai) => {
 var saltRounds = 10;
 router.get('/register', (req, res, next) => {
     res.render('account/register', {
+        title: "Đăng ký",
         layout: 'account_layout',
     });
 })
@@ -65,6 +66,7 @@ router.get('/is-available2', (req, res, next) => {
 
 router.get('/forgot-password', (req, res, next) => {
     res.render('account/forgot_password', {
+        title: "Quên mật khẩu",
         layout: 'account_layout'
     });
 })
@@ -115,6 +117,7 @@ router.get('/req-from-email', (req, res, next) => {
         var key = req.query.key;
         if (key === user.code) {
             res.render('account/change_new_password', {
+                title: 'Đổi mật khẩu',
                 layout: 'account_layout',
                 username: username,
             })
@@ -218,12 +221,16 @@ router.get('/login', (req, res, next) => {
         req.session.message = null;
         res.render('account/login', {
             layout: 'account_layout',
+            title: 'Đăng nhập',
             message: m
         });
     }
 })
 
-
+router.get('/logout', (req, res, next) => {
+    req.logOut();
+    res.redirect('/');
+})
 router.post('/login', (req, res, next) => {
 
 

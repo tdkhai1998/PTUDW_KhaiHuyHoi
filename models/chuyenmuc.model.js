@@ -8,6 +8,7 @@ module.exports = {
                 value.forEach((item2) => {
                     if (item.idChuyenMuc == item2.chuyenMucCha) {
                         item.chuyenMucCon.push(item2)
+                        item2.Cha = item;
                     }
                 })
                 if (item.chuyenMucCha == null) {
