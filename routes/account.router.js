@@ -90,14 +90,16 @@ router.post('/forgot-password', (req, res, next) => {
             html: html // plain text body
         };
 
-        transporter.sendMail(mailOptions, function(err, info) {
+        return transporter.sendMail(mailOptions, function(err, info) {
             if (err) {
-                err.message = "Bị lỗi email rồi";
-                next(err);
                 //console.log(err);
+                err.message = "Bị lỗi email rồi";
+                return next(err);
+                console.log(err);
             } else {
-                res.end('Please check your email: ' + req.user.email);
-                //console.log(info);
+                console.log("xdcfvgb" + info);
+                req.session.message = `Check email ${user.email} để đổi mật khẩu`;
+                res.redirect('/account/login');
             }
 
         });
@@ -235,7 +237,7 @@ router.post('/login', (req, res, next) => {
         req.logIn(user, err => {
             if (err)
                 return next(err);
-            if (req.session.sessionFlash.urlBack) {
+            if (req.session.sessionFlash) {
                 return res.redirect(req.session.sessionFlash.urlBack);
             } else {
                 return res.redirect(check(user.loaiTaiKhoan));
