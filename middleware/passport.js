@@ -85,7 +85,7 @@ module.exports = function(app) {
     passport.use(new GoogleStrategy({
             clientID: "42436615068-825kl2c6821halea911qm0s949a5jhea.apps.googleusercontent.com",
             clientSecret: "C6JRoNBEzLG2jrJuKM-Jf-AI",
-            callbackURL: "/account/auth/google/callback"
+            callbackURL: "https://hkhweb.herokuapp.com/account/auth/google/callback"
         },
         function(accessToken, refreshToken, profile, done) {
             var username = 'gg-' + profile.id;
