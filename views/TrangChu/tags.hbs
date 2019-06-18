@@ -13,29 +13,23 @@
 				<div class="row">
 					<div class="col-md-9" style="padding: 0px;">
 						<div class="content-wrap">
-							<hr><h2 class="uppercase">DANH SÁCH BÀI VIẾT 
-                                <div class="alert alert-success alert-dismissible tag">
-                                    <a href="/tag/{{tag.idTag}}">{{tag.tenTag}}</a>
-                                </div>
+							<hr><h2 class="uppercase">DANH SÁCH BÀI VIẾT THEO TAGS
                             </h2><hr>
-                            {{#each baiviet}}
-<!---->                     <div class="blog-entry-travel animate-box" style="margin: 15px 10px;">
-                                <div class="blog-img" style="background-image: url({{anhDaiDien}});"></div>
-                                <div class="desc">						
-                                    <h4><a class="tieude" href="/chitietbaiviet/{{idBaiViet}}">{{tieuDe}}</a></h4>
-                                    <span class="cat"><a href="/chuyenmuc/{{idChuyenMuc}}">{{tenChuyenMuc}}</a></span>
-                                    <span>|</span>
-                                    {{#each tags}}
-                                        <div class="alert alert-success alert-dismissible tag">
-                                            <a href="/tag/{{idTag}}">{{tenTag}}</a>
+                              <div class="side animate-box" style="padding: 15px;">
+                                <div id="tags">
+                                    <div class="panel panel-primary">
+                                        <div class="panel-body">
+                                            <div id = "tag">
+                                                {{#each tags}}
+                                                <div class="alert alert-success alert-dismissible tag">
+                                                    <a href="/tag/{{idTag}}">{{tenTag}}</a>
+                                                </div>
+                                                {{/each}}
+                                            </div>
                                         </div>
-                                    {{/each}}
-                                    <span class="date"><script>{{formatDate ngayDang}}</script></span>		
-                                    <p>{{moTa}}</p>
-                                    <a href="/chitietbaiviet/{{idBaiViet}}" class="btn btn-primary">Đọc tiếp <i class="icon-arrow-right22"></i></a>
+                                    </div>
                                 </div>
-<!---->                     </div>
-                            {{/each}}
+                            </div>
 						</div>
                         <div class="col-md-12"  >
                         <ul class="pagination">
@@ -49,7 +43,7 @@
                             {{/each}}
                             {{!-- <li><a href="#">&raquo;</a></li> --}}
                         </ul>
-                    </div>
+                        </div>
 					</div>
                     <div class="col-md-3">
                         <div class="sidebar">
@@ -79,22 +73,7 @@
                                     </div>
                                 </form>
                             </div>
-                            <div class="side animate-box">
-                                <div id="tags">
-                                    <b>Danh sách TAGs</b>
-                                    <div class="panel panel-primary">
-                                        <div class="panel-body">
-                                            <div id = "tag">
-                                                {{#each tags}}
-                                                <div class="alert alert-success alert-dismissible tag">
-                                                    <a href="/tag/{{idTag}}">{{tenTag}}</a>
-                                                </div>
-                                                {{/each}}
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                          
                             <div class="side animate-box">
                                 <h2 class="sidebar-heading">Recent Blog</h2>
                                 {{#each baivietmoinhat}}

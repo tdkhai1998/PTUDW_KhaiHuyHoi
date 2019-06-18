@@ -13,7 +13,7 @@
 		<div class="colorlib-blog">
 			<div class="container-wrap">
 				<div class="row">
-					<div class="col-md-9">
+					<div class="col-md-9 " style="padding: 0px;">
 						<div class="content-wrap">
 							<hr><h2 class="uppercase">DANH SÁCH BÀI VIẾT  
                             {{#if tenchuyenmuc}}
@@ -28,7 +28,7 @@
                                 <h3>KHÔNG TÌM THẤY BÀI VIẾT NÀO</h3>
                             {{/if}}
                             {{#each baiviet}}
-<!---->                     <div class="blog-entry-travel animate-box" style="margin: 0;">
+<!---->                     <div class="blog-entry-travel animate-box" style="margin: 15px 10px;">
                                 <div class="blog-img" style="background-image: url({{anhDaiDien}});"></div>
                                 <div class="desc">						
                                     <h4><a class="tieude" href="/chitietbaiviet/{{idBaiViet}}">{{tieuDe}}</a></h4>
@@ -94,7 +94,7 @@
                                 </form>
                             </div>
                             <div class="side animate-box">
-                                <h2 class="sidebar-heading">Recent Blog</h2>
+                                <h2 class="sidebar-heading">BÀI VIẾT GẦN ĐÂY</h2>
                                 {{#each baivietmoinhat}}
                                 <div class="f-blog">
 									<a href="/chitietbaiviet/{{idBaiViet}}" class="blog-img" style="background-image: url({{anhDaiDien}});">

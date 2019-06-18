@@ -91,6 +91,7 @@ var multiSimpleSearchString = (tenCots, key) => {
     return sql;
 }
 var tangLuotXem = (id) => db.load(`UPDATE baiviet SET luotxem=luotxem+1 WHERE idBaiViet=${id }`);
+
 module.exports = {
     singleWithTags,
     getTagsForBaiViets,

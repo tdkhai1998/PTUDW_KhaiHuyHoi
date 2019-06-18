@@ -27,6 +27,28 @@ router.get('/', function(req, res, next) {
             next(err);
         })
 });
+router.get('/tags', function(req, res, next) {
+    Promise.all([chuyenmuc_model.mapping(), tag_model.all(), baiviet_model.baiVietMoiNhat(5, 0)]).then(([chuyenmuc, tags, baivietmoinhat]) => {
+        var m = req.session.message;
+        req.session.message = null;
+        res.render('TrangChu/tags', {
+            message: req.session.message,
+            title: "Bài Viết Theo TAG",
+            layout: 'main',
+            chuyenmuc,
+            daDangNhap: req.isAuthenticated(),
+            user: req.user,
+            baivietmoinhat,
+            tags,
+        })
+    })
+})
+router.post('/tags', function(req, res, next) {
+    res.redirect(url.format({
+        pathname: '/timkiem',
+        query: req.body
+    }));
+});
 router.get('/tag/:id', function(req, res, next) {
     var id = req.params.id;
     if (isNaN(id)) {
