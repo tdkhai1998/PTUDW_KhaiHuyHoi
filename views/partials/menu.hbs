@@ -1,41 +1,44 @@
-
 <a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle"><i></i></a>
 <aside id="colorlib-aside" role="complementary" class="js-fullheight">
 	<h1 id="colorlib-logo"><a href="/">HKH news</a></h1>
-	<nav id="colorlib-main-menu" >
+	<nav id="colorlib-main-menu">
 		<ul>
-			<li {{#if active}}{{else}}class="colorlib-active"{{/if}}><a href="/">Trang Chủ</a></li>
+			<li {{#if active}}{{else}}class="colorlib-active" {{/if}}><a href="/">Trang Chủ</a></li>
 			{{#each this.r as |value|}}
-				{{#if value.chuyenMucCha}}
-					<li {{#if active}}class="colorlib-active"{{/if}}><a id="dm" href="/chuyenmuc/{{value.idChuyenMuc}}">{{value.tenChuyenMuc}}{{#if value.chuyenMucCon}} <span class="caret"></span>{{/if}}</a>
-						<div class="submenu">
-							<ul>
-								{{#each value.chuyenMucCon as |row|}}
-									<li {{#if active}}class="colorlib-active"{{/if}}><a id="dm" href="/chuyenmuc/{{row.idChuyenMuc}}">{{row.tenChuyenMuc}}</a>
-								{{/each}}
-							</ul>
-						</div>
-					</li>
-				{{/if}}
-			{{/each}}
-			<li><a href="/tags" >TAGS</b></a>
-			{{#if daDangNhap}}
-			<li><a href="/account/profile" >Chào <b>{{user.ten}}</b></a>
+			{{#if value.chuyenMucCha}}
+			<li {{#if active}}class="colorlib-active" {{/if}}><a id="dm"
+					href="/chuyenmuc/{{value.idChuyenMuc}}">{{value.tenChuyenMuc}}</a>
+				{{#if value.chuyenMucCon}} <button class=""
+					style="border: none; background-color:white; 0px; padding: 0px !important;" onclick=""><span
+						class="caret"></span></button>{{/if}}
 				<div class="submenu">
 					<ul>
-						<li><a href="/account/profile" >Profile</a></li>
-						<li><a href="/account/reset-password" >ĐỔi MẬT KHẨU</a></li>
+						{{#each value.chuyenMucCon as |row|}}
+						<li {{#if active}}class="colorlib-active" {{/if}}><a id="dm"
+								href="/chuyenmuc/{{row.idChuyenMuc}}">{{row.tenChuyenMuc}}</a> {{/each}}
+					</ul>
+				</div>
+			</li>
+			{{/if}} {{/each}}
+			<li><a href="/tags">TAGS</b></a> {{#if daDangNhap}}
+			<li><a href="/account/profile">Chào <b>{{user.ten}}</a>
+				<button class="" style="border: none; background-color:white; 0px; padding: 0px !important;"
+					onclick=""><span class="caret"></span></button>
+				<div class="submenu">
+					<ul>
+						<li><a href="/account/profile">Profile</a></li>
+						<li><a href="/account/reset-password">ĐỔi MẬT KHẨU</a></li>
 						<li><a href="/account/logout">ĐĂNG XUẤT</a></li>
 					</ul>
 				</div>
 			</li>
 			{{else}}
-			<li><a href="/account/login" >ĐĂNG NHẬP</a></li>
-			<li><a href="/account/register" >ĐĂNG KÝ</a></li>
-			
+			<li><a href="/account/login">ĐĂNG NHẬP</a></li>
+			<li><a href="/account/register">ĐĂNG KÝ</a></li>
+
 			{{/if}}
 		</ul>
-		
+
 	</nav>
 
 </aside>

@@ -18,11 +18,14 @@ var check = (loai) => {
             return "/editor_xemdanhsach"
         case "4":
             return "/admin/tags"
+        default:
+            return "/sair"
     }
 }
 var saltRounds = 10;
 router.get('/register', (req, res, next) => {
     res.render('account/register', {
+        title: "Đăng ký",
         layout: 'account_layout',
     });
 })
@@ -52,6 +55,7 @@ router.get('/is-available2', (req, res, next) => {
 })
 router.get('/forgot-password', (req, res, next) => {
     res.render('account/forgot_password', {
+        title: "Quên mật khẩu",
         layout: 'account_layout'
     });
 })
@@ -67,7 +71,7 @@ router.post('/forgot-password', (req, res, next) => {
                 pass: 'quochoi42'
             }
         });
-        var url = 'http://localhost:3000/account/req-from-email?username=' + username + '&key=' + user.code;
+        var url = 'https://hkhweb.herokuapp.com/account/req-from-email?username=' + username + '&key=' + user.code;
         var html = '<a href="' + url + '"><b>Click here to reset password</b></a>';
         const mailOptions = {
             from: 'quocvu142@gmail.com', // sender address
@@ -95,6 +99,7 @@ router.get('/req-from-email', (req, res, next) => {
         var key = req.query.key;
         if (key === user.code) {
             res.render('account/change_new_password', {
+                title: "Đổi mật khẩu",
                 layout: 'account_layout',
                 username: username,
             })
@@ -148,7 +153,7 @@ router.post('/register', (req, res, next) => {
     });
 })
 router.get('/reset-password', (req, res, next) => {
-    res.render('account/reset_password', { layout: 'account_layout' });
+    res.render('account/reset_password', { title: "Đổi mật khẩu", layout: 'account_layout' });
 })
 router.post('/reset-password', (req, res, next) => {
     var old = req.body.old_password;
@@ -167,6 +172,7 @@ router.post('/reset-password', (req, res, next) => {
     }
 })
 router.get('/login', (req, res, next) => {
+    console.log(req.user);
     if (req.user) {
         res.redirect(check(req.user.loaiTaiKhoan));
     } else {
@@ -174,6 +180,7 @@ router.get('/login', (req, res, next) => {
         var m = req.session.message;
         req.session.message = null;
         res.render('account/login', {
+            title: "Đăng nhập",
             layout: 'account_layout',
             message: m
         });

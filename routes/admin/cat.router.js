@@ -4,11 +4,12 @@ var catModel = require('../../models/admin/cat.model')
 var router = express.Router();
 var auth = require('../../middleware/auth').authAdmin;
 
-router.get('/', auth,(req, res) => {
+router.get('/', auth, (req, res) => {
     res.locals.category = true;
     console.log(req.user);
     catModel.loadCatsParent(null).then(rows => {
         res.render('admin/cat/index', {
+            title: 'Quản lí chuyên mục',
             categories: rows
 
         });
@@ -19,11 +20,11 @@ router.get('/', auth,(req, res) => {
 })
 
 
-router.get('/add',auth, (req, res) => {
+router.get('/add', auth, (req, res) => {
     catModel.all().then(rows => {
 
         res.render('admin/cat/add', {
-
+            title: 'Thêm chuyên mục',
             categories: rows,
 
         });
@@ -33,7 +34,7 @@ router.get('/add',auth, (req, res) => {
 
 })
 
-router.post('/add',auth, (req, res) => {
+router.post('/add', auth, (req, res) => {
     var entity = req.body;
     console.log(entity.idCha);
     // delete entity[idCha];
@@ -49,7 +50,7 @@ router.post('/add',auth, (req, res) => {
     })
 })
 
-router.get('/update/:id',auth, (req, res) => {
+router.get('/update/:id', auth, (req, res) => {
     var id = req.params.id;
     // var result;
     catModel.loadCatsParent(id).then(AllCategories => {
@@ -70,6 +71,7 @@ router.get('/update/:id',auth, (req, res) => {
                 }
 
                 res.render('admin/cat/update', {
+                    title: 'Cập nhật chuyên mục',
                     category: rows[0],
                     categories: AllCategories,
                     Null: isNull,
@@ -97,7 +99,7 @@ router.get('/update/:id',auth, (req, res) => {
     });
 })
 
-router.post('/update/:id', auth,(req, res) => {
+router.post('/update/:id', auth, (req, res) => {
     var idChuyenMuc = req.params.id;
     var entity = req.body;
     if (entity.chuyenMucCha == "") {
@@ -111,7 +113,7 @@ router.post('/update/:id', auth,(req, res) => {
     })
 })
 
-router.get('/delete/:id',auth, (req, res) => {
+router.get('/delete/:id', auth, (req, res) => {
     var id = req.params.id;
     catModel.delete(id).then(n => {
         res.redirect('/admin/categories');

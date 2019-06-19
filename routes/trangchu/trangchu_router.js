@@ -113,6 +113,7 @@ router.post('/', function(req, res, next) {
     }));
 });
 router.post('/chuyenmuc/:id', function(req, res, next) {
+    console.log('getchuyenmuc');
     res.redirect(url.format({
         pathname: '/timkiem',
         query: req.body
@@ -131,6 +132,7 @@ router.post('/timkiem', function(req, res, next) {
     }))
 })
 router.get('/chuyenmuc/:id', function(req, res, next) {
+
     var id = req.params.id;
     if (isNaN(id)) {
         req.session.message = "Chuyên mục không hợp lệ";
@@ -150,7 +152,6 @@ router.get('/chuyenmuc/:id', function(req, res, next) {
                     check = false;
                     var n = tongbaiviet[0].tong;
                     n = n / limit;
-
                     var pages = [];
                     for (var i = 0; i < n; i++) {
                         var obj = new Object();
@@ -190,6 +191,7 @@ router.get('/chuyenmuc/:id', function(req, res, next) {
         })
 });
 router.get('/timkiem', function(req, res, next) {
+    console.log('timkiem');
     var page = (req.query.page ? req.query.page : 1);
     page = page <= 0 ? 1 : page;
     var limit = 5;
@@ -209,35 +211,36 @@ router.get('/timkiem', function(req, res, next) {
         bvWithTags = baiviet_model.getTagsForBaiViets(baiviet_model.multiSimpleSearch(field, key, limit, offset));
         countSearch = baiviet_model.count_multiSimpleSearch(field, key);
     }
+    console.log("dsf00");
     Promise.all([chuyenmuc_model.mapping(), countSearch, bvWithTags, baiviet_model.baiVietMoiNhat(5, 0)]).then(([chuyenmuc, tongbaiviet, baiviet, baivietmoinhat]) => {
-        var check = true;
-        check = false;
-        var n = tongbaiviet;
-        n = n / limit;
-
-        var pages = [];
-        for (var i = 0; i < n; i++) {
-            var obj = new Object();
-            obj.giatri = i + 1;
-            if (page == i + 1) obj.active = true
-            else obj.active = false;
-            pages.push(obj);
-        }
-        var m = req.session.message;
-        req.session.message = null;
-        res.render('TrangChu/chuyenmuc', {
-            title: "Tìm kiếm",
-            key,
-            message: req.session.message,
-            empty: (baiviet.length == 0) ? true : false,
-            layout: 'main',
-            chuyenmuc,
-            baiviet,
-            daDangNhap: req.isAuthenticated(),
-            user: req.user,
-            pages,
-            baivietmoinhat
-        })
-    }).catch(e => next(e))
+            var check = true;
+            check = false;
+            var n = tongbaiviet;
+            n = n / limit;
+            var pages = [];
+            for (var i = 0; i < n; i++) {
+                var obj = new Object();
+                obj.giatri = i + 1;
+                if (page == i + 1) obj.active = true
+                else obj.active = false;
+                pages.push(obj);
+            }
+            console.log('dumaf');
+            var m = req.session.message;
+            req.session.message = null;
+            res.render('TrangChu/chuyenmuc', {
+                title: "Tìm kiếm",
+                key,
+                message: req.session.message,
+                empty: (baiviet.length == 0) ? true : false,
+                layout: 'main',
+                chuyenmuc,
+                baiviet,
+                daDangNhap: req.isAuthenticated(),
+                user: req.user,
+                pages,
+                baivietmoinhat
+            })
+        }) //.catch(e => next(e))
 })
 module.exports = router

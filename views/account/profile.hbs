@@ -1,17 +1,13 @@
 {{#section 'css'}}
-<link rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.min.css">
-
-{{#if message}}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.min.css"> {{#if message}}
 <script>
-// self executing function here
-(function() {
-  alert('{{message}}');
+    // self executing function here
+    (function() {
+        alert('{{message}}');
 
-})();
+    })();
 </script>
-{{/if}}
-{{/section}}
+{{/if}} {{/section}}
 <div class="col-md-3"></div>
 <div class="col-md-6">
     <div class="signup-form">
@@ -20,8 +16,7 @@
             <div class="form-group">
                 <div class="input-group">
                     <span class="input-group-addon"><i class="fas fa-chess"></i></span>
-                    <input type="text" class="form-control" name="type" value="{{user.loaiTaiKhoan}}" readonly
-                        placeholder="Loại tài khoản">
+                    <input type="text" class="form-control" name="type" value="{{user.loaiTaiKhoan}}" readonly placeholder="Loại tài khoản">
                 </div>
             </div>
             <div class="form-group">
@@ -33,32 +28,28 @@
             <div class="form-group ">
                 <div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-paper-plane"></i></span>
-                    <input type="text" readonly class="form-control" value="{{user.email}}" name="email"
-                        placeholder="Email">
+                    <input type="text" readonly class="form-control" value="{{user.email}}" name="email" placeholder="Email">
                 </div>
             </div>
             <div class="form-group">
                 <div class="input-group">
                     <span class="input-group-addon"><i class="fas fa-birthday-cake"></i></span>
-                    <input type="text" class="form-control" name="dob" value="{{user.ngaySinh}}" id="dob"
-                        placeholder="Ngày sinh">
+                    <input type="text" class="form-control" name="dob" value="{{user.ngaySinh}}" id="dob" placeholder="Ngày sinh">
                 </div>
             </div>
 
             <div class="form-group  {{#if isWriter}}d-block {{else}}d-none{{/if}}">
                 <div class="input-group">
                     <span class="input-group-addon"><i class="fas fa-signature"></i></span>
-                    <input type="text" class="form-control" name="author" value="{{user.butDanh}}"
-                        placeholder="Bút danh">
+                    <input type="text" class="form-control" name="author" value="{{user.butDanh}}" placeholder="Bút danh">
                 </div>
             </div>
             <div class="form-group  {{#if isUser}}d-block {{else}}d-none{{/if}}">
                 <div class="input-group">
                     <span class="input-group-addon"><i class="fab fa-cc-visa"></i></span>
-                    <input type="text" class="form-control" name="HSD" value="{{user.HSD}}" readonly
-                        placeholder="Hạn sử dụng (Premium)">
-                       
-                   
+                    <input type="text" class="form-control" name="HSD" value="{{user.HSD}}" readonly placeholder="Hạn sử dụng (Premium)">
+
+
 
                 </div>
             </div>
@@ -68,8 +59,7 @@
             <div class="form-group   {{#if isEditor}}d-block {{else}}d-none{{/if}}">
                 <div class="input-group">
                     <span class="input-group-addon"><i class="fas fa-user-edit"></i></span>
-                    <input type="text" readonly class="form-control" name="category" value="{{cat.tenChuyenMuc}}"
-                        placeholder="Chuyên mục">
+                    <input type="text" readonly class="form-control" name="category" value="{{cat.tenChuyenMuc}}" placeholder="Chuyên mục">
                 </div>
             </div>
 
@@ -80,15 +70,17 @@
 
         </form>
     </div>
-
+    <div class="social-login-buttons">
+        <a class="btn btn-link-2" href="/">
+            <i class="fa fa-home"></i> Về Trang chủ
+        </a>
+    </div>
 </div>
 <div class="col-md-3"></div>
 
 {{#section 'js'}}
-<script
-    src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js"></script>
 <script>
-
     $('#dob').datetimepicker({
         format: 'd/m/Y',
         timepicker: false,

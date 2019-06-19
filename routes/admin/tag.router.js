@@ -7,6 +7,7 @@ router.get('/', auth, (req, res) => {
     res.locals.tag = true;
     tagModel.all().then(rows => {
         res.render('admin/tag/index.hbs', {
+            title: 'Quản lí tag',
             tags: rows,
         });
 
@@ -35,20 +36,20 @@ router.get('/update/:id', auth, (req, res) => {
     // console.log(req.body);
     if (isNaN(id)) {
         res.render('admin/tag/update', {
-
+            title: 'Cập nhật tag',
             err: true
         });
     }
     tagModel.single(id).then(rows => {
         if (rows.length > 0) {
             res.render('admin/tag/update', {
-
+                title: 'Cập nhật tag',
                 tag: rows[0],
                 err: false
             })
         } else {
             res.render('admin/tag/update', {
-
+                title: 'Cập nhật tag',
                 err: true
             });
         }

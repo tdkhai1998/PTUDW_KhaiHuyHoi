@@ -1,98 +1,95 @@
-{{#section 'css'}}
-{{#if message}}
+{{#section 'css'}} {{#if message}}
 <script>
-// self executing function here
-(function() {
-  alert('{{message}}');
+    // self executing function here
+    (function() {
+        alert('{{message}}');
 
-})();
+    })();
 </script>
-{{/if}}
-{{/section}}
+{{/if}} {{/section}}
 <div class="col-sm-4"></div>
 <div class="col-sm-4">
 
-	<div class="form-box">
-		<div class="form-top">
-			<div class="form-top-left">
-				<h3>Đăng nhập</h3>
-			</div>
-			<div class="form-top-right">
-				<i class="fa fa-lock"></i>
-			</div>
-		</div>
-		<div class="form-bottom">
-			<form role="form" action="" method="post" id="form" class="login-form">
-				<div class="form-group">
-					<label class="sr-only" for="username">Username</label>
-					<input type="text" name="username" placeholder="Username" autofocus class="form-username form-control"
-						id="username">
-				</div>
-				<div class="form-group">
-					<label class="sr-only" for="password">Password</label>
-					<input type="password" name="password" placeholder="Password..." class="form-password form-control"
-						id="password">
-				</div>
-				<button type="submit" class="btn" style="margin-bottom: 15px;">Sign in!</button>
-			</form>
-		<div class="d-flex justify-content-between">
-			<a class="btn btn-outline-light" href="/account/register" role="button">Đăng kí tài khoản mới</a>
-			<a class="btn btn-outline-light" href="/account/forgot-password" role="button">Quên mật khẩu</a>
-		</div>
-		</div>
-	</div>
+    <div class="form-box">
+        <div class="form-top">
+            <div class="form-top-left">
+                <h3>Đăng nhập</h3>
+            </div>
+            <div class="form-top-right">
+                <i class="fa fa-lock"></i>
+            </div>
+        </div>
+        <div class="form-bottom">
+            <form role="form" action="" method="post" id="form" class="login-form">
+                <div class="form-group">
+                    <label class="sr-only" for="username">Username</label>
+                    <input type="text" name="username" placeholder="Username" autofocus class="form-username form-control" id="username">
+                </div>
+                <div class="form-group">
+                    <label class="sr-only" for="password">Password</label>
+                    <input type="password" name="password" placeholder="Password..." class="form-password form-control" id="password">
+                </div>
+                <button type="submit" class="btn" style="margin-bottom: 15px;">Sign in!</button>
+            </form>
+            <div class="d-flex justify-content-between">
+                <a class="btn btn-outline-light" href="/account/register" role="button">Đăng kí tài khoản mới</a>
+                <a class="btn btn-outline-light" href="/account/forgot-password" role="button">Quên mật khẩu</a>
+            </div>
+        </div>
+    </div>
 
-	<div class="social-login">
-		<h3>...Hoặc đăng nhập bằng:</h3>
-		<div class="social-login-buttons">
-			<a class="btn btn-link-2" href="/account/auth/facebook">
-				<i class="fa fa-facebook"></i> Facebook
-			</a>
-			
-			<a class="btn btn-link-2" href="/account/auth/google">
-				<i class="fa fa-google-plus"></i> Google Plus
-			</a>
-		</div>
-	</div>
+    <div class="social-login">
+        <h3>...Hoặc đăng nhập bằng:</h3>
+        <div class="social-login-buttons">
+            <a class="btn btn-link-2" href="/account/auth/facebook">
+                <i class="fa fa-facebook"></i> Facebook
+            </a>
+
+            <a class="btn btn-link-2" href="/account/auth/google">
+                <i class="fa fa-google-plus"></i> Google Plus
+            </a>
+        </div>
+        <div class="social-login-buttons">
+            <a class="btn btn-link-2" href="/">
+                <i class="fa fa-home"></i> Về Trang chủ
+            </a>
+        </div>
+    </div>
+    <div class="col-sm-4"></div>
+    {{#section 'js'}}
+    <script>
+        $(function() {
 
 
-</div>
-<div class="col-sm-4"></div>
+            $('#form').validate({
+                rules: {
+                    username: {
+                        required: true,
 
-	{{#section 'js'}}
-	<script>
-		$(function () {
+                    },
+                    password: {
+                        required: true,
 
+                    }
+                },
+                messages: {
+                    username: {
+                        required: 'Bạn không được để trống username',
+                    },
+                    password: {
+                        required: 'Bạn không được để trống password',
+                    }
 
-			$('#form').validate({
-				rules: {
-					username: {
-						required: true,
-						
-					},
-					password: {
-						required: true,
-
-					}
-				},
-				messages: {
-					username: {
-						required: 'Bạn không được để trống username',
-					},
-					password: {
-						required: 'Bạn không được để trống password',
-					}
-					
-				},
-				errorElement: 'small',
-				errorClass: 'help-block text-danger',
-				highlight: function (e) {
-					$(e).removeClass('is-valid').addClass('is-invalid');
-				},
-				unhighlight: function (e) {
-					$(e).removeClass('is-invalid').addClass('is-valid');
-				}
-			});
-		})
-	</script>
-{{/section}}
+                },
+                errorElement: 'small',
+                errorClass: 'help-block text-danger',
+                highlight: function(e) {
+                    $(e).removeClass('is-valid').addClass('is-invalid');
+                },
+                unhighlight: function(e) {
+                    $(e).removeClass('is-invalid').addClass('is-valid');
+                }
+            });
+        })
+    </script>
+    {{/section}}

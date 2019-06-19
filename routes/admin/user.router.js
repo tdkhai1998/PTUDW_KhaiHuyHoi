@@ -9,7 +9,7 @@ var router = express.Router();
 var StrTypes = ["Tất cả", "User", "Writer", "Editor", "Administrator"];
 var saltRound = 10;
 
-router.get('/',auth, (req, res, next) => {
+router.get('/', auth, (req, res, next) => {
     res.locals.user = true;
     var record = 30;
     var keyword = (req.query.keyword) ? req.query.keyword : "";
@@ -46,16 +46,25 @@ router.get('/',auth, (req, res, next) => {
             var users = rows;
             users.forEach(element => {
                 switch (element.loaiTaiKhoan) {
-                    case "1": element.loai = "Độc giả"; break;
-                    case "2": element.loai = "Writer"; break;
-                    case "3": element.loai = "Editor"; break;
-                    case "4": element.loai = "Admintrator"; break;
+                    case "1":
+                        element.loai = "Độc giả";
+                        break;
+                    case "2":
+                        element.loai = "Writer";
+                        break;
+                    case "3":
+                        element.loai = "Editor";
+                        break;
+                    case "4":
+                        element.loai = "Admintrator";
+                        break;
                 }
                 element.page = page;
                 element.keyword = req.query.keyword;
 
             });
             res.render('admin/user/index', {
+                title: 'Quản lí người dùng',
                 users: users,
                 pages: pages,
                 types: types,
@@ -74,7 +83,7 @@ router.get('/',auth, (req, res, next) => {
 
 })
 
-router.get('/:username/remove',auth, (req, res, next) => {
+router.get('/:username/remove', auth, (req, res, next) => {
     var username = req.params.username;
     var page = (req.query.page) ? req.query.page : 1;
     var type = (req.query.type) ? req.query.type : 0;
@@ -91,7 +100,7 @@ router.get('/:username/remove',auth, (req, res, next) => {
     })
 })
 
-router.get('/:username/edit',auth, (req, res, next) => {
+router.get('/:username/edit', auth, (req, res, next) => {
     var username = req.params.username;
     catModel.all().then(cats => {
         userModel.single(username).then(rows => {
@@ -99,10 +108,18 @@ router.get('/:username/edit',auth, (req, res, next) => {
             var user = rows[0];
             var showInput = new Object;
             switch (user.loaiTaiKhoan) {
-                case "1": showInput.user = true; break;
-                case "2": showInput.writer = true; break;
-                case "3": showInput.editor = true; break;
-                case "4": showInput.administrator = true; break;
+                case "1":
+                    showInput.user = true;
+                    break;
+                case "2":
+                    showInput.writer = true;
+                    break;
+                case "3":
+                    showInput.editor = true;
+                    break;
+                case "4":
+                    showInput.administrator = true;
+                    break;
             }
 
 
@@ -142,6 +159,7 @@ router.get('/:username/edit',auth, (req, res, next) => {
 
 
             res.render('admin/user/edit_Account', {
+                title: 'Update người dùng',
                 user: user,
                 types: types,
                 select: showInput,
@@ -160,7 +178,7 @@ router.get('/:username/edit',auth, (req, res, next) => {
 
 })
 
-router.post('/:username/edit',auth, (req, res, next) => {
+router.post('/:username/edit', auth, (req, res, next) => {
     userModel.single(req.params.username).then(rows => {
         var entity = rows[0];
 
@@ -178,10 +196,19 @@ router.post('/:username/edit',auth, (req, res, next) => {
                 } catch (err) {
                     entity.HSD = null;
                 }
-                entity.loaiTaiKhoan = 1; break;
-            case "2": entity.butDanh = req.body.author; entity.loaiTaiKhoan = 2; break;
-            case "3": entity.idChuyenMuc = req.body.category; entity.loaiTaiKhoan = 3; break;
-            case "4": entity.loaiTaiKhoan = 4; break;
+                entity.loaiTaiKhoan = 1;
+                break;
+            case "2":
+                entity.butDanh = req.body.author;
+                entity.loaiTaiKhoan = 2;
+                break;
+            case "3":
+                entity.idChuyenMuc = req.body.category;
+                entity.loaiTaiKhoan = 3;
+                break;
+            case "4":
+                entity.loaiTaiKhoan = 4;
+                break;
         }
 
         userModel.update(entity).then(n => {
@@ -193,7 +220,7 @@ router.post('/:username/edit',auth, (req, res, next) => {
     })
 })
 
-router.get('/register',auth, (req, res, next) => {
+router.get('/register', auth, (req, res, next) => {
     var types = [];
     for (var i = 1; i < StrTypes.length; i++) {
         var temp = new Object;
@@ -206,6 +233,7 @@ router.get('/register',auth, (req, res, next) => {
     }
     catModel.all().then(rows => {
         res.render('admin/user/register', {
+            title: 'Thêm người dùng',
             types: types,
             categories: rows
         });
@@ -216,7 +244,7 @@ router.get('/register',auth, (req, res, next) => {
 
 })
 
-router.post('/register',auth, (req, res, next) => {
+router.post('/register', auth, (req, res, next) => {
     var entity = new Object;
     entity.ten = req.body.name;
     entity.username = req.body.username;
@@ -237,9 +265,14 @@ router.post('/register',auth, (req, res, next) => {
                 entity.HSD = moment(req.body.HSD, 'DD/MM/YYYY').format('YYYY-MM-DD');
             } catch (err) {
                 entity.HSD = null;
-            }; break;
-        case "2": entity.butDanh = req.body.author; break;
-        case "3": entity.idChuyenMuc = req.body.category; break;
+            };
+            break;
+        case "2":
+            entity.butDanh = req.body.author;
+            break;
+        case "3":
+            entity.idChuyenMuc = req.body.category;
+            break;
     }
 
     userModel.add(entity).then(rows => {
@@ -251,7 +284,7 @@ router.post('/register',auth, (req, res, next) => {
 })
 
 
-router.post('/:username/extend',auth, (req, res, next) => {
+router.post('/:username/extend', auth, (req, res, next) => {
     var username = req.params.username;
     userModel.single(username).then(rows => {
         var user = rows[0];
