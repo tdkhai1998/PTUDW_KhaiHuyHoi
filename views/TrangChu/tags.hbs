@@ -1,25 +1,27 @@
-{{#section 'css'}}
-    {{#if message}}
-        <script>
-            (function() {alert('{{message}}');})();
-        </script>
-    {{/if}}
-{{/section}}
+{{#section 'css'}} {{#if message}}
+<script>
+    (function() {
+        alert('{{message}}');
+    })();
+</script>
+{{/if}} {{/section}}
 <div id="colorlib-page">
-	{{> menu r=chuyenmuc daDangNhap=daDangNhap user=user}}
-	<div id="colorlib-main">
-		<div class="colorlib-blog">
-			<div class="container-wrap">
-				<div class="row">
-					<div class="col-md-9" style="padding: 0px;">
-						<div class="content-wrap">
-							<hr><h2 class="uppercase">DANH SÁCH BÀI VIẾT THEO TAGS
-                            </h2><hr>
-                              <div class="side animate-box" style="padding: 15px;">
+    {{> menu r=chuyenmuc daDangNhap=daDangNhap user=user}}
+    <div id="colorlib-main">
+        <div class="colorlib-blog">
+            <div class="container-wrap">
+                <div class="row">
+                    <div class="col-md-9" style="padding: 0px;">
+                        <div class="content-wrap">
+                            <hr>
+                            <h2 class="uppercase">DANH SÁCH BÀI VIẾT THEO TAGS
+                            </h2>
+                            <hr>
+                            <div class="side animate-box" style="padding: 15px;">
                                 <div id="tags">
                                     <div class="panel panel-primary">
                                         <div class="panel-body">
-                                            <div id = "tag">
+                                            <div id="tag">
                                                 {{#each tags}}
                                                 <div class="alert alert-success alert-dismissible tag">
                                                     <a href="/tag/{{idTag}}">{{tenTag}}</a>
@@ -30,28 +32,26 @@
                                     </div>
                                 </div>
                             </div>
-						</div>
-                        <div class="col-md-12"  >
-                        <ul class="pagination">
-                            {{!--<li class="disabled"><a href="#">&laquo;</a></li>--}}
-                            {{#each pages}}
-                                {{#if active}}
+                        </div>
+                        <div class="col-md-12">
+                            <ul class="pagination">
+                                {{!--
+                                <li class="disabled"><a href="#">&laquo;</a></li>--}} {{#each pages}} {{#if active}}
                                 <li class="active"><a href="./{{id}}?page={{giatri}}">{{giatri}}</a></li>
                                 {{else}}
                                 <li><a href="./{{id}}?page={{giatri}}">{{giatri}}</a></li>
-                                {{/if}}
-                            {{/each}}
-                            {{!-- <li><a href="#">&raquo;</a></li> --}}
-                        </ul>
+                                {{/if}} {{/each}} {{!--
+                                <li><a href="#">&raquo;</a></li> --}}
+                            </ul>
                         </div>
-					</div>
+                    </div>
                     <div class="col-md-3">
                         <div class="sidebar">
                             <div class="side animate-box">
                                 <form action="" method="POST">
                                     <div class="funkyradio">
                                         <div class="funkyradio-success">
-                                            <input type="checkbox" name="tieuDe" id="checkbox1" checked />
+                                            <input type="checkbox" name="tieuDe" id="checkbox1" />
                                             <label for="checkbox1">Theo Tiêu Đề</label>
                                         </div>
                                         <div class="funkyradio-success">
@@ -63,7 +63,7 @@
                                             <label for="checkbox3">Theo Nội Dung</label>
                                         </div>
                                         <div class="funkyradio-success">
-                                            <input  type="checkbox" name="fulltext" id="checkbox" />
+                                            <input type="checkbox" name="fulltext" id="checkbox" checked />
                                             <label for="checkbox">Full text search</label>
                                         </div>
                                     </div>
@@ -73,47 +73,47 @@
                                     </div>
                                 </form>
                             </div>
-                          
+
                             <div class="side animate-box">
                                 <h2 class="sidebar-heading">Recent Blog</h2>
                                 {{#each baivietmoinhat}}
                                 <div class="f-blog">
-									<a href="/chitietbaiviet/{{idBaiViet}}" class="blog-img" style="background-image: url({{anhDaiDien}});"></a>
-									<div class="desc">
-										<h3><a href="/chitietbaiviet/{{idBaiViet}}">{{tieuDe}}</a></h3>
-										<p class="admin"><span>{{formatDate ngayDang}}</span></p>
-									</div>
-								</div>
+                                    <a href="/chitietbaiviet/{{idBaiViet}}" class="blog-img" style="background-image: url({{anhDaiDien}});"></a>
+                                    <div class="desc" style="height: 65px;overflow: hidden">
+                                        <h3><a href="/chitietbaiviet/{{idBaiViet}}">{{tieuDe}}</a></h3>
+                                        <p class="admin"><span>{{formatDate ngayDang}}</span></p>
+                                    </div>
+                                </div>
                                 {{/each}}
                             </div>
                         </div>
                     </div>
-				</div>
-			</div>
-		</div>
-	</div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 <script>
-      document.getElementById('checkbox1').onclick = function() {
+    document.getElementById('checkbox1').onclick = function() {
         if (this.checked) {
-            document.getElementById('checkbox').checked=false;
+            document.getElementById('checkbox').checked = false;
         }
-      }
-      document.getElementById('checkbox2').onclick = function() {
+    }
+    document.getElementById('checkbox2').onclick = function() {
         if (this.checked) {
-            document.getElementById('checkbox').checked=false;
+            document.getElementById('checkbox').checked = false;
         }
-      }
-      document.getElementById('checkbox3').onclick = function() {
+    }
+    document.getElementById('checkbox3').onclick = function() {
         if (this.checked) {
-            document.getElementById('checkbox').checked=false;
+            document.getElementById('checkbox').checked = false;
         }
-      }
+    }
     document.getElementById('checkbox').onclick = function() {
         if (this.checked) {
-            document.getElementById('checkbox1').checked=false;
-            document.getElementById('checkbox2').checked=false;
-            document.getElementById('checkbox3').checked=false;
+            document.getElementById('checkbox1').checked = false;
+            document.getElementById('checkbox2').checked = false;
+            document.getElementById('checkbox3').checked = false;
         }
     }
 </script>

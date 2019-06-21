@@ -74,15 +74,15 @@ router.get('/:id', function(req, res, next) {
         .catch(e => next(e));
 });
 router.post('/:id', function(req, res, next) {
-    if (req.isAuthenticated()) {
-        var val = req.body;
-        console.log(val);
-        if (val.type) {
-            res.redirect(url.format({
-                pathname: '/timkiem',
-                query: req.body
-            }));
-        } else {
+
+    var val = req.body;
+    if (val.type) {
+        res.redirect(url.format({
+            pathname: '/timkiem',
+            query: req.body
+        }));
+    } else {
+        if (req.isAuthenticated()) {
             var comment = comments.create();
             comment.nguoiBinhLuan = req.user.username;
             comment.id = Date.now();
@@ -94,10 +94,11 @@ router.post('/:id', function(req, res, next) {
             comments.add(comment).then(val => {
                 res.redirect('./' + req.params.id);
             }).catch(e => next(e));
+        } else {
+            req.session.urlBack = req.baseUrl + '/' + req.url;
+            res.redirect('/account/login')
         }
-    } else {
-        req.session.urlBack = req.baseUrl + '/' + req.url;
-        res.redirect('/account/login')
     }
+
 });
 module.exports = router;
