@@ -83,7 +83,6 @@ router.get('/tag/:id', function(req, res, next) {
     Promise.all([chuyenmuc_model.mapping(), baiviet_model.tongBaiVietChuaTag(id), bvWithTags, tag_model.all(), baiviet_model.baiVietMoiNhat(5, 0)]).then(([chuyenmuc, tongbaiviet, baiviet, tags, baivietmoinhat]) => {
         var n = tongbaiviet[0].tong;
         n = n / limit;
-
         var pages = [];
         for (var i = 0; i < n; i++) {
             var obj = new Object();
@@ -93,6 +92,7 @@ router.get('/tag/:id', function(req, res, next) {
             else obj.active = false;
             pages.push(obj);
         }
+        console.log(tags);
         var tag = null;
         tags.forEach(e => {
             if (e.idTag == id) {
@@ -100,6 +100,7 @@ router.get('/tag/:id', function(req, res, next) {
             }
         })
         if (tag == null) {
+            req.session.message = " Không tìm thấy";
             res.redirect('/');
         } else {
             var m = req.session.message;
@@ -153,7 +154,6 @@ router.post('/timkiem', function(req, res, next) {
     }))
 })
 router.get('/chuyenmuc/:id', function(req, res, next) {
-
     var id = req.params.id;
     if (isNaN(id)) {
         req.session.message = "Chuyên mục không hợp lệ";
@@ -167,11 +167,11 @@ router.get('/chuyenmuc/:id', function(req, res, next) {
     Promise.all([chuyenmuc_model.mapping(), baiviet_model.tongBaiVietChuyenMuc(id), bvWithTags, baiviet_model.baiVietMoiNhat(5, 0)])
         .then(([chuyenmuc, tongbaiviet, baiviet, baivietmoinhat]) => {
             var check = true;
-            console.log(chuyenmuc);
+            console.log(baiviet);
             chuyenmuc.forEach(e => {
                 if (e.idChuyenMuc == id) {
                     check = false;
-                    var n = tongbaiviet[0].tong;
+                    var n = tongbaiviet[0].toyng;
                     n = n / limit;
                     var pages = [];
                     for (var i = 0; i < n; i++) {
@@ -206,9 +206,12 @@ router.get('/chuyenmuc/:id', function(req, res, next) {
                     })
                 }
             });
-            if (check) res.redirect('/');
+            if (check) {
+                req.session.message = "Chuyên mục không hợp lệ";
+                return res.redirect('/');
+            }
         }).catch(e => {
-            console.log(e.sqlMessage);
+            // console.log(e.sqlMessage);
             next();
         })
 });

@@ -41,7 +41,11 @@
 										</a>
 									</span>
                                     <span>{{formatDate baiviet.ngayDang}}</span><br>
-                                    <span>{{baiviet.butDanh}} </span><br>
+                                    <span>{{baiviet.butDanh}} </span><br> {{#if baiviet.premium}}
+                                    <div class="alert alert-premium alert-dismissible tag">
+                                        PREMIUM
+                                    </div>
+                                    <br> {{/if}}
                                     <hr> {{{baiviet.noiDung}}}
                                 </div>
                             </div>

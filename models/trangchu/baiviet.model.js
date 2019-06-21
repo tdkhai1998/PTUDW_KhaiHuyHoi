@@ -14,7 +14,7 @@ var count_full_text_search_QS = key => `SELECT count(*) FROM baiviet as bv JOIN 
 var tongBaiVietChuaTag_QS = (idTag) => `select count(*) as tong from thuoctag  join baiviet on thuoctag.idBaiViet=baiviet.idBaiViet join chuyenmuc on baiviet.idChuyenMuc=chuyenmuc.idChuyenMuc where chuyenmuc.daXoa=0 and baiviet.trangThai='daxuatban'  and baiviet.daXoa=false and thuoctag.idTag=${idTag}`;
 var baiVietChuaTag_QS = (idTag, limit, offset) => `select * from thuoctag  join baiviet on thuoctag.idBaiViet=baiviet.idBaiViet join chuyenmuc on baiviet.idChuyenMuc=chuyenmuc.idChuyenMuc  where chuyenmuc.daXoa=0 and baiviet.trangThai='daxuatban'  and baiviet.daXoa=false and thuoctag.idTag=${idTag} order by premium DESC , ngaydang DESC ` + limitString(limit, offset);
 var single = id => db.load(`SELECT bv.*, cm.tenChuyenMuc, nguoidung.butDanh FROM baiviet as bv JOIN chuyenmuc as cm ON bv.idChuyenMuc=cm.idChuyenMuc  join nguoidung on nguoidung.username=bv.nguoiDang WHERE cm.daXoa=0 and bv.trangThai='daxuatban'  and bv.daXoa=false and idBaiViet= ${id}`);
-var singleWithTags = id => Promise.all([single(id), db.load(`select * from thuoctag tg join tag t on tg.idTag=t.idTag and tg.idBaiViet=${id}`)]).then(([baiviet, tags]) => {
+var singleWithTags = id => Promise.all([single(id), db.load(`select * from thuoctag tg join tag t on tg.idTag=t.idTag and tg.idBaiViet=${id} where t.daXoa=0 `)]).then(([baiviet, tags]) => {
     if (baiviet.length <= 0) return null;
     else {
         baiviet[0].tags = [];
@@ -24,7 +24,7 @@ var singleWithTags = id => Promise.all([single(id), db.load(`select * from thuoc
         return baiviet[0];
     }
 })
-var getTags = (bv, id) => Promise.all([bv, db.load(`select * from thuoctag tg join tag t on tg.idTag=t.idTag and tg.idBaiViet=${id}`)]).then(([baiviet, tags]) => {
+var getTags = (bv, id) => Promise.all([bv, db.load(`select * from thuoctag tg join tag t on tg.idTag=t.idTag and tg.idBaiViet=${id} where t.daXoa=0`)]).then(([baiviet, tags]) => {
     if (baiviet.length <= 0) return null;
     else {
         baiviet[0].tags = [];
@@ -34,7 +34,7 @@ var getTags = (bv, id) => Promise.all([bv, db.load(`select * from thuoctag tg jo
         return baiviet[0];
     }
 })
-var getTagsForBaiViets = baiViet => Promise.all([baiViet, db.load('select * from thuoctag tg join tag t on tg.idTag=t.idTag')]).then(([bv, tags]) => {
+var getTagsForBaiViets = baiViet => Promise.all([baiViet, db.load('select * from thuoctag tg join tag t on tg.idTag=t.idTag where t.daXoa=0')]).then(([bv, tags]) => {
     {
         bv.forEach(i => {
             i.tags = [];

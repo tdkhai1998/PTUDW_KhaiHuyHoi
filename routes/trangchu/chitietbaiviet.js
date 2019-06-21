@@ -6,7 +6,7 @@ var comments = require('../../models/trangchu/comment_model');
 var passport = require('passport');
 var acc = require('../../models/account/account.model');
 var url = require('url');
-var check = (loai) => {
+var trangcuaban = (loai) => {
     switch (loai) {
         case "1":
             return "/"
@@ -51,7 +51,7 @@ router.get('/:id', function(req, res, next) {
                                     comments: comment[0],
                                     socmt: comment[1],
                                     cungchuyenmuc,
-                                    trangcuaban: (req.user) ? check(req.user.loaiTaiKhoan) : 5,
+                                    trangcuaban: (req.user) ? trangcuaban(req.user.loaiTaiKhoan) : 5,
                                 })
                             })
                         })
