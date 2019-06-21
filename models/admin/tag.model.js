@@ -21,7 +21,7 @@ module.exports={
   },
 
   delete: id => {
-  
+    db.load(`delete from thuoctag where idTag=${id}`);
     return db.load(`update tag set daXoa=1 where idTag=${id}`);
   },
 }
