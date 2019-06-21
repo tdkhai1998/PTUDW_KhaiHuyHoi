@@ -2,7 +2,7 @@ var db = require('../../utils/db');
 module.exports = {
     top10ChuyenMuc: () => db.load(`SELECT idChuyenMuc, sum(luotxem) luotxem FROM baiviet WHERE baiviet.trangThai='daxuatban' group BY idChuyenMuc ORDER by luotxem desc LIMIT 10`),
     mapping: () => {
-        return db.load('select * from chuyenmuc').then((value) => {
+        return db.load('select * from chuyenmuc where daXoa=0').then((value) => {
             value.forEach((item) => {
                 item.chuyenMucCon = [];
                 value.forEach((item2) => {

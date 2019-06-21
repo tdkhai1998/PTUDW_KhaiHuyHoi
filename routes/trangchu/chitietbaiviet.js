@@ -6,6 +6,20 @@ var comments = require('../../models/trangchu/comment_model');
 var passport = require('passport');
 var acc = require('../../models/account/account.model');
 var url = require('url');
+var check = (loai) => {
+    switch (loai) {
+        case "1":
+            return "/"
+        case "2":
+            return "/writer_vietbai"
+        case "3":
+            return "/editor_xemdanhsach"
+        case "4":
+            return "/admin/tags"
+        default:
+            return "/"
+    }
+}
 router.get('/:id', function(req, res, next) {
     var idBaiViet = req.params.id;
     var check;
@@ -36,7 +50,8 @@ router.get('/:id', function(req, res, next) {
                                     baiviet,
                                     comments: comment[0],
                                     socmt: comment[1],
-                                    cungchuyenmuc
+                                    cungchuyenmuc,
+                                    trangcuaban: (req.user) ? check(req.user.loaiTaiKhoan) : 5,
                                 })
                             })
                         })

@@ -6,11 +6,30 @@ var chuyenmuc_model = require('../../models/trangchu/chuyenmuc.model');
 var tag_model = require('../../models/trangchu/tag.model')
 
 /* GET home page. */
+var check = (loai) => {
+    switch (loai) {
+        case "1":
+            return "/"
+        case "2":
+            return "/writer_vietbai"
+        case "3":
+            return "/editor_xemdanhsach"
+        case "4":
+            return "/admin/tags"
+        default:
+            return "/"
+    }
+}
 router.get('/', function(req, res, next) {
     Promise.all([chuyenmuc_model.mapping(), baiviet_model.getTagsForBaiViets(baiviet_model.baiVietNoiBat()), baiviet_model.getTagsForBaiViets(baiviet_model.baivietxemnhieunhat()), baiviet_model.getTagsForBaiViets(baiviet_model.baiVietMoiNhat(10, 0)), baiviet_model.getTagsForBaiViets(baiviet_model.top10chuyenmuc())])
         .then(([chuyenmuc, baivietnoibat, baivietxemnhieunhat, baivietmoinhat, top10chuyenmuc]) => {
             var m = req.session.message;
             req.session.message = null;
+            baivietmoinhat.forEach(v => {
+                {
+                    console.log(v.premium)
+                }
+            })
             res.render('TrangChu/trangchu', {
                 title: "Trang chủ",
                 message: m,
@@ -18,6 +37,7 @@ router.get('/', function(req, res, next) {
                 chuyenmuc,
                 daDangNhap: req.isAuthenticated(),
                 user: req.user,
+                trangcuaban: (req.user) ? check(req.user.loaiTaiKhoan) : 5,
                 baivietmoinhat,
                 baivietnoibat,
                 baivietxemnhieunhat,
@@ -90,6 +110,7 @@ router.get('/tag/:id', function(req, res, next) {
                 layout: 'main',
                 chuyenmuc,
                 baiviet,
+                trangcuaban: (req.user) ? check(req.user.loaiTaiKhoan) : 5,
                 daDangNhap: req.isAuthenticated(),
                 user: req.user,
                 pages,
@@ -177,6 +198,7 @@ router.get('/chuyenmuc/:id', function(req, res, next) {
                         tenchuyenmuc: e.tenChuyenMuc,
                         empty: (baiviet.length == 0) ? true : false,
                         baiviet,
+                        trangcuaban: (req.user) ? check(req.user.loaiTaiKhoan) : 5,
                         daDangNhap: req.isAuthenticated(),
                         user: req.user,
                         pages,
@@ -211,7 +233,7 @@ router.get('/timkiem', function(req, res, next) {
         bvWithTags = baiviet_model.getTagsForBaiViets(baiviet_model.multiSimpleSearch(field, key, limit, offset));
         countSearch = baiviet_model.count_multiSimpleSearch(field, key);
     }
-    console.log("dsf00");
+
     Promise.all([chuyenmuc_model.mapping(), countSearch, bvWithTags, baiviet_model.baiVietMoiNhat(5, 0)]).then(([chuyenmuc, tongbaiviet, baiviet, baivietmoinhat]) => {
             var check = true;
             check = false;
