@@ -13,8 +13,10 @@ var storage = multer.diskStorage({
         cb(null, filename)
     }
 });
-var upload = multer({ storage: storage });
-router.get('/', auth, function(req, res, next) {
+var upload = multer({
+    storage: storage
+});
+router.get('/', auth, function (req, res, next) {
     Promise.all([load.alltag(), load.mapping()])
         .then(([alltags, chuyenmuc]) => {
             res.render('writer/writer_vietbai_body', {
@@ -29,7 +31,7 @@ router.get('/', auth, function(req, res, next) {
         })
         .catch(e => next(e));
 });
-router.post('/', upload.single('anhdaidien'), function(req, res, next) {
+router.post('/', upload.single('anhdaidien'), function (req, res, next) {
     if (!req.file) {
         console.log("No file received");
         return res.send({
@@ -37,7 +39,7 @@ router.post('/', upload.single('anhdaidien'), function(req, res, next) {
         });
     }
     var value = req.body;
-    var entity = new Object;
+    var entity = new Object();
     entity.tieuDe = value.tieude;
     entity.moTa = value.tomtat;
     entity.anhDaiDien = '/images/uploads/' + filename;
@@ -48,7 +50,7 @@ router.post('/', upload.single('anhdaidien'), function(req, res, next) {
     entity.ngayDang = new Date();
     entity.daXoa = '0';
     entity.luotxem = '0';
-    if (entity.premium == 1)
+    if (value.premium == "on")
         entity.premium = '1';
     else
         entity.premium = '0';

@@ -13,9 +13,11 @@ var storage = multer.diskStorage({
         cb(null, filename)
     }
 });
-var upload = multer({ storage: storage });
+var upload = multer({
+    storage: storage
+});
 var oldtag = ""
-router.get('/', auth, function(req, res, next) {
+router.get('/', auth, function (req, res, next) {
     Promise.all([load.one(req.query.id), load.tags(req.query.id), load.alltag(), load.mapping()])
         .then(([bv, tag, alltags, chuyenmuc]) => {
             var inputtag = "";
@@ -40,7 +42,7 @@ router.get('/', auth, function(req, res, next) {
 
 
 
-router.post('/', auth, upload.single('anhdaidien'), function(req, res, next) {
+router.post('/', auth, upload.single('anhdaidien'), function (req, res, next) {
 
     var value = req.body;
     var entity = new Object;
@@ -57,7 +59,7 @@ router.post('/', auth, upload.single('anhdaidien'), function(req, res, next) {
     entity.ngayDang = new Date();
     entity.daXoa = '0';
     entity.luotxem = '0';
-    if (entity.premium == 1)
+    if (value.premium == "on")
         entity.premium = '1';
     else
         entity.premium = '0';
