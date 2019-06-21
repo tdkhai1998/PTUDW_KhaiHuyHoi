@@ -1,95 +1,108 @@
 {{#section 'css'}}
-    {{#if message}}
-        <script>
-            (function() {
-            alert('{{message}}');
-            })();
-        </script>
-    {{/if}}
+{{#if message}}
+<script>
+    (function () {
+        alert('{{message}}');
+    })();
+</script>
+{{/if}}
 {{/section}}
 <div id="colorlib-page">
-	{{> menu r=chuyenmuc daDangNhap=daDangNhap user=user active=active}}
-	<div id="colorlib-main">
-		<div class="colorlib-blog">
-			<div class="container-wrap">
-				<div class="row">
-					<div class="col-md-9 " style="padding: 0px;">
-						<div class="content-wrap">
-							<hr><h2 class="uppercase">DANH SÁCH BÀI VIẾT  
-                            {{#if tenchuyenmuc}}
+    {{> menu r=chuyenmuc daDangNhap=daDangNhap user=user active=active}}
+    <div id="colorlib-main">
+        <div class="colorlib-blog">
+            <div class="container-wrap">
+                <div class="row">
+                    <div class="col-md-9 " style="padding: 0px;">
+                        <div class="content-wrap">
+                            <hr>
+                            <h2 class="uppercase">DANH SÁCH BÀI VIẾT
+                                {{#if tenchuyenmuc}}
                                 CHUYÊN MỤC <p style="color: red">{{tenchuyenmuc}}</p>
-                            {{/if}}
-                            {{#if key}}
+                                {{/if}}
+                                {{#if key}}
                                 TÌM KIẾM VỚI <p style="color: green">"{{key}}"</p>
-                            {{/if}}
+                                {{/if}}
                             </h2>
                             <hr>
                             {{#if empty}}
-                                <h3>KHÔNG TÌM THẤY BÀI VIẾT NÀO</h3>
+                            <h3>KHÔNG TÌM THẤY BÀI VIẾT NÀO</h3>
                             {{/if}}
                             {{#each baiviet}}
-<!---->                     <div class="blog-entry-travel animate-box" style="margin: 15px 10px;">
+                            <!---->
+                            <div class="blog-entry-travel animate-box" style="margin: 15px 10px;">
                                 <div class="blog-img" style="background-image: url({{anhDaiDien}});"></div>
-                                <div class="desc">						
-                                    <h4><a class="tieude" href="/chitietbaiviet/{{idBaiViet}}">{{tieuDe}}</a></h4>
-                                    {{#if  premium}}
+                                <div class="desc">
+                                    <div style="height: 70px;overflow: hidden">
+                                        <h4><a class="tieude" href="/chitietbaiviet/{{idBaiViet}}">{{tieuDe}}</a></h4>
+
+                                    </div>
+                                    <div style="height: 120px;overflow: hidden">
+                                        {{#if  premium}}
                                         <div class="alert alert-premium alert-dismissible tag">
                                             PREMIUM
                                         </div>
                                         <br>
-                                    {{/if}}
-                                    <span class="cat"><a href="/chuyenmuc/{{idChuyenMuc}}">{{tenChuyenMuc}}</a>|</span>
-                                    {{#each tags}}
+                                        {{/if}}
+                                        <span class="cat"><a
+                                                href="/chuyenmuc/{{idChuyenMuc}}">{{tenChuyenMuc}}</a>|</span>
+                                        {{#each tags}}
                                         <div class="alert alert-success alert-dismissible tag">
                                             <a href="/tag/{{idTag}}">{{tenTag}}</a>
                                         </div>
-                                    {{/each}}
-                                    <span class="date">{{formatDate ngayDang}}</span>		
-                                    <p>{{moTa}}</p>
-                                    <a href="/chitietbaiviet/{{idBaiViet}}" class="btn btn-primary">Đọc tiếp <i class="icon-arrow-right22"></i></a>
+                                        {{/each}}
+                                        <span class="date">{{formatDate ngayDang}}</span>
+                                        <p>{{moTa}}</p>
+
+                                    </div>
+                                    <a href="/chitietbaiviet/{{idBaiViet}}" class="btn btn-primary">Đọc tiếp <i
+                                            class="icon-arrow-right22"></i></a>
                                 </div>
-<!---->                     </div>
+                                <!---->
+                            </div>
                             {{/each}}
-						</div>
-                        <div class="col-md-12"  >
-                        <ul class="pagination">
-                            {{!--<li class="disabled"><a href="#">&laquo;</a></li>--}}
-                            {{#each pages}}
+                        </div>
+                        <div class="col-md-12">
+                            <ul class="pagination">
+                                {{!--<li class="disabled"><a href="#">&laquo;</a></li>--}}
+                                {{#each pages}}
                                 {{#if active}}
                                 <li class="active"><a href="./{{id}}?page={{giatri}}">{{giatri}}</a></li>
                                 {{else}}
                                 <li><a href="./{{id}}?page={{giatri}}">{{giatri}}</a></li>
                                 {{/if}}
-                            {{/each}}
-                            {{!-- <li><a href="#">&raquo;</a></li> --}}
-                        </ul>
+                                {{/each}}
+                                {{!-- <li><a href="#">&raquo;</a></li> --}}
+                            </ul>
+                        </div>
                     </div>
-					</div>
                     <div class="col-md-3">
                         <div class="sidebar">
                             <div class="side animate-box">
-                               <form action="" method="POST">
+                                <form action="" method="POST">
                                     <div class="funkyradio">
-                                            <div class="funkyradio-success">
-                                                <input type="checkbox" name="tieuDe" id="checkbox1" checked/>
-                                                <label for="checkbox1">Theo Tiêu Đề</label>
-                                            </div>
-                                            <div class="funkyradio-success">
-                                                <input type="checkbox" name="moTa" id="checkbox2" />
-                                                <label for="checkbox2">Theo Mô Tả</label>
-                                            </div>
-                                            <div class="funkyradio-success">
-                                                <input type="checkbox" name="noiDung" id="checkbox3" />
-                                                <label for="checkbox3">Theo Nội Dung</label>
-                                            </div>
-                                            <div class="funkyradio-success">
-                                                <input  type="checkbox" name="fulltext" id="checkbox" />
-                                                <label for="checkbox">Full text search</label>
-                                            </div> 
+                                        <div class="funkyradio-success">
+                                            <input type="checkbox" name="tieuDe" id="checkbox1" checked />
+                                            <label for="checkbox1">Theo Tiêu Đề</label>
+                                        </div>
+                                        <div class="funkyradio-success">
+                                            <input type="checkbox" name="moTa" id="checkbox2" />
+                                            <label for="checkbox2">Theo Mô Tả</label>
+                                        </div>
+                                        <div class="funkyradio-success">
+                                            <input type="checkbox" name="noiDung" id="checkbox3" />
+                                            <label for="checkbox3">Theo Nội Dung</label>
+                                        </div>
+                                        <div class="funkyradio-success">
+                                            <input type="checkbox" name="fulltext" id="checkbox" />
+                                            <label for="checkbox">Full text search</label>
+                                        </div>
                                     </div>
                                     <div class="form-group">
-                                        <input type="text" class="form-control" name="key" id="search" placeholder="Enter to search...">
-                                        <button type="submit" class="btn submit btn-primary"><i class="icon-search3"></i></button>
+                                        <input type="text" class="form-control" name="key" id="search"
+                                            placeholder="Enter to search...">
+                                        <button type="submit" class="btn submit btn-primary"><i
+                                                class="icon-search3"></i></button>
                                     </div>
                                 </form>
                             </div>
@@ -97,44 +110,45 @@
                                 <h2 class="sidebar-heading">BÀI VIẾT GẦN ĐÂY</h2>
                                 {{#each baivietmoinhat}}
                                 <div class="f-blog">
-									<a href="/chitietbaiviet/{{idBaiViet}}" class="blog-img" style="background-image: url({{anhDaiDien}});">
-									</a>
-									<div class="desc">
-										<h3><a href="/chitietbaiviet/{{idBaiViet}}">{{tieuDe}}</a></h3>
-										<p class="admin"><span>{{formatDate ngayDang}}</span></p>
-									</div>
-								</div>
+                                    <a href="/chitietbaiviet/{{idBaiViet}}" class="blog-img"
+                                        style="background-image: url({{anhDaiDien}});">
+                                    </a>
+                                    <div class="desc">
+                                        <h3><a href="/chitietbaiviet/{{idBaiViet}}">{{tieuDe}}</a></h3>
+                                        <p class="admin"><span>{{formatDate ngayDang}}</span></p>
+                                    </div>
+                                </div>
                                 {{/each}}
-                            </div> 
+                            </div>
                         </div>
                     </div>
-                   
-				</div>
-			</div>
-		</div>
-	</div>
+
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 <script>
-      document.getElementById('checkbox1').onclick = function() {
+    document.getElementById('checkbox1').onclick = function () {
         if (this.checked) {
-            document.getElementById('checkbox').checked=false;
+            document.getElementById('checkbox').checked = false;
         }
-      }
-      document.getElementById('checkbox2').onclick = function() {
+    }
+    document.getElementById('checkbox2').onclick = function () {
         if (this.checked) {
-            document.getElementById('checkbox').checked=false;
+            document.getElementById('checkbox').checked = false;
         }
-      }
-      document.getElementById('checkbox3').onclick = function() {
+    }
+    document.getElementById('checkbox3').onclick = function () {
         if (this.checked) {
-            document.getElementById('checkbox').checked=false;
+            document.getElementById('checkbox').checked = false;
         }
-      }
-    document.getElementById('checkbox').onclick = function() {
+    }
+    document.getElementById('checkbox').onclick = function () {
         if (this.checked) {
-            document.getElementById('checkbox1').checked=false;
-            document.getElementById('checkbox2').checked=false;
-            document.getElementById('checkbox3').checked=false;
+            document.getElementById('checkbox1').checked = false;
+            document.getElementById('checkbox2').checked = false;
+            document.getElementById('checkbox3').checked = false;
         }
     }
 </script>
