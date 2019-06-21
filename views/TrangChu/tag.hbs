@@ -100,11 +100,11 @@
                                 </div>
                             </div>
                             <div class="side animate-box">
-                                <h2 class="sidebar-heading">Recent Blog</h2>
+                                <h2 class="sidebar-heading">Bài viết gần đây</h2>
                                 {{#each baivietmoinhat}}
                                 <div class="f-blog">
                                     <a href="/chitietbaiviet/{{idBaiViet}}" class="blog-img" style="background-image: url({{anhDaiDien}});"></a>
-                                    <div class="desc">
+                                    <div class="desc" style="height: 65px;overflow: hidden">
                                         <h3><a href="/chitietbaiviet/{{idBaiViet}}">{{tieuDe}}</a></h3>
                                         <p class="admin"><span>{{formatDate ngayDang}}</span></p>
                                     </div>

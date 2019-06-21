@@ -19,13 +19,19 @@
 					</ul>
 				</div>
 			</li>
-			{{/if}} {{/each}}
-			<li><a href="/tags">TAGS</b></a> {{#if daDangNhap}}
+			{{/if}}
+			{{/each}}
+			<li><a href="/tags">TAGS</a></li>
+
+
+			{{#if daDangNhap}}
+
 			<li><a href="/account/profile">Chào <b>{{user.ten}}</a>
-				<button class="" style="border: none; background-color:white; 0px; padding: 0px !important;"
+				<button class="" style="border: none; background-color:white; ; padding: 0px !important;"
 					onclick=""><span class="caret"></span></button>
 				<div class="submenu">
 					<ul>
+						<li><a href="{{trangcuaban}}">Trang của bạn</a></li>
 						<li><a href="/account/profile">Profile</a></li>
 						<li><a href="/account/reset-password">ĐỔi MẬT KHẨU</a></li>
 						<li><a href="/account/logout">ĐĂNG XUẤT</a></li>
