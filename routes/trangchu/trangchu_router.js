@@ -6,7 +6,7 @@ var chuyenmuc_model = require('../../models/trangchu/chuyenmuc.model');
 var tag_model = require('../../models/trangchu/tag.model')
 
 /* GET home page. */
-var check = (loai) => {
+var trangcuaban = (loai) => {
     switch (loai) {
         case "1":
             return "/"
@@ -37,7 +37,7 @@ router.get('/', function(req, res, next) {
                 chuyenmuc,
                 daDangNhap: req.isAuthenticated(),
                 user: req.user,
-                trangcuaban: (req.user) ? check(req.user.loaiTaiKhoan) : 5,
+                trangcuaban: (req.user) ? trangcuaban(req.user.loaiTaiKhoan) : 5,
                 baivietmoinhat,
                 baivietnoibat,
                 baivietxemnhieunhat,
@@ -59,6 +59,7 @@ router.get('/tags', function(req, res, next) {
             daDangNhap: req.isAuthenticated(),
             user: req.user,
             baivietmoinhat,
+            trangcuaban: (req.user) ? trangcuaban(req.user.loaiTaiKhoan) : 5,
             tags,
         })
     })
@@ -113,7 +114,7 @@ router.get('/tag/:id', function(req, res, next) {
                 layout: 'main',
                 chuyenmuc,
                 baiviet,
-                trangcuaban: (req.user) ? check(req.user.loaiTaiKhoan) : 5,
+                trangcuaban: (req.user) ? trangcuaban(req.user.loaiTaiKhoan) : 5,
                 daDangNhap: req.isAuthenticated(),
                 user: req.user,
                 pages,
@@ -203,7 +204,7 @@ router.get('/chuyenmuc/:id', function(req, res, next) {
                         tenchuyenmuc: e.tenChuyenMuc,
                         empty: (baiviet.length == 0) ? true : false,
                         baiviet,
-                        trangcuaban: (req.user) ? check(req.user.loaiTaiKhoan) : 5,
+                        trangcuaban: (req.user) ? trangcuaban(req.user.loaiTaiKhoan) : 5,
                         daDangNhap: req.isAuthenticated(),
                         user: req.user,
                         pages,
@@ -270,6 +271,7 @@ router.get('/timkiem', function(req, res, next) {
             key: key,
             daDangNhap: req.isAuthenticated(),
             user: req.user,
+            trangcuaban: (req.user) ? trangcuaban(req.user.loaiTaiKhoan) : 5,
             pages,
             baivietmoinhat
         })
