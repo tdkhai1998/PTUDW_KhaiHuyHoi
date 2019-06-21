@@ -21,7 +21,7 @@ router.get('/', auth, (req, res) => {
 
 
 router.get('/add', auth, (req, res) => {
-    catModel.all().then(rows => {
+    catModel.loadCatsParent(null).then(rows => {
 
         res.render('admin/cat/add', {
             title: 'Thêm chuyên mục',
