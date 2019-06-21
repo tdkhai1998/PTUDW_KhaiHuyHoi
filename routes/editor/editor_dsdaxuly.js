@@ -3,7 +3,7 @@ var router = express.Router();
 var load = require('../../models/editor/editor_xemdanhsach.model')
 var auth = require('../../middleware/auth').authEditor;
 
-router.get('/', auth, function(req, res, next) {
+router.get('/', auth, function (req, res, next) {
     var page = (req.query.page ? req.query.page : 1);
     page = page <= 0 ? 1 : page;
     var limit = 5;
@@ -13,6 +13,9 @@ router.get('/', auth, function(req, res, next) {
             rows.forEach(element => {
                 if (element.trangThai == 'bituchoi')
                     element.stt = 'Đã từ chối'
+                else
+                if (element.trangThai == 'daxuatban')
+                    element.stt = 'Đã xuất bản'
                 else
                     element.stt = 'Chờ xuất bản'
             });
