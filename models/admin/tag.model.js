@@ -1,27 +1,26 @@
 var db = require('../../utils/db');
 
 
-module.exports={
-  all:()=>{
-    return db.load(`
+module.exports = {
+    all: () => {
+        return db.load(`
     select * from tag where daXoa=0`)
-  },
+    },
 
-  add:(entity)=>{
-    return db.add('tag',entity);
-  },
+    add: (entity) => {
+        return db.add('tag', entity);
+    },
 
 
-  single:(id)=>{
-    return db.load(`select * from tag where idTag=${id}`);
-  },
+    single: (id) => {
+        return db.load(`select * from tag where idTag=${id}`);
+    },
 
-  update:(entity)=>{
-    return db.update('tag','idTag',entity);
-  },
+    update: (entity) => {
+        return db.update('tag', 'idTag', entity);
+    },
 
-  delete: id => {
-    db.load(`delete from thuoctag where idTag=${id}`);
-    return db.load(`update tag set daXoa=1 where idTag=${id}`);
-  },
+    delete: id => {
+        return Promise.all([db.load(`update tag set daXoa=1 where idTag=${id}`), db.load(`delete from thuoctag where idTag=${id}`)]);
+    },
 }
